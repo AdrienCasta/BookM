@@ -12,7 +12,7 @@ declare let module
 
 const VIEWSTYLE = {
   flex: 1,
-  backgroundColor: color.storybookDarkBg,
+  backgroundColor: color.palette.white,
 }
 const viewStyleArray: ViewStyle[] = [VIEWSTYLE, { backgroundColor: "#7fff00" }]
 
@@ -40,6 +40,11 @@ storiesOf("Text", module)
       <UseCase text="header" usage="Used for major section headers.">
         <View style={VIEWSTYLE}>
           <Text preset="header">Behold!</Text>
+        </View>
+      </UseCase>
+      <UseCase text="Title" usage="Used for title">
+        <View style={[VIEWSTYLE, { backgroundColor: "#fff" }]}>
+          <Text preset="title">Behold!</Text>
         </View>
       </UseCase>
     </Story>

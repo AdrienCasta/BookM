@@ -20,6 +20,16 @@ export const presets = {
    * The default text styles.
    */
   default: BASE,
+  title: {
+    ...BASE,
+    fontFamily: typography.secondary,
+    fontWeight: "bold",
+    fontSize: 55,
+    textShadowColor: "rgba(0, 0, 0, 0.25)",
+    textShadowOffset: { width: 0, height: 4 },
+    textShadowRadius: 4,
+    shadowColor: color.primary,
+  } as TextStyle,
 
   /**
    * A bold version of the default text.
@@ -29,7 +39,12 @@ export const presets = {
   /**
    * Large headers.
    */
-  header: { ...BASE, fontSize: 24, fontWeight: "bold" } as TextStyle,
+  header: {
+    ...BASE,
+    fontFamily: typography.secondary,
+    fontSize: 20,
+    fontWeight: "bold",
+  } as TextStyle,
 
   /**
    * Field labels that appear on forms above the inputs.
