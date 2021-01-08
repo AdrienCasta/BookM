@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "test:e2e": "detox test -c ios.sim.debug",
+    "run:ios": "react-native run-ios",
     "build:e2e": "detox build -c ios.sim.debug",
     "ci:test:e2e": "detox test -c ios.sim.release -l verbose --cleanup",
     "ci:build:e2e": "detox build -c ios.sim.release",
