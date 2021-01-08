@@ -2,21 +2,28 @@ import React from "react"
 import { TextInput, TextInputProps, TextStyle, View, ViewStyle } from "react-native"
 import { color, spacing, typography } from "../../theme"
 import { translate } from "../../i18n"
-import { Text } from "../text/text"
+import { Shadow } from "react-native-neomorph-shadows"
 import { mergeAll, flatten } from "ramda"
-
-// the base styling for the container
-const CONTAINER: ViewStyle = {
-  paddingVertical: spacing[3],
-}
 
 // the base styling for the TextInput
 const INPUT: TextStyle = {
   fontFamily: typography.primary,
   color: color.text,
-  minHeight: 44,
-  fontSize: 18,
+  height: "100%",
+  fontSize: 8,
+  padding: spacing.small,
+  borderRadius: 20,
+}
+
+const SHADOW: Partial<ViewStyle> = {
+  shadowOffset: { width: 2, height: 2 },
+  shadowOpacity: 0.25,
+  shadowColor: "grey",
+  shadowRadius: 5,
+  borderRadius: 20,
   backgroundColor: color.palette.white,
+  width: 180,
+  height: 40,
 }
 
 // currently we have no presets, but that changes quickly when you build your app.
@@ -74,24 +81,17 @@ export function TextField(props: TextFieldProps) {
   const {
     placeholderTx,
     placeholder,
-    labelTx,
-    label,
-    preset = "default",
-    style: styleOverride,
     inputStyle: inputStyleOverride,
     forwardedRef,
     ...rest
   } = props
-  let containerStyle: ViewStyle = { ...CONTAINER, ...PRESETS[preset] }
-  containerStyle = enhance(containerStyle, styleOverride)
 
   let inputStyle: TextStyle = INPUT
   inputStyle = enhance(inputStyle, inputStyleOverride)
   const actualPlaceholder = placeholderTx ? translate(placeholderTx) : placeholder
 
   return (
-    <View style={containerStyle}>
-      <Text preset="fieldLabel" tx={labelTx} text={label} />
+    <Shadow inner useArt style={SHADOW as any}>
       <TextInput
         placeholder={actualPlaceholder}
         placeholderTextColor={color.palette.lighterGrey}
@@ -100,6 +100,6 @@ export function TextField(props: TextFieldProps) {
         style={inputStyle}
         ref={forwardedRef}
       />
-    </View>
+    </Shadow>
   )
 }

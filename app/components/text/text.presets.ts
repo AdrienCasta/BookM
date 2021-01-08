@@ -31,6 +31,12 @@ export const presets = {
     shadowColor: color.primary,
   } as TextStyle,
 
+  catchPhrase: {
+    ...BASE,
+    fontSize: 15,
+    lineHeight: 20,
+  } as TextStyle,
+
   /**
    * A bold version of the default text.
    */

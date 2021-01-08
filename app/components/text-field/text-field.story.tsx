@@ -30,7 +30,7 @@ storiesOf("TextField", module)
   .addDecorator((fn) => <StoryScreen>{fn()}</StoryScreen>)
   .add("Labelling", () => (
     <Story>
-      <UseCase text="Normal text" usage="Use placeholder and label to set the text.">
+      <UseCase text="Normal field" usage="Use placeholder to set the text.">
         <State initial={{ value: "" }}>
           {({ state, setState }) => (
             <TextField
@@ -38,19 +38,6 @@ storiesOf("TextField", module)
               value={state.value}
               label="Name"
               placeholder="omg your name"
-            />
-          )}
-        </State>
-      </UseCase>
-
-      <UseCase text="i18n text" usage="Use placeholderTx and labelTx for i18n lookups">
-        <State initial={{ value: "" }}>
-          {({ state, setState }) => (
-            <TextField
-              onChangeText={(value) => setState({ value })}
-              value={state.value}
-              placeholderTx="storybook.placeholder"
-              labelTx="storybook.field"
             />
           )}
         </State>
