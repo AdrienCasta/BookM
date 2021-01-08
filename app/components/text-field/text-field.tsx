@@ -1,5 +1,5 @@
 import React from "react"
-import { TextInput, TextInputProps, TextStyle, View, ViewStyle } from "react-native"
+import { TextInput, TextInputProps, TextStyle, ViewStyle } from "react-native"
 import { color, spacing, typography } from "../../theme"
 import { translate } from "../../i18n"
 import { Shadow } from "react-native-neomorph-shadows"
