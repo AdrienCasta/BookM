@@ -5,13 +5,17 @@ import { Screen, Text, Box, TextField, Button } from "../../components"
 import {
   formStateReducer,
   formInitalState,
-  setIdentifier,
+  setUsername,
   setFirstname,
-} from "./register-screen.state"
+  setFamilyname,
+  setPassword,
+  setPasswordConfirmation,
+} from "./signup-screen.state"
 import { spacing } from "../../theme"
+import { useStores } from "../../models"
+import { useNavigation } from "@react-navigation/native"
 const Logo = require("../../../assets/logo-xs.png")
 // import { useNavigation } from "@react-navigation/native"
-// import { useStores } from "../../models"
 
 const ROOT: ViewStyle = {
   flex: 1,
@@ -62,17 +66,44 @@ const BUTTON: ViewStyle = {
   width: "100%",
 }
 
-export const RegisterScreen = observer(function RegisterScreen() {
+export const SignupScreen = observer(function SignupScreen() {
   // Pull in one of our MST stores
   // const { someStore, anotherStore } = useStores()
 
   // Pull in navigation via hook
-  // const navigation = useNavigation()
+  const navigation = useNavigation()
 
-  const [, dispatch] = useReducer(formStateReducer, formInitalState)
+  const [
+    { username, password, passwordConfirmation, firstname, familyname },
+    dispatch,
+  ] = useReducer(formStateReducer, formInitalState)
 
-  const handleChange = (actionCreator) => (value: string) => {
+  const { userStore } = useStores()
+
+  const handleStateChange = (actionCreator) => (value: string) => {
     dispatch(actionCreator(value))
+  }
+
+  const handleSignupSubmit = () => {
+    const arefalsy = (v) => !v
+    if ([username, familyname, firstname].some(arefalsy)) {
+      return
+    }
+    if (password.length < 6 || password !== passwordConfirmation) {
+      return
+    }
+    userStore
+      .signUp({
+        username,
+        password,
+        attributes: {
+          given_name: firstname,
+          family_name: familyname,
+        },
+      })
+      .then(() => {
+        navigation.navigate("EmailVerificationScreen")
+      })
   }
 
   return (
@@ -91,14 +122,26 @@ export const RegisterScreen = observer(function RegisterScreen() {
         <Box jc="center" ai="center">
           <TextField
             placeholder="mail / numéro de téléphone"
-            onChangeText={handleChange(setIdentifier)}
+            onChangeText={handleStateChange(setUsername)}
           />
           <View style={FORM_ROW}>
-            <TextField placeholder="prénom" onChangeText={handleChange(setFirstname)} />
+            <TextField placeholder="prénom" onChangeText={handleStateChange(setFirstname)} />
+          </View>
+          <View style={FORM_ROW}>
+            <TextField placeholder="nom" onChangeText={handleStateChange(setFamilyname)} />
+          </View>
+          <View style={FORM_ROW}>
+            <TextField placeholder="mot de passe" onChangeText={handleStateChange(setPassword)} />
+          </View>
+          <View style={FORM_ROW}>
+            <TextField
+              placeholder="vérification mot de passe"
+              onChangeText={handleStateChange(setPasswordConfirmation)}
+            />
           </View>
         </Box>
         <View style={BUTTON_WRAPPER}>
-          <Button preset="large" text="Confirmer" style={BUTTON} />
+          <Button preset="large" text="Confirmer" style={BUTTON} onPress={handleSignupSubmit} />
         </View>
       </View>
     </Screen>

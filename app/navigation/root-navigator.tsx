@@ -7,7 +7,7 @@
 import React from "react"
 import { NavigationContainer, NavigationContainerRef } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
-import { MainNavigator } from "./main-navigator"
+import { AuthNavigator } from "./auth-navigator"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -21,6 +21,7 @@ import { MainNavigator } from "./main-navigator"
  */
 export type RootParamList = {
   mainStack: undefined
+  authStack: undefined
 }
 
 const Stack = createStackNavigator<RootParamList>()
@@ -28,17 +29,25 @@ const Stack = createStackNavigator<RootParamList>()
 const RootStack = () => {
   return (
     <Stack.Navigator
+      initialRouteName="authStack"
       screenOptions={{
         headerShown: false,
       }}
     >
       <Stack.Screen
+        name="authStack"
+        component={AuthNavigator}
+        options={{
+          headerShown: false,
+        }}
+      />
+      {/* <Stack.Screen
         name="mainStack"
         component={MainNavigator}
         options={{
           headerShown: false,
         }}
-      />
+      /> */}
     </Stack.Navigator>
   )
 }

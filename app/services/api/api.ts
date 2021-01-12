@@ -1,7 +1,9 @@
 import { ApisauceInstance, create, ApiResponse } from "apisauce"
 import { getGeneralApiProblem } from "./api-problem"
 import { ApiConfig, DEFAULT_API_CONFIG } from "./api-config"
+import { Auth } from "aws-amplify"
 import * as Types from "./api.types"
+import { ISignUpResult } from "amazon-cognito-identity-js"
 
 /**
  * Manages all requests to the API.
@@ -98,5 +100,18 @@ export class Api {
     } catch {
       return { kind: "bad-data" }
     }
+  }
+
+  async signUp(signUpParams: Types.SignUpParams): Promise<ISignUpResult["user"]> {
+    try {
+      const { user } = await Auth.signUp(signUpParams)
+      return user
+    } catch (error) {
+      return error
+    }
+  }
+
+  async confirmSignUp(username: string, code: string) {
+    return await Auth.confirmSignUp(username, code)
   }
 }

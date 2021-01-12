@@ -6,7 +6,6 @@
  */
 import React from "react"
 import { createStackNavigator } from "@react-navigation/stack"
-import { RegisterScreen } from "../screens"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -34,7 +33,7 @@ export function MainNavigator() {
         headerShown: false,
       }}
     >
-      <Stack.Screen name="register" component={RegisterScreen} />
+      {null}
     </Stack.Navigator>
   )
 }
