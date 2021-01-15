@@ -95,6 +95,8 @@
     "prettier": "^2.2.1",
     "react-devtools-core": "4.10.1",
     "react-dom": "16.14.0",
+    "react-native-svg": "^12.1.0",
+    "react-native-svg-transformer": "^0.14.3",
     "react-native-web": "0.13.18",
     "react-powerplug": "1.0.0",
     "react-test-renderer": "^17.0.1",
