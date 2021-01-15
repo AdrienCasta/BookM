@@ -10,16 +10,16 @@ const INPUT: TextStyle = {
   fontFamily: typography.primary,
   color: color.text,
   height: "100%",
-  fontSize: 8,
-  padding: spacing.small,
+  fontSize: 12,
+  padding: spacing.medium,
   borderRadius: 20,
 }
 
 const SHADOW: Partial<ViewStyle> = {
-  shadowOffset: { width: 2, height: 2 },
+  shadowOffset: { width: 0, height: 2 },
   shadowOpacity: 0.25,
-  shadowColor: "grey",
-  shadowRadius: 5,
+  shadowColor: "black",
+  shadowRadius: 4,
   borderRadius: 20,
   backgroundColor: color.palette.white,
   width: 180,

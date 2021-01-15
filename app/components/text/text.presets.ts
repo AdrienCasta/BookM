@@ -31,6 +31,11 @@ export const presets = {
     shadowColor: color.primary,
   } as TextStyle,
 
+  link: {
+    ...BASE,
+    color: color.link,
+  } as TextStyle,
+
   catchPhrase: {
     ...BASE,
     fontSize: 15,
