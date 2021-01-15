@@ -1,10 +1,11 @@
 import React from "react"
 import { createStackNavigator } from "@react-navigation/stack"
-import { ConfirmSignupScreen, SignupScreen } from "../screens"
+import { ConfirmSignupScreen, SignupScreen, SignInScreen } from "../screens"
 
 export type PrimaryParamList = {
   ConfirmSignupScreen: undefined
-  SignupScreen: undefined
+  SignUpScreen: undefined
+  SignInScreen: undefined
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
@@ -13,13 +14,14 @@ const Stack = createStackNavigator<PrimaryParamList>()
 export function AuthNavigator() {
   return (
     <Stack.Navigator
-      initialRouteName="SignupScreen"
+      initialRouteName="SignInScreen"
       screenOptions={{
         headerShown: false,
       }}
     >
+      <Stack.Screen name="SignInScreen" component={SignInScreen} />
+      <Stack.Screen name="SignUpScreen" component={SignupScreen} />
       <Stack.Screen name="ConfirmSignupScreen" component={ConfirmSignupScreen} />
-      <Stack.Screen name="SignupScreen" component={SignupScreen} />
     </Stack.Navigator>
   )
 }

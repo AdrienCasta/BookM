@@ -1,3 +1,7 @@
+// Auth stack
 export * from "./signup/signup-screen"
 export * from "./confirm-signup/confirm-signup-screen"
-// export other screens here
+export * from "./sign-in/sign-in-screen"
+
+// Main stack
+export * from "./home/home-screen"
