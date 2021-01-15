@@ -42,6 +42,10 @@ export const color = {
    */
   text: palette.black,
   /**
+   * The default color of text in many components.
+   */
+  link: palette.lightGrey,
+  /**
    * Secondary information.
    */
   dim: palette.lightGrey,

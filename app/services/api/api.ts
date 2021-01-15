@@ -110,8 +110,4 @@ export class Api {
       return error
     }
   }
-
-  async confirmSignUp(username: string, code: string) {
-    return await Auth.confirmSignUp(username, code)
-  }
 }

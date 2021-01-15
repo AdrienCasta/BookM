@@ -1,44 +1,64 @@
+/* eslint-disable camelcase */
+import { Auth } from "aws-amplify"
 import { flow, Instance, SnapshotOut, types } from "mobx-state-tree"
-import { Api, SignUpParams } from "../../services/api"
+import { SignUpParams } from "../../services/api"
 
 /**
  * Model description here for TypeScript hints.
  */
-const UserModel = types.model("User").props({
-  username: types.optional(types.string, ""),
-  firstname: types.optional(types.string, ""),
-  lastname: types.optional(types.string, ""),
-  phone_number: types.optional(types.string, ""),
-})
 
-export const UserStoreModel = types
-  .model("UserStore")
+export const UserModel = types
+  .model("User")
   .props({
-    user: types.optional(UserModel, {}),
+    username: types.optional(types.string, ""),
+    firstname: types.optional(types.string, ""),
+    lastname: types.optional(types.string, ""),
+    phone_number: types.optional(types.string, ""),
+    email: types.optional(types.string, ""),
   })
   .views((self) => ({
     get fullName() {
-      return `${self.user.firstname} ${self.user.lastname}`
+      return `${self.firstname} ${self.lastname}`
     },
   }))
   .actions((self) => ({
-    setUser(user: UserType) {
-      self.user = user
-    },
-    signUp: flow(function* (user: SignUpParams) {
+    signIn: flow(function* (username: string, password: string) {
       try {
-        const { username } = yield new Api().signUp(user)
-        self.user.username = username
+        const { attributes } = yield Auth.signIn(username, password)
+
+        self.firstname = attributes.given_name
+        self.lastname = attributes.family_name
+        self.email = attributes.email
+        return self
+      } catch (e) {
+        throw Error(e)
+      }
+    }),
+    signUp: flow(function* (data: SignUpParams) {
+      try {
+        const { user } = yield Auth.signUp(data)
+        self.username = user.username
       } catch (e) {
         console.error(e)
       }
     }),
     confirmSignUp: flow(function* (code: string) {
       try {
-        const response = yield new Api().confirmSignUp(self.user.username, code)
-        console.tron.log(response)
+        const response = yield Auth.confirmSignUp(self.username, code)
+        return response
       } catch (e) {
-        console.error(e)
+        throw Error(e)
+      }
+    }),
+    signOut: flow(function* () {
+      try {
+        yield Auth.signOut()
+        for (const key in self) {
+          self[key] = ""
+        }
+        return Promise.resolve()
+      } catch (e) {
+        throw Error(e)
       }
     }),
   }))

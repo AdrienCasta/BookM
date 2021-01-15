@@ -1,12 +1,12 @@
 import { Instance, SnapshotOut, types } from "mobx-state-tree"
-import { UserStoreModel } from "../user/user"
+import { UserModel } from "../user/user"
 
 /**
  * A RootStore model.
  */
 // prettier-ignore
 export const RootStoreModel = types.model("RootStore").props({
- userStore: types.optional(UserStoreModel, {})
+  user: types.optional(UserModel, {})
 })
 
 /**
