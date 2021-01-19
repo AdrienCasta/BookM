@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`can be created 1`] = `
+Object {
+  "email": "",
+  "firstname": "",
+  "lastname": "",
+  "phone_number": "",
+  "username": "",
+}
+`;
+
+exports[`signIn 1`] = `
+Object {
+  "email": "jean@terroire",
+  "firstname": "Jean",
+  "lastname": "Terroire",
+  "phone_number": "",
+  "username": "",
+}
+`;
+
+exports[`signOut 1`] = `
+Object {
+  "email": "",
+  "firstname": "",
+  "lastname": "",
+  "phone_number": "",
+  "username": "",
+}
+`;
+
+exports[`signUp 1`] = `
+Object {
+  "email": "",
+  "firstname": "",
+  "lastname": "",
+  "phone_number": "",
+  "username": "Jean",
+}
+`;
