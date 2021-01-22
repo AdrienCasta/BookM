@@ -11,17 +11,17 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		17A284538AB33B6320F16C1C /* libPods-BookM.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 85BC4DE98E8F20B8FE32E904 /* libPods-BookM.a */; };
+		1BAC5B373C4545108A88263B /* Comfortaa-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E65BA462C424A8DAD8CB715 /* Comfortaa-Regular.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* BookMTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* BookMTests.m */; };
+		5253D6D14EF757D226CBB9CD /* libPods-BookM-BookMTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C396B5A056F0D732199F0B7F /* libPods-BookM-BookMTests.a */; };
+		7D9AA64D9020FA0706AA0C06 /* libPods-BookM-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F5AB691A360C43D9B98655 /* libPods-BookM-tvOS.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		9F35C4F574E710F3E22269DC /* libPods-BookM-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3982FFE6B0255867763A9EDF /* libPods-BookM-tvOS.a */; };
-		A4B148D367B119F99EC2C2E5 /* libPods-BookM.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EADEA568884090C1B008E181 /* libPods-BookM.a */; };
-		B9BE70BEF87ABACA22A7BCB6 /* libPods-BookM-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60796641CDFE67F015A69D88 /* libPods-BookM-tvOSTests.a */; };
-		E0E402AF856107EC82190244 /* libPods-BookM-BookMTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BE758935A381A571F5B21 /* libPods-BookM-BookMTests.a */; };
-		1BAC5B373C4545108A88263B /* Comfortaa-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E65BA462C424A8DAD8CB715 /* Comfortaa-Regular.ttf */; };
 		E7310CFC68414CCCB84D2239 /* AvenirLTStd-Roman.otf in Resources */ = {isa = PBXBuildFile; fileRef = F8680B7868BD4C829222290B /* AvenirLTStd-Roman.otf */; };
+		E83168F65ED8E12385E7A654 /* libPods-BookM-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDD331FA4FEF606A96146D1 /* libPods-BookM-tvOSTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +42,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00E356EE1AD99517003FC87E /* BookMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* BookMTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookMTests.m; sourceTree = "<group>"; };
@@ -52,25 +51,25 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = BookM/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = BookM/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = BookM/main.m; sourceTree = "<group>"; };
+		2810C16A2A0DF932CBF4F7BB /* Pods-BookM-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookM-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-BookM-tvOS/Pods-BookM-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* BookM-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BookM-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* BookM-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BookM-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		301BE758935A381A571F5B21 /* libPods-BookM-BookMTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BookM-BookMTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		32B04630CC446F19212E357A /* Pods-BookM-BookMTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookM-BookMTests.release.xcconfig"; path = "Target Support Files/Pods-BookM-BookMTests/Pods-BookM-BookMTests.release.xcconfig"; sourceTree = "<group>"; };
-		3982FFE6B0255867763A9EDF /* libPods-BookM-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BookM-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3ECD546F3378FD459F4E82B0 /* Pods-BookM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookM.debug.xcconfig"; path = "Target Support Files/Pods-BookM/Pods-BookM.debug.xcconfig"; sourceTree = "<group>"; };
-		4D40708BE521DBE7DC6E68C8 /* Pods-BookM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookM.release.xcconfig"; path = "Target Support Files/Pods-BookM/Pods-BookM.release.xcconfig"; sourceTree = "<group>"; };
-		60796641CDFE67F015A69D88 /* libPods-BookM-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BookM-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		733F2AB28EB81C13C7E74C7E /* Pods-BookM-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookM-tvOS.release.xcconfig"; path = "Target Support Files/Pods-BookM-tvOS/Pods-BookM-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		2E259EBECBBBBA4ECB9F3551 /* Pods-BookM-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookM-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-BookM-tvOSTests/Pods-BookM-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		3C575570427329F703A55177 /* Pods-BookM-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookM-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-BookM-tvOSTests/Pods-BookM-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5EDD331FA4FEF606A96146D1 /* libPods-BookM-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BookM-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C7712FFBFFB67489CBCCC1E /* Pods-BookM-BookMTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookM-BookMTests.release.xcconfig"; path = "Target Support Files/Pods-BookM-BookMTests/Pods-BookM-BookMTests.release.xcconfig"; sourceTree = "<group>"; };
+		7E65BA462C424A8DAD8CB715 /* Comfortaa-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-Regular.ttf"; path = "../assets/fonts/Comfortaa-Regular.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = BookM/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8D3D2E99D3814D73E5353ACB /* Pods-BookM-BookMTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookM-BookMTests.debug.xcconfig"; path = "Target Support Files/Pods-BookM-BookMTests/Pods-BookM-BookMTests.debug.xcconfig"; sourceTree = "<group>"; };
-		A12CCB16C7D8CECEE169FA2F /* Pods-BookM-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookM-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-BookM-tvOSTests/Pods-BookM-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		D7E787E39BC1C66D83758CC7 /* Pods-BookM-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookM-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-BookM-tvOSTests/Pods-BookM-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		EADEA568884090C1B008E181 /* libPods-BookM.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BookM.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		85BC4DE98E8F20B8FE32E904 /* libPods-BookM.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BookM.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		865498C82BD001524936C1B6 /* Pods-BookM-BookMTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookM-BookMTests.debug.xcconfig"; path = "Target Support Files/Pods-BookM-BookMTests/Pods-BookM-BookMTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9A26F0A79CC167664D721C61 /* Pods-BookM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookM.debug.xcconfig"; path = "Target Support Files/Pods-BookM/Pods-BookM.debug.xcconfig"; sourceTree = "<group>"; };
+		9DAF28E097D81314D25CECC8 /* Pods-BookM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookM.release.xcconfig"; path = "Target Support Files/Pods-BookM/Pods-BookM.release.xcconfig"; sourceTree = "<group>"; };
+		B4F5AB691A360C43D9B98655 /* libPods-BookM-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BookM-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C396B5A056F0D732199F0B7F /* libPods-BookM-BookMTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BookM-BookMTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		F802D5001BCA818988E3DC60 /* Pods-BookM-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookM-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-BookM-tvOS/Pods-BookM-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		7E65BA462C424A8DAD8CB715 /* Comfortaa-Regular.ttf */ = {isa = PBXFileReference; name = "Comfortaa-Regular.ttf"; path = "../assets/fonts/Comfortaa-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		F8680B7868BD4C829222290B /* AvenirLTStd-Roman.otf */ = {isa = PBXFileReference; name = "AvenirLTStd-Roman.otf"; path = "../assets/fonts/AvenirLTStd-Roman.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F8680B7868BD4C829222290B /* AvenirLTStd-Roman.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "AvenirLTStd-Roman.otf"; path = "../assets/fonts/AvenirLTStd-Roman.otf"; sourceTree = "<group>"; };
+		FB5D93C5184049624F77DEDE /* Pods-BookM-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookM-tvOS.release.xcconfig"; path = "Target Support Files/Pods-BookM-tvOS/Pods-BookM-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0E402AF856107EC82190244 /* libPods-BookM-BookMTests.a in Frameworks */,
+				5253D6D14EF757D226CBB9CD /* libPods-BookM-BookMTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4B148D367B119F99EC2C2E5 /* libPods-BookM.a in Frameworks */,
+				17A284538AB33B6320F16C1C /* libPods-BookM.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,7 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F35C4F574E710F3E22269DC /* libPods-BookM-tvOS.a in Frameworks */,
+				7D9AA64D9020FA0706AA0C06 /* libPods-BookM-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,7 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9BE70BEF87ABACA22A7BCB6 /* libPods-BookM-tvOSTests.a in Frameworks */,
+				E83168F65ED8E12385E7A654 /* libPods-BookM-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,7 +128,6 @@
 		13B07FAE1A68108700A75B9A /* BookM */ = {
 			isa = PBXGroup;
 			children = (
-				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -145,28 +143,12 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				EADEA568884090C1B008E181 /* libPods-BookM.a */,
-				301BE758935A381A571F5B21 /* libPods-BookM-BookMTests.a */,
-				3982FFE6B0255867763A9EDF /* libPods-BookM-tvOS.a */,
-				60796641CDFE67F015A69D88 /* libPods-BookM-tvOSTests.a */,
+				85BC4DE98E8F20B8FE32E904 /* libPods-BookM.a */,
+				C396B5A056F0D732199F0B7F /* libPods-BookM-BookMTests.a */,
+				B4F5AB691A360C43D9B98655 /* libPods-BookM-tvOS.a */,
+				5EDD331FA4FEF606A96146D1 /* libPods-BookM-tvOSTests.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		71ED362ACEA45F9F60DCD285 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				3ECD546F3378FD459F4E82B0 /* Pods-BookM.debug.xcconfig */,
-				4D40708BE521DBE7DC6E68C8 /* Pods-BookM.release.xcconfig */,
-				8D3D2E99D3814D73E5353ACB /* Pods-BookM-BookMTests.debug.xcconfig */,
-				32B04630CC446F19212E357A /* Pods-BookM-BookMTests.release.xcconfig */,
-				F802D5001BCA818988E3DC60 /* Pods-BookM-tvOS.debug.xcconfig */,
-				733F2AB28EB81C13C7E74C7E /* Pods-BookM-tvOS.release.xcconfig */,
-				D7E787E39BC1C66D83758CC7 /* Pods-BookM-tvOSTests.debug.xcconfig */,
-				A12CCB16C7D8CECEE169FA2F /* Pods-BookM-tvOSTests.release.xcconfig */,
-			);
-			name = Pods;
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -184,8 +166,8 @@
 				00E356EF1AD99517003FC87E /* BookMTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				71ED362ACEA45F9F60DCD285 /* Pods */,
 				AF39315E3D2F42758879B4E3 /* Resources */,
+				C09F9C76C7A43DB7DBDCA2DB /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -204,14 +186,28 @@
 			sourceTree = "<group>";
 		};
 		AF39315E3D2F42758879B4E3 /* Resources */ = {
-			isa = "PBXGroup";
+			isa = PBXGroup;
 			children = (
 				7E65BA462C424A8DAD8CB715 /* Comfortaa-Regular.ttf */,
 				F8680B7868BD4C829222290B /* AvenirLTStd-Roman.otf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
-			path = "";
+		};
+		C09F9C76C7A43DB7DBDCA2DB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9A26F0A79CC167664D721C61 /* Pods-BookM.debug.xcconfig */,
+				9DAF28E097D81314D25CECC8 /* Pods-BookM.release.xcconfig */,
+				865498C82BD001524936C1B6 /* Pods-BookM-BookMTests.debug.xcconfig */,
+				7C7712FFBFFB67489CBCCC1E /* Pods-BookM-BookMTests.release.xcconfig */,
+				2810C16A2A0DF932CBF4F7BB /* Pods-BookM-tvOS.debug.xcconfig */,
+				FB5D93C5184049624F77DEDE /* Pods-BookM-tvOS.release.xcconfig */,
+				3C575570427329F703A55177 /* Pods-BookM-tvOSTests.debug.xcconfig */,
+				2E259EBECBBBBA4ECB9F3551 /* Pods-BookM-tvOSTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -220,11 +216,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "BookMTests" */;
 			buildPhases = (
-				77DA01E931F34FC3A825D18E /* [CP] Check Pods Manifest.lock */,
+				D6CDD4A97F0E060509A601C7 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				821B8C042C64835F8AA180E7 /* [CP] Copy Pods Resources */,
+				16F9A1FA3793A48A9F35C5A0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -240,13 +236,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "BookM" */;
 			buildPhases = (
-				3D9C6EB91031CB0FB90EA6D7 /* [CP] Check Pods Manifest.lock */,
+				A963F09B74537E24B0A788ED /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				105C9A386D6F7A14EE348052 /* [CP] Copy Pods Resources */,
+				20DE7F4A30176F36E9FBC053 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -261,7 +257,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "BookM-tvOS" */;
 			buildPhases = (
-				73BA548363266DFE16E83368 /* [CP] Check Pods Manifest.lock */,
+				7FE145F7022F684791FE9D1C /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
@@ -281,7 +277,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "BookM-tvOSTests" */;
 			buildPhases = (
-				D70EA4931AAC0E669A2EC293 /* [CP] Check Pods Manifest.lock */,
+				F1789EC955211D5899528DAD /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
 				2D02E48E1E0B4A5D006451C7 /* Resources */,
@@ -309,6 +305,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = Y84SK3L5SL;
 						LastSwiftMigration = 1120;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
@@ -394,7 +391,25 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		105C9A386D6F7A14EE348052 /* [CP] Copy Pods Resources */ = {
+		16F9A1FA3793A48A9F35C5A0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BookM-BookMTests/Pods-BookM-BookMTests-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BookM-BookMTests/Pods-BookM-BookMTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		20DE7F4A30176F36E9FBC053 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -426,29 +441,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		3D9C6EB91031CB0FB90EA6D7 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BookM-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		73BA548363266DFE16E83368 /* [CP] Check Pods Manifest.lock */ = {
+		7FE145F7022F684791FE9D1C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -470,7 +463,29 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		77DA01E931F34FC3A825D18E /* [CP] Check Pods Manifest.lock */ = {
+		A963F09B74537E24B0A788ED /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BookM-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D6CDD4A97F0E060509A601C7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -492,25 +507,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		821B8C042C64835F8AA180E7 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BookM-BookMTests/Pods-BookM-BookMTests-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BookM-BookMTests/Pods-BookM-BookMTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D70EA4931AAC0E669A2EC293 /* [CP] Check Pods Manifest.lock */ = {
+		F1789EC955211D5899528DAD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -625,7 +622,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D3D2E99D3814D73E5353ACB /* Pods-BookM-BookMTests.debug.xcconfig */;
+			baseConfigurationReference = 865498C82BD001524936C1B6 /* Pods-BookM-BookMTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -648,7 +645,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 32B04630CC446F19212E357A /* Pods-BookM-BookMTests.release.xcconfig */;
+			baseConfigurationReference = 7C7712FFBFFB67489CBCCC1E /* Pods-BookM-BookMTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -668,11 +665,12 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3ECD546F3378FD459F4E82B0 /* Pods-BookM.debug.xcconfig */;
+			baseConfigurationReference = 9A26F0A79CC167664D721C61 /* Pods-BookM.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y84SK3L5SL;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = BookM/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -691,11 +689,12 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4D40708BE521DBE7DC6E68C8 /* Pods-BookM.release.xcconfig */;
+			baseConfigurationReference = 9DAF28E097D81314D25CECC8 /* Pods-BookM.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y84SK3L5SL;
 				INFOPLIST_FILE = BookM/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -712,7 +711,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F802D5001BCA818988E3DC60 /* Pods-BookM-tvOS.debug.xcconfig */;
+			baseConfigurationReference = 2810C16A2A0DF932CBF4F7BB /* Pods-BookM-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -740,7 +739,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 733F2AB28EB81C13C7E74C7E /* Pods-BookM-tvOS.release.xcconfig */;
+			baseConfigurationReference = FB5D93C5184049624F77DEDE /* Pods-BookM-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -768,7 +767,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D7E787E39BC1C66D83758CC7 /* Pods-BookM-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = 3C575570427329F703A55177 /* Pods-BookM-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -795,7 +794,7 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A12CCB16C7D8CECEE169FA2F /* Pods-BookM-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = 2E259EBECBBBBA4ECB9F3551 /* Pods-BookM-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
