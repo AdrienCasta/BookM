@@ -40,6 +40,7 @@ export const UserModel = types
         self.username = user.username
       } catch (e) {
         console.error(e)
+        throw Error(e)
       }
     }),
     confirmSignUp: flow(function* (code: string) {
