@@ -2,14 +2,15 @@ projects:
   bookm:
     schemaPath: amplify/backend/api/bookm/build/schema.graphql
     includes:
-      - src/graphql/**/*.ts
+      - app/graphql/**/*.ts
     excludes:
       - ./amplify/**
     extensions:
       amplify:
         codeGenTarget: typescript
-        generatedFileName: src/API.ts
+        generatedFileName: app/services/api/graphql.ts
         docsFilePath: app/graphql
+        maxDepth: 2
 extensions:
   amplify:
     version: 3
