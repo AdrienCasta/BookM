@@ -19,7 +19,15 @@
               "userPoolId": "authbookm97e064b8"
             }
           },
-          "additionalAuthenticationProviders": []
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "API_KEY",
+              "apiKeyConfig": {
+                "apiKeyExpirationDays": 7,
+                "description": "bookmApiKey"
+              }
+            }
+          ]
         }
       }
     }

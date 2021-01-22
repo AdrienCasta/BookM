@@ -7,9 +7,11 @@ export const getRecipe = /* GraphQL */ `
     getRecipe(id: $id) {
       id
       title
+      image
       description
       createdAt
       updatedAt
+      owner
     }
   }
 `
@@ -19,9 +21,11 @@ export const listRecipes = /* GraphQL */ `
       items {
         id
         title
+        image
         description
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }
