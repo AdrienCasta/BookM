@@ -4,9 +4,9 @@ import { ViewStyle } from "react-native"
 import { Box, Button, Screen, Text, TextField } from "../../components"
 import { useNavigation } from "@react-navigation/native"
 import { useStores } from "../../models"
-import { color } from "../../theme"
 
 import Logo from "../../../assets/logo.svg"
+import shadowViewStyle from "../../utils/shadow"
 import { TouchableOpacity } from "react-native-gesture-handler"
 
 const ROOT: ViewStyle = {
@@ -21,14 +21,10 @@ const FORM: ViewStyle = {
   width: 233,
   paddingHorizontal: 30,
   paddingVertical: 18,
-  backgroundColor: "#F7F7F7",
-  shadowOffset: { width: 0, height: 1 },
-  shadowOpacity: 0.2,
-  shadowColor: color.palette.black,
-  shadowRadius: 2,
   borderRadius: 40,
   height: 200,
   marginVertical: 35,
+  ...shadowViewStyle(),
 }
 
 export const SignInScreen = observer(function SignInScreen() {
