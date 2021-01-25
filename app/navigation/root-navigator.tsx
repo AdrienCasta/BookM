@@ -7,10 +7,28 @@
 import React, { useEffect, useState } from "react"
 import { NavigationContainer, NavigationContainerRef } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
+import BottomSheet from "reanimated-bottom-sheet"
 import { AuthNavigator } from "./auth-navigator"
 import { MainNavigator } from "./main-navigator"
 import { Auth, Hub } from "aws-amplify"
-import { AppState } from "react-native"
+import { AppState, View, ViewStyle } from "react-native"
+import { useStores } from "../models"
+import { AppToast } from "../components/app-toast/app-toast"
+import shadowViewStyle from "../utils/shadow"
+import { observer } from "mobx-react-lite"
+import { color } from "../theme"
+
+const BOTTOMSHEET_HEADER: ViewStyle = {
+  ...shadowViewStyle(0, -3),
+  backgroundColor: color.background,
+  height: 60,
+  borderTopLeftRadius: 40,
+  borderTopRightRadius: 40,
+}
+const BOTTOMSHEET_CONTENT: ViewStyle = {
+  height: "100%",
+  backgroundColor: color.background,
+}
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -38,8 +56,19 @@ const retreiveCurrentStack = async () => {
   }
 }
 
-const RootStack = () => {
+const RootStack = observer(function () {
   const [stack, setStack] = useState<keyof RootParamList | null>(null)
+  const sheetRef = React.useRef(null)
+  const { request } = useStores()
+
+  console.log({ request })
+  useEffect(() => {
+    if (sheetRef.current) {
+      const snapPoint = request.status === "FAILURE" ? 0 : 1
+      sheetRef.current.snapTo(snapPoint)
+    }
+  }, [request.status])
+
   const handleAuthHubEvent = ({ payload: { event } }) => {
     if (event === "signIn") {
       setStack("mainStack")
@@ -92,30 +121,45 @@ const RootStack = () => {
   }
 
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <Stack.Screen
-        name={stack}
-        component={stack === "authStack" ? AuthNavigator : MainNavigator}
-        options={{
+    <>
+      <Stack.Navigator
+        screenOptions={{
           headerShown: false,
         }}
+      >
+        <Stack.Screen
+          name={stack}
+          component={stack === "authStack" ? AuthNavigator : MainNavigator}
+          options={{
+            headerShown: false,
+          }}
+        />
+      </Stack.Navigator>
+      <BottomSheet
+        ref={sheetRef}
+        snapPoints={[288, 0]}
+        initialSnap={1}
+        renderHeader={() => <View style={BOTTOMSHEET_HEADER}></View>}
+        renderContent={() => (
+          <View style={BOTTOMSHEET_CONTENT}>
+            <AppToast text={request.message} />
+          </View>
+        )}
       />
-    </Stack.Navigator>
+    </>
   )
-}
+})
 
 export const RootNavigator = React.forwardRef<
   NavigationContainerRef,
   Partial<React.ComponentProps<typeof NavigationContainer>>
 >((props, ref) => {
   return (
-    <NavigationContainer {...props} ref={ref}>
-      <RootStack />
-    </NavigationContainer>
+    <>
+      <NavigationContainer {...props} ref={ref}>
+        <RootStack />
+      </NavigationContainer>
+    </>
   )
 })
 

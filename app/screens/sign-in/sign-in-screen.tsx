@@ -10,12 +10,12 @@ import shadowViewStyle from "../../utils/shadow"
 import { TouchableOpacity } from "react-native-gesture-handler"
 
 const ROOT: ViewStyle = {
-  flex: 1,
+  // flex: 1,
   alignItems: "center",
 }
 
 const LOGO: ViewStyle = {
-  marginBottom: 28,
+  marginBottom: 80,
 }
 const FORM: ViewStyle = {
   width: 233,
@@ -29,7 +29,7 @@ const FORM: ViewStyle = {
 
 export const SignInScreen = observer(function SignInScreen() {
   // Pull in one of our MST stores
-  const { user } = useStores()
+  const { user, request } = useStores()
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
 
@@ -39,12 +39,12 @@ export const SignInScreen = observer(function SignInScreen() {
     navigation.navigate("SignUpScreen")
   }
 
-  const handleSignIn = async () => {
-    user.signIn(username, password).catch(console.warn)
+  const handleSignIn = () => {
+    request.startRequest(user.signIn, username, password).catch(console.warn)
   }
 
   return (
-    <Screen style={ROOT}>
+    <Screen style={ROOT} preset="scroll">
       <Logo width={138} height={167} style={LOGO} />
       <Text preset="title">BOOKM</Text>
       <Text preset="catchPhrase">Être ensemble a bon goût</Text>

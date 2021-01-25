@@ -37,7 +37,7 @@ export async function setupRootStore() {
   } catch (e) {
     // if there's any problems loading, then let's at least fallback to an empty state
     // instead of crashing.
-    rootStore = RootStoreModel.create({ user: {} }, env)
+    rootStore = RootStoreModel.create({ user: {}, request: { status: "IDLE", message: "" } }, env)
 
     // but please inform us what happened
     __DEV__ && console.tron.error(e.message, null)
