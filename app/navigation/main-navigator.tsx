@@ -6,7 +6,13 @@
  */
 import React from "react"
 import { createStackNavigator } from "@react-navigation/stack"
-import { RecipeCreationScreen } from "../screens"
+import { TextStyle, TouchableOpacity, ViewStyle } from "react-native"
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+
+import { RecipeCreationScreen, HomeScreen } from "../screens"
+import LogoWhiteIcon from "../../assets/logo-white.svg"
+import { Box, Text } from "../components"
+import { color, typography } from "../theme"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -21,13 +27,120 @@ import { RecipeCreationScreen } from "../screens"
  *   https://reactnavigation.org/docs/typescript#type-checking-the-navigator
  */
 export type PrimaryParamList = {
+  MainTabNavigator: undefined
+}
+export type TabParamList = {
   HomeScreen: undefined
   RecipeCreationScreen: undefined
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
 const Stack = createStackNavigator<PrimaryParamList>()
+const Tab = createBottomTabNavigator<TabParamList>()
 
+const TAB_BAR: ViewStyle = {
+  borderRadius: 100,
+  backgroundColor: color.secondary,
+  paddingHorizontal: 37,
+  height: 78,
+}
+const TAB_SCREEN_TOUCH: ViewStyle = {
+  flex: 1,
+}
+const TAB_SCREEN_ITEM: ViewStyle = {
+  backgroundColor: "black",
+  width: 34,
+  height: 34,
+  borderRadius: 10,
+  marginBottom: 6,
+}
+
+const TAB_SCREEN_ITEM_NAME: TextStyle = {
+  fontFamily: typography.secondary,
+  fontSize: 7,
+}
+
+function MyTabBar({ state, descriptors, navigation }) {
+  const focusedOptions = descriptors[state.routes[state.index].key].options
+
+  console.log(JSON.stringify({ state, descriptors, navigation }, null, 2))
+  console.log(state.routes[state.index].key)
+
+  if (focusedOptions.tabBarVisible === false) {
+    return null
+  }
+
+  return (
+    <Box fd="row" ai="center" style={TAB_BAR}>
+      {state.routes.map((route, index) => {
+        if (route.name === "HomeScreen") {
+          return null
+        }
+        const { options } = descriptors[route.key]
+        const label =
+          options.tabBarLabel !== undefined
+            ? options.tabBarLabel
+            : options.title !== undefined
+            ? options.title
+            : route.name
+
+        const isFocused = state.index === index
+
+        const onPress = () => {
+          const event = navigation.emit({
+            type: "tabPress",
+            target: route.key,
+            canPreventDefault: true,
+          })
+
+          if (!isFocused && !event.defaultPrevented) {
+            navigation.navigate(route.name)
+          }
+        }
+
+        const onLongPress = () => {
+          navigation.emit({
+            type: "tabLongPress",
+            target: route.key,
+          })
+        }
+
+        return (
+          <TouchableOpacity
+            key={route.name}
+            accessibilityRole="button"
+            accessibilityState={isFocused ? { selected: true } : {}}
+            accessibilityLabel={options.tabBarAccessibilityLabel}
+            testID={options.tabBarTestID}
+            onPress={onPress}
+            onLongPress={onLongPress}
+            style={TAB_SCREEN_TOUCH}
+          >
+            <Box jc="center" ai="center">
+              <Box jc="center" ai="center" style={TAB_SCREEN_ITEM}>
+                <LogoWhiteIcon width={22} height={31} />
+              </Box>
+              <Text text={label} style={TAB_SCREEN_ITEM_NAME} />
+            </Box>
+          </TouchableOpacity>
+        )
+      })}
+    </Box>
+  )
+}
+
+export function MainTabNavigator() {
+  return (
+    <Tab.Navigator initialRouteName="HomeScreen" tabBar={(props) => <MyTabBar {...props} />}>
+      <Tab.Screen name="HomeScreen" component={HomeScreen} />
+      <Tab.Screen
+        name="RecipeCreationScreen"
+        component={RecipeCreationScreen}
+        options={{ tabBarLabel: "BookM", tabBarVisible: false }}
+      />
+    </Tab.Navigator>
+  )
+}
 export function MainNavigator() {
   return (
     <Stack.Navigator
@@ -35,8 +148,7 @@ export function MainNavigator() {
         headerShown: false,
       }}
     >
-      {/* <Stack.Screen name="HomeScreen" component={HomeScreen} /> */}
-      <Stack.Screen name="RecipeCreationScreen" component={RecipeCreationScreen} />
+      <Stack.Screen name="MainTabNavigator" component={MainTabNavigator} />
     </Stack.Navigator>
   )
 }
