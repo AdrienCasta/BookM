@@ -7,12 +7,22 @@ export type CreateRecipeInput = {
   title: string
   image: string
   description?: string | null
+  numberOfPersons?: number | null
+  step1: RecipeStepInput
+  step2: RecipeStepInput
+  otherSteps?: Array<RecipeStepInput | null> | null
+}
+
+export type RecipeStepInput = {
+  description: string
+  trick?: string | null
 }
 
 export type ModelRecipeConditionInput = {
   title?: ModelStringInput | null
   image?: ModelStringInput | null
   description?: ModelStringInput | null
+  numberOfPersons?: ModelIntInput | null
   and?: Array<ModelRecipeConditionInput | null> | null
   or?: Array<ModelRecipeConditionInput | null> | null
   not?: ModelRecipeConditionInput | null
@@ -57,11 +67,27 @@ export type ModelSizeInput = {
   between?: Array<number | null> | null
 }
 
+export type ModelIntInput = {
+  ne?: number | null
+  eq?: number | null
+  le?: number | null
+  lt?: number | null
+  ge?: number | null
+  gt?: number | null
+  between?: Array<number | null> | null
+  attributeExists?: boolean | null
+  attributeType?: ModelAttributeTypes | null
+}
+
 export type UpdateRecipeInput = {
   id: string
   title?: string | null
   image?: string | null
   description?: string | null
+  numberOfPersons?: number | null
+  step1?: RecipeStepInput | null
+  step2?: RecipeStepInput | null
+  otherSteps?: Array<RecipeStepInput | null> | null
 }
 
 export type DeleteRecipeInput = {
@@ -73,6 +99,7 @@ export type ModelRecipeFilterInput = {
   title?: ModelStringInput | null
   image?: ModelStringInput | null
   description?: ModelStringInput | null
+  numberOfPersons?: ModelIntInput | null
   and?: Array<ModelRecipeFilterInput | null> | null
   or?: Array<ModelRecipeFilterInput | null> | null
   not?: ModelRecipeFilterInput | null
@@ -106,6 +133,22 @@ export type CreateRecipeMutation = {
     title: string
     image: string
     description: string | null
+    numberOfPersons: number | null
+    step1: {
+      __typename: "RecipeStep"
+      description: string
+      trick: string | null
+    }
+    step2: {
+      __typename: "RecipeStep"
+      description: string
+      trick: string | null
+    }
+    otherSteps: Array<{
+      __typename: "RecipeStep"
+      description: string
+      trick: string | null
+    } | null> | null
     createdAt: string
     updatedAt: string
     owner: string | null
@@ -124,6 +167,22 @@ export type UpdateRecipeMutation = {
     title: string
     image: string
     description: string | null
+    numberOfPersons: number | null
+    step1: {
+      __typename: "RecipeStep"
+      description: string
+      trick: string | null
+    }
+    step2: {
+      __typename: "RecipeStep"
+      description: string
+      trick: string | null
+    }
+    otherSteps: Array<{
+      __typename: "RecipeStep"
+      description: string
+      trick: string | null
+    } | null> | null
     createdAt: string
     updatedAt: string
     owner: string | null
@@ -142,6 +201,22 @@ export type DeleteRecipeMutation = {
     title: string
     image: string
     description: string | null
+    numberOfPersons: number | null
+    step1: {
+      __typename: "RecipeStep"
+      description: string
+      trick: string | null
+    }
+    step2: {
+      __typename: "RecipeStep"
+      description: string
+      trick: string | null
+    }
+    otherSteps: Array<{
+      __typename: "RecipeStep"
+      description: string
+      trick: string | null
+    } | null> | null
     createdAt: string
     updatedAt: string
     owner: string | null
@@ -159,6 +234,22 @@ export type GetRecipeQuery = {
     title: string
     image: string
     description: string | null
+    numberOfPersons: number | null
+    step1: {
+      __typename: "RecipeStep"
+      description: string
+      trick: string | null
+    }
+    step2: {
+      __typename: "RecipeStep"
+      description: string
+      trick: string | null
+    }
+    otherSteps: Array<{
+      __typename: "RecipeStep"
+      description: string
+      trick: string | null
+    } | null> | null
     createdAt: string
     updatedAt: string
     owner: string | null
@@ -180,6 +271,7 @@ export type ListRecipesQuery = {
       title: string
       image: string
       description: string | null
+      numberOfPersons: number | null
       createdAt: string
       updatedAt: string
       owner: string | null
@@ -199,6 +291,22 @@ export type OnCreateRecipeSubscription = {
     title: string
     image: string
     description: string | null
+    numberOfPersons: number | null
+    step1: {
+      __typename: "RecipeStep"
+      description: string
+      trick: string | null
+    }
+    step2: {
+      __typename: "RecipeStep"
+      description: string
+      trick: string | null
+    }
+    otherSteps: Array<{
+      __typename: "RecipeStep"
+      description: string
+      trick: string | null
+    } | null> | null
     createdAt: string
     updatedAt: string
     owner: string | null
@@ -216,6 +324,22 @@ export type OnUpdateRecipeSubscription = {
     title: string
     image: string
     description: string | null
+    numberOfPersons: number | null
+    step1: {
+      __typename: "RecipeStep"
+      description: string
+      trick: string | null
+    }
+    step2: {
+      __typename: "RecipeStep"
+      description: string
+      trick: string | null
+    }
+    otherSteps: Array<{
+      __typename: "RecipeStep"
+      description: string
+      trick: string | null
+    } | null> | null
     createdAt: string
     updatedAt: string
     owner: string | null
@@ -233,6 +357,22 @@ export type OnDeleteRecipeSubscription = {
     title: string
     image: string
     description: string | null
+    numberOfPersons: number | null
+    step1: {
+      __typename: "RecipeStep"
+      description: string
+      trick: string | null
+    }
+    step2: {
+      __typename: "RecipeStep"
+      description: string
+      trick: string | null
+    }
+    otherSteps: Array<{
+      __typename: "RecipeStep"
+      description: string
+      trick: string | null
+    } | null> | null
     createdAt: string
     updatedAt: string
     owner: string | null

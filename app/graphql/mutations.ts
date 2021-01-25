@@ -9,6 +9,19 @@ export const createRecipe = /* GraphQL */ `
       title
       image
       description
+      numberOfPersons
+      step1 {
+        description
+        trick
+      }
+      step2 {
+        description
+        trick
+      }
+      otherSteps {
+        description
+        trick
+      }
       createdAt
       updatedAt
       owner
@@ -22,6 +35,19 @@ export const updateRecipe = /* GraphQL */ `
       title
       image
       description
+      numberOfPersons
+      step1 {
+        description
+        trick
+      }
+      step2 {
+        description
+        trick
+      }
+      otherSteps {
+        description
+        trick
+      }
       createdAt
       updatedAt
       owner
@@ -35,6 +61,19 @@ export const deleteRecipe = /* GraphQL */ `
       title
       image
       description
+      numberOfPersons
+      step1 {
+        description
+        trick
+      }
+      step2 {
+        description
+        trick
+      }
+      otherSteps {
+        description
+        trick
+      }
       createdAt
       updatedAt
       owner

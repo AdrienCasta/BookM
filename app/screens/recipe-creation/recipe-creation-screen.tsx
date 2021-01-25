@@ -14,7 +14,9 @@ import { color, typography } from "../../theme"
 import { ImageLibraryOptions, launchCamera, launchImageLibrary } from "react-native-image-picker"
 import UserIcon from "./user.svg"
 import shadowViewStyle from "../../utils/shadow"
-import { Controller, useForm } from "react-hook-form"
+import { Controller, useFieldArray, useForm } from "react-hook-form"
+import { API, graphqlOperation, Storage } from "aws-amplify"
+import * as mutations from "../../graphql/mutations"
 
 const ROOT: ViewStyle = {}
 const BODY: ViewStyle = {
@@ -95,6 +97,13 @@ const RECIPE_INFO_SHEET_ITEM: ViewStyle = {
 const RECIPE_INFO_SHEET_ITEM_ROWS: ViewStyle = {
   width: 300,
 }
+const BUTTON_ADD: ViewStyle = {
+  backgroundColor: "#eee",
+  flex: 1,
+  height: 30,
+  borderRadius: 30,
+  marginTop: 30,
+}
 
 const imageOptions = {
   mediaType: "photo",
@@ -125,16 +134,59 @@ const reanimatedBottomSheet = (snapPoint, initialSnapPoint) => {
   }
 }
 
+const createRecipe = async (recipeFormData: IRecipeFormData) => {
+  try {
+    const response = await fetch(recipeFormData.image.uri)
+    const blob = (await response.blob()) as { _data: { name: string } }
+    const fileName = blob._data.name
+
+    await Storage.put(fileName, blob, {
+      contentType: "image/jpeg",
+    })
+    await API.graphql(
+      graphqlOperation(mutations.createRecipe, {
+        input: {
+          title: recipeFormData.title,
+          description: recipeFormData.description,
+          image: fileName,
+          step1: {
+            description: recipeFormData.step1,
+          },
+          step2: {
+            description: recipeFormData.step2,
+          },
+          otherSteps: recipeFormData.otherSteps.map((description) => ({ description })),
+        },
+      }),
+    )
+  } catch (e) {
+    throw Error(e)
+  }
+}
+
 interface IRecipeFormData {
   numberOfPersons: string
   time: string
   cookingTime: string
   numberOfCalories: string
-  image: string
+  image: any
+  title: string
+  description: string
+  step1: string
+  step2: string
+  otherSteps: string[]
 }
+interface IRecipeInfoFormData extends Omit<IRecipeFormData, "title" | "description" | "image"> {}
 
 export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
-  const { control, setValue, watch } = useForm<IRecipeFormData>()
+  const { control, setValue, watch, handleSubmit, errors } = useForm<IRecipeFormData>({
+    mode: "onChange",
+  })
+  const { fields, append } = useFieldArray({
+    control,
+    name: "otherSteps",
+  })
+
   const recipeInfoSheetRef = React.useRef(null)
   const imagePickerSheetRef = React.useRef(null)
   const recipeInfoSheet = reanimatedBottomSheet(["100%", 460, 0], 2)
@@ -166,6 +218,8 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
     recipeInfoSheet.animate(recipeInfoSheetRef).slideDown()
   }
 
+  const onSubmit = (d) => createRecipe(d).catch(console.log)
+
   const renderContent = () => (
     <Box style={IMAGE_PICKER_SHEET}>
       <Button onPress={handleLaunchingImageLibrary} text="Séléctionner une photo" />
@@ -180,6 +234,7 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
             control={control}
             defaultValue={null}
             name="image"
+            rules={{ required: true }}
             render={({ value }) => (
               <ImageBackground source={{ uri: value?.uri }} style={BACKGROUND_IMAGE} />
             )}
@@ -191,8 +246,10 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
               control={control}
               defaultValue=""
               name="title"
+              rules={{ required: true }}
               render={({ value, onChange }) => (
                 <TextField
+                  error={!!errors.title}
                   value={value}
                   onChangeText={onChange}
                   label="Ajouter unn titre"
@@ -206,8 +263,10 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
               control={control}
               defaultValue=""
               name="description"
+              rules={{ required: true }}
               render={({ value, onChange }) => (
                 <TextField
+                  error={!!errors.description}
                   preset="multiline"
                   scrollEnabled={false}
                   value={value}
@@ -224,7 +283,76 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
               <RecipeInfo control={control} />
             </TouchableOpacity>
           </View>
+
+          <View style={FORM_FIELD}>
+            <Controller
+              control={control}
+              defaultValue=""
+              name="step1"
+              rules={{ required: true }}
+              render={({ value, onChange }) => (
+                <TextField
+                  error={!!errors.step1}
+                  preset="multiline"
+                  scrollEnabled={false}
+                  value={value}
+                  multiline
+                  onChangeText={onChange}
+                  label="Étape 1 "
+                  placeholder="Votre étape"
+                />
+              )}
+            />
+          </View>
+          <View style={FORM_FIELD}>
+            <Controller
+              control={control}
+              defaultValue=""
+              name="step2"
+              rules={{ required: true }}
+              render={({ value, onChange }) => (
+                <TextField
+                  error={!!errors.step2}
+                  preset="multiline"
+                  scrollEnabled={false}
+                  value={value}
+                  multiline
+                  onChangeText={onChange}
+                  label="Étape 2"
+                  placeholder="Votre étape"
+                />
+              )}
+            />
+          </View>
+          {fields.map((field, index) => (
+            <View style={FORM_FIELD} key={field.id}>
+              <Controller
+                control={control}
+                defaultValue={field.value}
+                name={`otherSteps[${index}].value`}
+                rules={{ required: true }}
+                render={({ value, onChange }) => (
+                  <TextField
+                    error={!!(errors.otherSteps && errors.otherSteps[index])}
+                    preset="multiline"
+                    scrollEnabled={false}
+                    value={value}
+                    multiline
+                    onChangeText={onChange}
+                    label={`Étape ${index + 3}`}
+                    placeholder="Votre étape"
+                  />
+                )}
+              />
+            </View>
+          ))}
+          <TouchableOpacity onPress={() => append({ value: "" })}>
+            <Box jc="center" ai="center" style={BUTTON_ADD}>
+              <Text text="+ Ajouter" />
+            </Box>
+          </TouchableOpacity>
         </View>
+        <Button preset="large" text="valider" onPress={handleSubmit(onSubmit)} />
       </Screen>
       <BottomSheet
         ref={imagePickerSheetRef}
@@ -250,15 +378,17 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
 })
 
 const RecipeInfo = ({ control }) => {
-  const [one, two, three, four] = [
+  const recipeInfoFormData: (keyof IRecipeInfoFormData)[] = [
     "numberOfPersons",
     "time",
     "cookingTime",
     "numberOfCalories",
-  ].map((name) => (
+  ]
+  const [one, two, three, four] = recipeInfoFormData.map((name) => (
     <Box key={name} ai="center">
       <UserIcon />
       <Controller
+        defaultValue=""
         control={control}
         name={name}
         render={({ value }) => <Text text={value || "-"} style={RECIPE_INFO_PANEL_ITEM_TEXT} />}
@@ -279,13 +409,8 @@ const RecipeInfo = ({ control }) => {
   )
 }
 
-type RecipeInfoSheetContentFormData = Record<
-  "numberOfPersons" | "time" | "cookingTime" | "numberOfCalories",
-  string
->
-
 const RecipeInfoSheetContent: FC<{
-  onSubmit: (s: RecipeInfoSheetContentFormData) => void
+  onSubmit: (s: IRecipeInfoFormData) => void
   onFocus: () => void
 }> = ({ onSubmit, onFocus }) => {
   const numberOfPersonsFieldRef = useRef<TextInput>(null)
@@ -293,7 +418,7 @@ const RecipeInfoSheetContent: FC<{
   const cookingTimeFieldRef = useRef<TextInput>(null)
   const calorieFieldRef = useRef<TextInput>(null)
 
-  const { control, handleSubmit } = useForm<RecipeInfoSheetContentFormData>()
+  const { control, handleSubmit } = useForm<IRecipeInfoFormData>()
 
   const [currentFocusFieldRef, setCurrentFocusFieldRef] = useState<MutableRefObject<TextInput>>(
     null,
@@ -310,11 +435,7 @@ const RecipeInfoSheetContent: FC<{
     setCurrentFocusFieldRef(ref)
   }
 
-  const recipeInfo: [
-    MutableRefObject<TextInput>,
-    keyof RecipeInfoSheetContentFormData,
-    string,
-  ][] = [
+  const recipeInfo: [MutableRefObject<TextInput>, keyof IRecipeInfoFormData, string][] = [
     [numberOfPersonsFieldRef, "numberOfPersons", " personnes"],
     [timeFieldRef, "time", " min de preparations"],
     [cookingTimeFieldRef, "cookingTime", " min de cuisson"],

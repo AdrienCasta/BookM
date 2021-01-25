@@ -7,9 +7,18 @@
 #   # recipes: [Recipe] @connection(keyName: "byUser", fields: ["id"]) @auth(rules: [{ allow: owner }])
 # }
 
+type RecipeStep {
+  description: String!
+  trick: String
+}
+
 type Recipe @model @auth(rules: [{ allow: owner }]) {
   id: ID!
   title: String!
   image: String!
   description: String
+  numberOfPersons: Int
+  step1: RecipeStep!
+  step2: RecipeStep!
+  otherSteps: [RecipeStep]
 }
