@@ -1,35 +1,26 @@
 import React, { useEffect, useRef } from "react"
 import { observer } from "mobx-react-lite"
-import { ImageBackground, TextStyle, ViewStyle, TouchableOpacity, View } from "react-native"
-import { Box, Button, Screen, Text, TextField } from "../../components"
-import BottomSheet from "reanimated-bottom-sheet"
-import { color } from "../../theme"
-import { ImageLibraryOptions, launchCamera, launchImageLibrary } from "react-native-image-picker"
-import shadowViewStyle from "../../utils/shadow"
+import { TextStyle, ViewStyle, TouchableOpacity, View } from "react-native"
 import { Controller, useFieldArray, useForm } from "react-hook-form"
+import { ImageLibraryOptions, launchCamera, launchImageLibrary } from "react-native-image-picker"
 import { API, graphqlOperation, Storage } from "aws-amplify"
+import BottomSheet from "reanimated-bottom-sheet"
+import { Box, Button, Screen, Text, TextField } from "../../components"
+import { color } from "../../theme"
+import shadowViewStyle from "../../utils/shadow"
 import * as mutations from "../../graphql/mutations"
-import { RecipeCreationInfoBottomSheet } from "./recipe-creation-info-bottom-sheet"
+import { RecipeCreationInfoBottomSheet } from "./components/recipe-creation-info-bottom-sheet"
 import {
   IRecipeFormData,
   IRecipeInfoFormData,
   reanimatedBottomSheet,
   recipeInfoIcons,
 } from "./recipe-creation.share"
+import { RecipeCreationPicture } from "./components/recipe-creation-picture"
 
 const ROOT: ViewStyle = {}
 const BODY: ViewStyle = {
   paddingHorizontal: 20,
-}
-const BACKGROUND_IMAGE: ViewStyle = {
-  borderBottomLeftRadius: 70,
-  shadowOffset: { width: 0, height: -10 },
-  shadowOpacity: 0.2,
-  shadowColor: color.palette.black,
-  shadowRadius: 2,
-  backgroundColor: "#F7F7F7",
-  height: 260,
-  overflow: "hidden",
 }
 const RECIPE_INFO_PANEL: ViewStyle = {
   ...shadowViewStyle(2, 4),
@@ -148,15 +139,7 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
     <>
       <Screen style={ROOT} preset="scroll">
         <TouchableOpacity onPress={handleImagePickerAppearance}>
-          <Controller
-            control={control}
-            defaultValue={null}
-            name="image"
-            rules={{ required: true }}
-            render={({ value }) => (
-              <ImageBackground source={{ uri: value?.uri }} style={BACKGROUND_IMAGE} />
-            )}
-          />
+          <RecipeCreationPicture control={control} />
         </TouchableOpacity>
         <View style={BODY}>
           <View style={FORM_FIELD}>

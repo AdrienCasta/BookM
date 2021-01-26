@@ -1,10 +1,10 @@
-import UserIcon from "./user.svg"
-import PanIcon from "./pan.svg"
-import StopWatchIcon from "./stopwatch.svg"
-import FireIcon from "./fire.svg"
 import { FC, MutableRefObject } from "react"
 import { SvgProps } from "react-native-svg"
 import BottomSheetBehavior from "reanimated-bottom-sheet"
+import UserIcon from "./assets/user.svg"
+import PanIcon from "./assets/pan.svg"
+import StopWatchIcon from "./assets/stopwatch.svg"
+import FireIcon from "./assets/fire.svg"
 
 export const recipeInfoIcons = new Map<keyof IRecipeInfoFormData, FC<SvgProps>>([
   ["numberOfPersons", UserIcon],

@@ -1,15 +1,15 @@
 import React, { FC, MutableRefObject, useEffect, useRef, useState } from "react"
 import { TextStyle, ViewStyle, TextInput, TouchableOpacity, View } from "react-native"
-import { Box, Button, Text } from "../../components"
+import { Box, Button, Text } from "../../../components"
 import BottomSheet from "reanimated-bottom-sheet"
-import { color, typography } from "../../theme"
-import shadowViewStyle from "../../utils/shadow"
+import { color, typography } from "../../../theme"
+import shadowViewStyle from "../../../utils/shadow"
 import { Controller, useForm } from "react-hook-form"
 import {
   IRecipeInfoFormData,
   reanimatedBottomSheet,
   recipeInfoIcons,
-} from "./recipe-creation.share"
+} from "../recipe-creation.share"
 
 const BORDER_TOP_RADIUS = 40
 const HEADER_HEIGHT = 80
