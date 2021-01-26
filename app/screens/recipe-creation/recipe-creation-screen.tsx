@@ -1,10 +1,14 @@
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { observer } from "mobx-react-lite"
 import { TextStyle, ViewStyle, TouchableOpacity, View } from "react-native"
 import { Controller, useFieldArray, useForm } from "react-hook-form"
-import { ImageLibraryOptions, launchCamera, launchImageLibrary } from "react-native-image-picker"
+import {
+  ImageLibraryOptions,
+  ImagePickerResponse,
+  launchCamera,
+  launchImageLibrary,
+} from "react-native-image-picker"
 import { API, graphqlOperation, Storage } from "aws-amplify"
-import BottomSheet from "reanimated-bottom-sheet"
 import { Box, Button, Screen, Text, TextField } from "../../components"
 import { color } from "../../theme"
 import shadowViewStyle from "../../utils/shadow"
@@ -17,6 +21,8 @@ import {
   recipeInfoIcons,
 } from "./recipe-creation.share"
 import { RecipeCreationPicture } from "./components/recipe-creation-picture"
+import { RecipeCreationStockBottomSheet } from "./components/recipe-creation-stock-bottom-sheet"
+import RecipeCreationImagePickerBottomSheet from "./components/recipe-creation-image-picker-bottom-sheet"
 
 const ROOT: ViewStyle = {}
 const BODY: ViewStyle = {
@@ -40,18 +46,28 @@ const RECIPE_INFO_PANEL_ITEM_TEXT: TextStyle = {
   paddingTop: 6,
 }
 
-const IMAGE_PICKER_SHEET: ViewStyle = {
-  backgroundColor: color.background,
-  padding: 16,
-  height: 450,
-}
-
 const BUTTON_ADD: ViewStyle = {
   backgroundColor: "#eee",
   flex: 1,
   height: 30,
   borderRadius: 30,
   marginTop: 30,
+}
+
+const STOCK: ViewStyle = {
+  ...shadowViewStyle(),
+  width: 65,
+  height: 124,
+  borderRadius: 9,
+  backgroundColor: color.palette.lighterGreen,
+}
+const STOCK_BOTTOM: ViewStyle = {
+  backgroundColor: color.palette.green,
+  height: "50%",
+  borderRadius: 9,
+}
+const STOCK_TEXT: TextStyle = {
+  color: color.secondary,
 }
 
 const imageOptions = {
@@ -90,6 +106,7 @@ const createRecipe = async (recipeFormData: IRecipeFormData) => {
 }
 
 export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
+  const [stockImage, setStockImage] = useState<ImagePickerResponse>(null)
   const { control, setValue, watch, handleSubmit, errors } = useForm<IRecipeFormData>({
     mode: "onChange",
   })
@@ -97,10 +114,17 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
     control,
     name: "otherSteps",
   })
+  const ingredients = useFieldArray({
+    control,
+    name: "ingredients",
+  })
 
   const recipeInfoSheetRef = useRef(null)
+  const recipeStockSheetRef = useRef(null)
   const imagePickerSheetRef = useRef(null)
+  const imageStockPickerSheetRef = useRef(null)
   const recipeInfoSheet = reanimatedBottomSheet(["100%", 460, 0], 2)
+  const recipeStockSheet = reanimatedBottomSheet(["100%", 0], 1)
   const imagePickerSheet = reanimatedBottomSheet([300, 0], 1)
 
   useEffect(() => {
@@ -113,9 +137,15 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
   const handleRecipeInfoAppearance = () => {
     recipeInfoSheet.animate(recipeInfoSheetRef).slideMiddle()
   }
+  const handleRecipeStockAppearance = () => {
+    recipeStockSheet.animate(recipeStockSheetRef).slideTop()
+  }
 
   const handleLaunchingImageLibrary = () => {
     launchImageLibrary(imageOptions, (image) => setValue("image", image))
+  }
+  const appendStockImageIngredient = () => {
+    launchImageLibrary(imageOptions, (image) => setStockImage(image))
   }
   const handleLaunchingCamera = () => {
     launchCamera(imageOptions, (image) => setValue("image", image))
@@ -129,12 +159,6 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
 
   const onSubmit = (d) => createRecipe(d).catch(console.log)
 
-  const renderContent = () => (
-    <Box style={IMAGE_PICKER_SHEET}>
-      <Button onPress={handleLaunchingImageLibrary} text="Séléctionner une photo" />
-      <Button onPress={handleLaunchingCamera} text="Prendre une photo" />
-    </Box>
-  )
   return (
     <>
       <Screen style={ROOT} preset="scroll">
@@ -179,11 +203,18 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
               )}
             />
           </View>
-          <View style={FORM_FIELD}>
+          <Box fd="row" jc="between" style={FORM_FIELD}>
             <TouchableOpacity onPress={handleRecipeInfoAppearance}>
               <RecipeInfo control={control} />
             </TouchableOpacity>
-          </View>
+            <TouchableOpacity onPress={handleRecipeStockAppearance}>
+              <Box jc="end" style={STOCK}>
+                <Box jc="center" ai="center" style={STOCK_BOTTOM}>
+                  <Text text="STOCK" style={STOCK_TEXT} />
+                </Box>
+              </Box>
+            </TouchableOpacity>
+          </Box>
 
           <View style={FORM_FIELD}>
             <Controller
@@ -255,16 +286,30 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
         </View>
         <Button preset="large" text="valider" onPress={handleSubmit(onSubmit)} />
       </Screen>
-      <BottomSheet
-        ref={imagePickerSheetRef}
-        snapPoints={imagePickerSheet.snapPoint}
-        initialSnap={imagePickerSheet.initialSnapPoint}
-        borderRadius={10}
-        renderContent={renderContent}
-      />
       <RecipeCreationInfoBottomSheet
         sheetRef={recipeInfoSheetRef}
         onSubmit={handleRecipeInfoSubmit}
+      />
+      <RecipeCreationStockBottomSheet
+        currentImagePicking={stockImage}
+        sheetRef={recipeStockSheetRef}
+        snapPoints={recipeStockSheet.snapPoint}
+        initialSnap={recipeStockSheet.initialSnapPoint}
+        imageStockPickerSheetRef={imageStockPickerSheetRef}
+        ingredients={ingredients}
+      />
+
+      {/* Main image */}
+      <RecipeCreationImagePickerBottomSheet
+        sheetRef={imagePickerSheetRef}
+        onSelectPhoto={handleLaunchingImageLibrary}
+        onTakePhoto={handleLaunchingCamera}
+      />
+      {/* STOCK ingredients */}
+      <RecipeCreationImagePickerBottomSheet
+        sheetRef={imageStockPickerSheetRef}
+        onSelectPhoto={appendStockImageIngredient}
+        onTakePhoto={handleLaunchingCamera}
       />
     </>
   )
