@@ -45,24 +45,22 @@ const CAMERA_CONTAINER: ViewStyle = {
 }
 
 interface IRecipeCreationStockPictureProps {
-  currentImagePicking: ImagePickerResponse
+  preview: ImagePickerResponse
 }
 
-export const RecipeCreationStockPicture: FC<IRecipeCreationStockPictureProps> = ({
-  currentImagePicking,
-}) => {
+export const RecipeCreationStockPicture: FC<IRecipeCreationStockPictureProps> = ({ preview }) => {
   return (
     <View>
       <Box jc="end" ai="end" style={CAMERA_CONTAINER}>
         <CameraIcon width={43} height={30} />
       </Box>
       <View style={BACKGROUND_IMAGE_PLACEHOLDER}>
-        {!currentImagePicking?.uri ? (
+        {!preview?.uri ? (
           <View style={BACKGROUND_GRADIENT_CONTAINER}>
             <Gradient width={130} height={130} />
           </View>
         ) : (
-          <ImageBackground source={{ uri: currentImagePicking.uri }} style={BACKGROUND_IMAGE} />
+          <ImageBackground source={{ uri: preview.uri }} style={BACKGROUND_IMAGE} />
         )}
       </View>
     </View>

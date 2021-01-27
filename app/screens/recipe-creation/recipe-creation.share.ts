@@ -1,6 +1,7 @@
 import { FC, MutableRefObject } from "react"
 import { SvgProps } from "react-native-svg"
 import BottomSheetBehavior from "reanimated-bottom-sheet"
+import { ImagePickerResponse } from "react-native-image-picker"
 import UserIcon from "./assets/user.svg"
 import PanIcon from "./assets/pan.svg"
 import StopWatchIcon from "./assets/stopwatch.svg"
@@ -50,4 +51,5 @@ export interface IRecipeFormData extends IRecipeInfoFormData {
   step1: string
   step2: string
   otherSteps: string[]
+  ingredients: { image: ImagePickerResponse; label: string }[]
 }

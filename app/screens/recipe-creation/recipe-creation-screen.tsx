@@ -106,7 +106,7 @@ const createRecipe = async (recipeFormData: IRecipeFormData) => {
 }
 
 export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
-  const [stockImage, setStockImage] = useState<ImagePickerResponse>(null)
+  const [ingredientPreview, setIngredientPreview] = useState<ImagePickerResponse>(null)
   const { control, setValue, watch, handleSubmit, errors } = useForm<IRecipeFormData>({
     mode: "onChange",
   })
@@ -140,12 +140,15 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
   const handleRecipeStockAppearance = () => {
     recipeStockSheet.animate(recipeStockSheetRef).slideTop()
   }
+  const slideStockBottomSheetDown = () => {
+    recipeStockSheet.animate(recipeStockSheetRef).slideDown()
+  }
 
   const handleLaunchingImageLibrary = () => {
     launchImageLibrary(imageOptions, (image) => setValue("image", image))
   }
   const appendStockImageIngredient = () => {
-    launchImageLibrary(imageOptions, (image) => setStockImage(image))
+    launchImageLibrary(imageOptions, (image) => setIngredientPreview(image))
   }
   const handleLaunchingCamera = () => {
     launchCamera(imageOptions, (image) => setValue("image", image))
@@ -177,7 +180,7 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
                   error={!!errors.title}
                   value={value}
                   onChangeText={onChange}
-                  label="Ajouter unn titre"
+                  label="Ajouter un titre"
                   placeholder="Renseigner le titre de votre recette"
                 />
               )}
@@ -291,12 +294,13 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
         onSubmit={handleRecipeInfoSubmit}
       />
       <RecipeCreationStockBottomSheet
-        currentImagePicking={stockImage}
+        currentImagePicking={ingredientPreview}
         sheetRef={recipeStockSheetRef}
         snapPoints={recipeStockSheet.snapPoint}
         initialSnap={recipeStockSheet.initialSnapPoint}
         imageStockPickerSheetRef={imageStockPickerSheetRef}
         ingredients={ingredients}
+        onSubmit={slideStockBottomSheetDown}
       />
 
       {/* Main image */}
