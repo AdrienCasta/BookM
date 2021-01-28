@@ -9,7 +9,7 @@ import { createStackNavigator } from "@react-navigation/stack"
 import { TextStyle, TouchableOpacity, ViewStyle } from "react-native"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 
-import { RecipeCreationScreen, HomeScreen } from "../screens"
+import { RecipeCreationScreen, HomeScreen, RecipeListScreen, MyBookMScreen } from "../screens"
 import LogoWhiteIcon from "../../assets/logo-white.svg"
 import { Box, Text } from "../components"
 import { color, typography } from "../theme"
@@ -31,11 +31,17 @@ export type PrimaryParamList = {
 }
 export type TabParamList = {
   HomeScreen: undefined
+  MyBookMNavigator: undefined
+}
+export type MyBookMStackParamList = {
+  MyBookMScreen: undefined
   RecipeCreationScreen: undefined
+  RecipeListScreen: undefined
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
 const Stack = createStackNavigator<PrimaryParamList>()
+const MyBookMStack = createStackNavigator<MyBookMStackParamList>()
 const Tab = createBottomTabNavigator<TabParamList>()
 
 const TAB_BAR: ViewStyle = {
@@ -62,9 +68,6 @@ const TAB_SCREEN_ITEM_NAME: TextStyle = {
 
 function MyTabBar({ state, descriptors, navigation }) {
   const focusedOptions = descriptors[state.routes[state.index].key].options
-
-  console.log(JSON.stringify({ state, descriptors, navigation }, null, 2))
-  console.log(state.routes[state.index].key)
 
   if (focusedOptions.tabBarVisible === false) {
     return null
@@ -134,11 +137,25 @@ export function MainTabNavigator() {
     <Tab.Navigator initialRouteName="HomeScreen" tabBar={(props) => <MyTabBar {...props} />}>
       <Tab.Screen name="HomeScreen" component={HomeScreen} />
       <Tab.Screen
-        name="RecipeCreationScreen"
-        component={RecipeCreationScreen}
+        name="MyBookMNavigator"
+        component={MyBookMNavigator}
         options={{ tabBarLabel: "BookM", tabBarVisible: false }}
       />
     </Tab.Navigator>
+  )
+}
+export function MyBookMNavigator() {
+  return (
+    <MyBookMStack.Navigator
+      initialRouteName="MyBookMScreen"
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <MyBookMStack.Screen name="MyBookMScreen" component={MyBookMScreen} />
+      <MyBookMStack.Screen name="RecipeCreationScreen" component={RecipeCreationScreen} />
+      <MyBookMStack.Screen name="RecipeListScreen" component={RecipeListScreen} />
+    </MyBookMStack.Navigator>
   )
 }
 export function MainNavigator() {

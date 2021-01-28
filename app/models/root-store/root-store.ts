@@ -8,7 +8,7 @@ import { UserModel } from "../user/user"
 // prettier-ignore
 export const RootStoreModel = types.model("RootStore").props({
   user: types.optional(UserModel, {}),
-  request: RequestModel
+  request: RequestModel,
 })
 
 /**
