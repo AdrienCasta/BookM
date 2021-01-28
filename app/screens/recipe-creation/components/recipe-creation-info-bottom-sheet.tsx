@@ -1,6 +1,6 @@
 import React, { FC, MutableRefObject, useEffect, useRef, useState } from "react"
 import { TextStyle, ViewStyle, TextInput, TouchableOpacity, View } from "react-native"
-import { Box, Button, Text } from "../../../components"
+import { Box, Text } from "../../../components"
 import BottomSheet from "reanimated-bottom-sheet"
 import { color, typography } from "../../../theme"
 import shadowViewStyle from "../../../utils/shadow"
@@ -170,6 +170,7 @@ const RecipeInfoSheetContent: FC<{
                 maxLength={3}
                 keyboardType="number-pad"
                 returnKeyType="done"
+                onSubmitEditing={handleSubmit(onSubmit)}
                 ref={ref}
                 underlineColorAndroid={color.palette.orange}
                 style={{ color: color.palette.orange }}
@@ -201,7 +202,6 @@ const RecipeInfoSheetContent: FC<{
             {four}
           </Box>
         </Box>
-        <Button preset="large" text="valider" onPress={handleSubmit(onSubmit)} />
       </Box>
     </View>
   )

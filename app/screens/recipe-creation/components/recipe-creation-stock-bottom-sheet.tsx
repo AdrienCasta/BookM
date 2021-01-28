@@ -13,8 +13,8 @@ import { ImagePickerResponse } from "react-native-image-picker"
 import { color, typography } from "../../../theme"
 import { Box, Button, Text, TextField } from "../../../components"
 import shadowViewStyle from "../../../utils/shadow"
-import { UseFieldArrayMethods } from "react-hook-form"
-import { reanimatedBottomSheet } from "../recipe-creation.share"
+import { Control, Controller, UseFieldArrayMethods } from "react-hook-form"
+import { IRecipeFormData, reanimatedBottomSheet } from "../recipe-creation.share"
 import { RecipeCreationStockPicture } from "./recipe-creation-stock-picture"
 import CrossIcon from "../assets/cross.svg"
 
@@ -86,6 +86,7 @@ const CROSS_ICON_CONTAINER: ViewStyle = {
 }
 
 interface IRecipeCreationStockBottomSheetProps {
+  control: Control<IRecipeFormData>
   sheetRef: MutableRefObject<BottomSheet>
   imageStockPickerSheetRef: MutableRefObject<BottomSheet>
   snapPoints: (number | string)[]
@@ -95,6 +96,7 @@ interface IRecipeCreationStockBottomSheetProps {
   onSubmit: () => void
 }
 export const RecipeCreationStockBottomSheet: FC<IRecipeCreationStockBottomSheetProps> = ({
+  control,
   sheetRef,
   imageStockPickerSheetRef,
   snapPoints,
@@ -168,18 +170,26 @@ export const RecipeCreationStockBottomSheet: FC<IRecipeCreationStockBottomSheetP
           </Box>
           <ScrollView style={INGREDIENT_LIST}>
             {ingredients.fields.map((field, index) => (
-              <Box fd="row" ai="center" key={field.id} style={INGREDIENT}>
-                <Image source={{ uri: field.value?.image.uri }} style={IMAGE_INGREDIENT} />
-                <Box fd="row" ai="center" jc="between" style={LABEL_CONTAINER}>
-                  <Text text={field.value?.label} />
-                  <TouchableOpacity
-                    onPress={handleRemoveIngredient(index)}
-                    style={CROSS_ICON_CONTAINER}
-                  >
-                    <CrossIcon width={12} height={12} />
-                  </TouchableOpacity>
-                </Box>
-              </Box>
+              <Controller
+                key={field.id}
+                control={control}
+                defaultValue={field.value}
+                name={`ingredients[${index}].value`}
+                render={() => (
+                  <Box fd="row" ai="center" style={INGREDIENT}>
+                    <Image source={{ uri: field.value?.image.uri }} style={IMAGE_INGREDIENT} />
+                    <Box fd="row" ai="center" jc="between" style={LABEL_CONTAINER}>
+                      <Text text={field.value?.label} />
+                      <TouchableOpacity
+                        onPress={handleRemoveIngredient(index)}
+                        style={CROSS_ICON_CONTAINER}
+                      >
+                        <CrossIcon width={12} height={12} />
+                      </TouchableOpacity>
+                    </Box>
+                  </Box>
+                )}
+              />
             ))}
           </ScrollView>
           <Button preset="large" text="Valider" onPress={onSubmit} />
