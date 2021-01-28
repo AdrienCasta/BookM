@@ -12,13 +12,22 @@ type RecipeStep {
   trick: String
 }
 
+type Ingredient {
+  image: String!
+  label: String!
+}
+
 type Recipe @model @auth(rules: [{ allow: owner }]) {
   id: ID!
   title: String!
   image: String!
-  description: String
-  numberOfPersons: Int
+  description: String!
+  time: Int!
+  numberOfPersons: Int!
+  numberOfCalories: Int
+  cookingTime: Int
   step1: RecipeStep!
   step2: RecipeStep!
   otherSteps: [RecipeStep]
+  ingredients: [Ingredient!]!
 }

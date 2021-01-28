@@ -9,7 +9,10 @@ export const getRecipe = /* GraphQL */ `
       title
       image
       description
+      time
       numberOfPersons
+      numberOfCalories
+      cookingTime
       step1 {
         description
         trick
@@ -21,6 +24,10 @@ export const getRecipe = /* GraphQL */ `
       otherSteps {
         description
         trick
+      }
+      ingredients {
+        image
+        label
       }
       createdAt
       updatedAt
@@ -36,7 +43,26 @@ export const listRecipes = /* GraphQL */ `
         title
         image
         description
+        time
         numberOfPersons
+        numberOfCalories
+        cookingTime
+        step1 {
+          description
+          trick
+        }
+        step2 {
+          description
+          trick
+        }
+        otherSteps {
+          description
+          trick
+        }
+        ingredients {
+          image
+          label
+        }
         createdAt
         updatedAt
         owner

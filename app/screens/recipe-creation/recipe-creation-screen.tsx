@@ -9,7 +9,7 @@ import {
   launchImageLibrary,
 } from "react-native-image-picker"
 import { API, graphqlOperation, Storage } from "aws-amplify"
-import { Box, Button, Screen, Text, TextField } from "../../components"
+import { Box, Screen, Text, TextField } from "../../components"
 import { color } from "../../theme"
 import shadowViewStyle from "../../utils/shadow"
 import * as mutations from "../../graphql/mutations"
@@ -23,10 +23,23 @@ import {
 import { RecipeCreationPicture } from "./components/recipe-creation-picture"
 import { RecipeCreationStockBottomSheet } from "./components/recipe-creation-stock-bottom-sheet"
 import RecipeCreationImagePickerBottomSheet from "./components/recipe-creation-image-picker-bottom-sheet"
+import CrossIcon from "./assets/cross.svg"
+import { useNavigation } from "@react-navigation/native"
 
 const ROOT: ViewStyle = {}
-const BODY: ViewStyle = {
+const HEADER: ViewStyle = {
+  width: "100%",
+  height: 40,
   paddingHorizontal: 20,
+}
+const CROSS_ICON: TextStyle = {
+  color: color.primary,
+}
+const HEADER_TITLE: TextStyle = {
+  fontSize: 20,
+}
+const BODY: ViewStyle = {
+  paddingHorizontal: 50,
 }
 const RECIPE_INFO_PANEL: ViewStyle = {
   ...shadowViewStyle(2, 4),
@@ -72,31 +85,66 @@ const STOCK_TEXT: TextStyle = {
 
 const imageOptions = {
   mediaType: "photo",
-  maxWidth: 400,
+  maxWidth: 600,
+  maxHeight: 600,
 } as ImageLibraryOptions
 
 const createRecipe = async (recipeFormData: IRecipeFormData) => {
+  const getImageUriFileName = (path: string) => path.substring(path.lastIndexOf("/") + 1)
   try {
-    const response = await fetch(recipeFormData.image.uri)
-    const blob = (await response.blob()) as { _data: { name: string } }
-    const fileName = blob._data.name
+    const fetches = await Promise.all(
+      [
+        recipeFormData.image.uri,
+        ...recipeFormData.ingredients.map(({ value: { image } }) => image.uri),
+      ].map((data) => fetch(data)),
+    )
 
-    await Storage.put(fileName, blob, {
-      contentType: "image/jpeg",
-    })
-    await API.graphql(
+    for (const data of fetches) {
+      const blob = (await data.blob()) as { _data: { name: string } }
+      const fileName = blob._data.name
+
+      await Storage.put(fileName, blob, {
+        contentType: "image/jpeg",
+      })
+    }
+
+    const {
+      numberOfCalories,
+      numberOfPersons,
+      cookingTime,
+      time,
+      title,
+      description,
+      image,
+      ingredients,
+      step1,
+      step2,
+      otherSteps,
+    } = recipeFormData
+
+    return await API.graphql(
       graphqlOperation(mutations.createRecipe, {
         input: {
-          title: recipeFormData.title,
-          description: recipeFormData.description,
-          image: fileName,
+          title,
+          description,
+          image: getImageUriFileName(image.uri),
+          numberOfCalories,
+          numberOfPersons,
+          cookingTime,
+          time,
           step1: {
-            description: recipeFormData.step1,
+            description: step1,
           },
           step2: {
-            description: recipeFormData.step2,
+            description: step2,
           },
-          otherSteps: recipeFormData.otherSteps.map((description) => ({ description })),
+          ...(otherSteps
+            ? { otherSteps: otherSteps.map(({ value }) => ({ description: value })) }
+            : {}),
+          ingredients: ingredients.map(({ value: { image, label } }) => ({
+            image: getImageUriFileName(image.uri),
+            label,
+          })),
         },
       }),
     )
@@ -106,6 +154,7 @@ const createRecipe = async (recipeFormData: IRecipeFormData) => {
 }
 
 export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
+  const navigation = useNavigation()
   const [ingredientPreview, setIngredientPreview] = useState<ImagePickerResponse>(null)
   const { control, setValue, watch, handleSubmit, errors } = useForm<IRecipeFormData>({
     mode: "onChange",
@@ -160,11 +209,27 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
     recipeInfoSheet.animate(recipeInfoSheetRef).slideDown()
   }
 
-  const onSubmit = (d) => createRecipe(d).catch(console.log)
+  const onSubmit = async (recipe: IRecipeFormData) => {
+    try {
+      await createRecipe(recipe)
+      navigation.navigate("HomeScreen")
+    } catch (e) {
+      console.log(e)
+    }
+  }
 
   return (
     <>
       <Screen style={ROOT} preset="scroll">
+        <Box fd="row" ai="center" jc="between" style={HEADER}>
+          <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
+            <CrossIcon width={12} height={12} style={CROSS_ICON} />
+          </TouchableOpacity>
+          <Text text="Nouvelle fiche" style={HEADER_TITLE} />
+          <TouchableOpacity onPress={handleSubmit(onSubmit)}>
+            <Text text="Suivant" />
+          </TouchableOpacity>
+        </Box>
         <TouchableOpacity onPress={handleImagePickerAppearance}>
           <RecipeCreationPicture control={control} />
         </TouchableOpacity>
@@ -206,7 +271,7 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
               )}
             />
           </View>
-          <Box fd="row" jc="between" style={FORM_FIELD}>
+          <Box fd="row" jc="between" style={{ ...FORM_FIELD, ...{ paddingHorizontal: 20 } }}>
             <TouchableOpacity onPress={handleRecipeInfoAppearance}>
               <RecipeInfo control={control} />
             </TouchableOpacity>
@@ -287,13 +352,13 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
             </Box>
           </TouchableOpacity>
         </View>
-        <Button preset="large" text="valider" onPress={handleSubmit(onSubmit)} />
       </Screen>
       <RecipeCreationInfoBottomSheet
         sheetRef={recipeInfoSheetRef}
         onSubmit={handleRecipeInfoSubmit}
       />
       <RecipeCreationStockBottomSheet
+        control={control}
         currentImagePicking={ingredientPreview}
         sheetRef={recipeStockSheetRef}
         snapPoints={recipeStockSheet.snapPoint}

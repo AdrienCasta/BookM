@@ -9,7 +9,10 @@ export const onCreateRecipe = /* GraphQL */ `
       title
       image
       description
+      time
       numberOfPersons
+      numberOfCalories
+      cookingTime
       step1 {
         description
         trick
@@ -21,6 +24,10 @@ export const onCreateRecipe = /* GraphQL */ `
       otherSteps {
         description
         trick
+      }
+      ingredients {
+        image
+        label
       }
       createdAt
       updatedAt
@@ -35,7 +42,10 @@ export const onUpdateRecipe = /* GraphQL */ `
       title
       image
       description
+      time
       numberOfPersons
+      numberOfCalories
+      cookingTime
       step1 {
         description
         trick
@@ -47,6 +57,10 @@ export const onUpdateRecipe = /* GraphQL */ `
       otherSteps {
         description
         trick
+      }
+      ingredients {
+        image
+        label
       }
       createdAt
       updatedAt
@@ -61,7 +75,10 @@ export const onDeleteRecipe = /* GraphQL */ `
       title
       image
       description
+      time
       numberOfPersons
+      numberOfCalories
+      cookingTime
       step1 {
         description
         trick
@@ -73,6 +90,10 @@ export const onDeleteRecipe = /* GraphQL */ `
       otherSteps {
         description
         trick
+      }
+      ingredients {
+        image
+        label
       }
       createdAt
       updatedAt
