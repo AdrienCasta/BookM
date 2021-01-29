@@ -49,6 +49,10 @@ const RECIPE_INFO_PANEL: ViewStyle = {
   borderRadius: 8,
   padding: 16,
 }
+const RECIPE_INFO_PANEL_ERROR: ViewStyle = {
+  borderWidth: 1,
+  borderColor: color.error,
+}
 const FORM_FIELD: ViewStyle = {
   marginTop: 20,
 }
@@ -273,7 +277,7 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
           </View>
           <Box fd="row" jc="between" style={{ ...FORM_FIELD, ...{ paddingHorizontal: 20 } }}>
             <TouchableOpacity onPress={handleRecipeInfoAppearance}>
-              <RecipeInfo control={control} />
+              <RecipeInfo control={control} error={errors} />
             </TouchableOpacity>
             <TouchableOpacity onPress={handleRecipeStockAppearance}>
               <Box jc="end" style={STOCK}>
@@ -384,7 +388,7 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
   )
 })
 
-const RecipeInfo = ({ control }) => {
+const RecipeInfo = ({ control, error }) => {
   const recipeInfoFormData: (keyof IRecipeInfoFormData)[] = [
     "numberOfPersons",
     "time",
@@ -397,6 +401,7 @@ const RecipeInfo = ({ control }) => {
       <Box key={name} ai="center">
         <Icon width={23} height={23} color={color.secondary} />
         <Controller
+          rules={{ required: ["numberOfPersons", "time"].includes(name) }}
           defaultValue=""
           control={control}
           name={name}
@@ -406,7 +411,13 @@ const RecipeInfo = ({ control }) => {
     )
   })
   return (
-    <Box jc="between" style={RECIPE_INFO_PANEL}>
+    <Box
+      jc="between"
+      style={{
+        ...RECIPE_INFO_PANEL,
+        ...(error.numberOfPersons || error.time ? RECIPE_INFO_PANEL_ERROR : {}),
+      }}
+    >
       <Box fd="row" jc="between">
         {one}
         {two}
