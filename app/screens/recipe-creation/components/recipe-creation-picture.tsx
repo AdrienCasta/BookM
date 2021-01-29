@@ -61,7 +61,7 @@ export const RecipeCreationPicture: FC<IRecipeCreationPictureProps> = ({ control
             <View style={BACKGROUND_IMAGE_PLACEHOLDER}>
               {!value?.uri ? (
                 <View style={BACKGROUND_GRADIENT_CONTAINER}>
-                  <Gradient width={375} height={PICTURE_HEIGHT} />
+                  <Gradient height={PICTURE_HEIGHT} />
                 </View>
               ) : (
                 <ImageBackground source={{ uri: value.uri }} style={BACKGROUND_IMAGE} />

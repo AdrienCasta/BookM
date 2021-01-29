@@ -39,10 +39,10 @@ export const reanimatedBottomSheet = (snapPoint, initialSnapPoint) => {
 }
 
 export interface IRecipeInfoFormData {
-  numberOfPersons: string
-  time: string
-  cookingTime: string
-  numberOfCalories: string
+  numberOfPersons: number
+  time: number
+  cookingTime?: number
+  numberOfCalories?: number
 }
 export interface IRecipeFormData extends IRecipeInfoFormData {
   image: any
@@ -50,6 +50,6 @@ export interface IRecipeFormData extends IRecipeInfoFormData {
   description: string
   step1: string
   step2: string
-  otherSteps: string[]
-  ingredients: { image: ImagePickerResponse; label: string }[]
+  otherSteps?: { value: { description: string; trick?: string } }[]
+  ingredients: { value: { image: ImagePickerResponse; label: string } }[]
 }

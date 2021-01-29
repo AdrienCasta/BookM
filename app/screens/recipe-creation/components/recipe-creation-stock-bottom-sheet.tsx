@@ -16,7 +16,7 @@ import shadowViewStyle from "../../../utils/shadow"
 import { Control, Controller, UseFieldArrayMethods } from "react-hook-form"
 import { IRecipeFormData, reanimatedBottomSheet } from "../recipe-creation.share"
 import { RecipeCreationStockPicture } from "./recipe-creation-stock-picture"
-import CrossIcon from "../assets/cross.svg"
+import CrossIcon from "../../../../assets/cross.svg"
 
 const BORDER_TOP_RADIUS = 40
 const HEADER_HEIGHT = 80

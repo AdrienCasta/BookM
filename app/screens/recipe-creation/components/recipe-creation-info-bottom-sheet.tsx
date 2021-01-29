@@ -2,9 +2,9 @@ import React, { FC, MutableRefObject, useEffect, useRef, useState } from "react"
 import { TextStyle, ViewStyle, TextInput, TouchableOpacity, View } from "react-native"
 import { Box, Text } from "../../../components"
 import BottomSheet from "reanimated-bottom-sheet"
+import { Controller, useForm } from "react-hook-form"
 import { color, typography } from "../../../theme"
 import shadowViewStyle from "../../../utils/shadow"
-import { Controller, useForm } from "react-hook-form"
 import {
   IRecipeInfoFormData,
   reanimatedBottomSheet,
@@ -22,6 +22,7 @@ const RECIPE_INFO_SHEET: ViewStyle = {
 }
 const RECIPE_INFO_SHEET_CONTAINER: ViewStyle = {
   backgroundColor: color.background,
+  paddingTop: HEADER_HEIGHT,
   height: "100%",
 }
 const RECIPE_INFO_SHEET_TITLE: TextStyle = {
@@ -187,7 +188,7 @@ const RecipeInfoSheetContent: FC<{
 
   return (
     <View style={RECIPE_INFO_SHEET_CONTAINER}>
-      <Box style={RECIPE_INFO_SHEET} jc="around">
+      <Box style={RECIPE_INFO_SHEET} jc="between">
         <Box jc="between" ai="center">
           <Box fd="row" jc="between" style={RECIPE_INFO_SHEET_ITEM_ROWS}>
             {one}

@@ -3,7 +3,7 @@ import { observer } from "mobx-react-lite"
 import { ViewStyle, TouchableOpacity, TextStyle } from "react-native"
 import { Box, Screen, Text } from "../../components"
 import { useStores } from "../../models"
-import { useNavigation } from "@react-navigation/native"
+// import { useNavigation } from "@react-navigation/native"
 import LogoIcon from "../../../assets/logo.svg"
 import CameraIcon from "./camera.svg"
 import BurgerIcon from "./burger.svg"
@@ -23,11 +23,11 @@ const LOGO: ViewStyle = {
 
 export const HomeScreen = observer(function HomeScreen() {
   const { user } = useStores()
-  const navigation = useNavigation()
+  // const navigation = useNavigation()
 
-  const handleSignOut = () => {
-    user.signOut()
-  }
+  // const handleSignOut = () => {
+  //   user.signOut()
+  // }
 
   return (
     <Screen style={ROOT} preset="scroll">
@@ -44,7 +44,7 @@ export const HomeScreen = observer(function HomeScreen() {
           <BurgerIcon />
         </TouchableOpacity>
       </Box>
-      <Text preset="header" text={user.fullName} />
+      {/* <Text preset="header" text={user.fullName} />
       <TouchableOpacity>
         <Text preset="link" text="déconnexion" onPress={handleSignOut} />
       </TouchableOpacity>
@@ -54,7 +54,7 @@ export const HomeScreen = observer(function HomeScreen() {
           text="recipe"
           onPress={() => navigation.navigate("RecipeCreationScreen")}
         />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       {/* <Box
         fd="row"
         style={{

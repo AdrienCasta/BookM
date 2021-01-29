@@ -8,6 +8,7 @@ import {
   launchCamera,
   launchImageLibrary,
 } from "react-native-image-picker"
+import { useNavigation } from "@react-navigation/native"
 import { API, graphqlOperation, Storage } from "aws-amplify"
 import { Box, Screen, Text, TextField } from "../../components"
 import { color } from "../../theme"
@@ -23,8 +24,7 @@ import {
 import { RecipeCreationPicture } from "./components/recipe-creation-picture"
 import { RecipeCreationStockBottomSheet } from "./components/recipe-creation-stock-bottom-sheet"
 import RecipeCreationImagePickerBottomSheet from "./components/recipe-creation-image-picker-bottom-sheet"
-import CrossIcon from "./assets/cross.svg"
-import { useNavigation } from "@react-navigation/native"
+import CrossIcon from "../../../assets/cross.svg"
 
 const ROOT: ViewStyle = {}
 const HEADER: ViewStyle = {
@@ -222,7 +222,7 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
     <>
       <Screen style={ROOT} preset="scroll">
         <Box fd="row" ai="center" jc="between" style={HEADER}>
-          <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
+          <TouchableOpacity onPress={() => navigation.navigate("MyBookMScreen")}>
             <CrossIcon width={12} height={12} style={CROSS_ICON} />
           </TouchableOpacity>
           <Text text="Nouvelle fiche" style={HEADER_TITLE} />
