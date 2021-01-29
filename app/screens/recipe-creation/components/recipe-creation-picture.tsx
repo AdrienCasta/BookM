@@ -2,6 +2,7 @@ import React, { FC } from "react"
 import { Control, Controller } from "react-hook-form"
 import { ImageBackground, ViewStyle, View } from "react-native"
 import { Box } from "../../../components"
+import { color } from "../../../theme"
 import shadowViewStyle from "../../../utils/shadow"
 import CameraIcon from "../assets/camera.svg"
 import Gradient from "../assets/gradient.svg"
@@ -20,6 +21,10 @@ const BACKGROUND_IMAGE_PLACEHOLDER: ViewStyle = {
   ...shadowViewStyle(0, 4),
   borderBottomLeftRadius: BORDER_RADIUS,
   height: PICTURE_HEIGHT,
+}
+const BACKGROUND_IMAGE_PLACEHOLDER_ERROR: ViewStyle = {
+  borderWidth: 1,
+  borderColor: color.error,
 }
 const BACKGROUND_GRADIENT_CONTAINER: ViewStyle = {
   borderBottomLeftRadius: BORDER_RADIUS,
@@ -43,9 +48,10 @@ const CAMERA_CONTAINER: ViewStyle = {
 
 interface IRecipeCreationPictureProps {
   control: Control<IRecipeFormData>
+  error: boolean
 }
 
-export const RecipeCreationPicture: FC<IRecipeCreationPictureProps> = ({ control }) => {
+export const RecipeCreationPicture: FC<IRecipeCreationPictureProps> = ({ control, error }) => {
   return (
     <>
       <Box jc="end" ai="end" style={CAMERA_CONTAINER}>
@@ -58,7 +64,12 @@ export const RecipeCreationPicture: FC<IRecipeCreationPictureProps> = ({ control
         rules={{ required: true }}
         render={({ value }) => {
           return (
-            <View style={BACKGROUND_IMAGE_PLACEHOLDER}>
+            <View
+              style={{
+                ...BACKGROUND_IMAGE_PLACEHOLDER,
+                ...(error ? BACKGROUND_IMAGE_PLACEHOLDER_ERROR : {}),
+              }}
+            >
               {!value?.uri ? (
                 <View style={BACKGROUND_GRADIENT_CONTAINER}>
                   <Gradient height={PICTURE_HEIGHT} />

@@ -15,6 +15,10 @@ const INPUT: TextStyle = {
   padding: spacing.medium,
   borderRadius: 20,
 }
+const SHADOW_ERROR: TextStyle = {
+  borderColor: "red",
+  borderWidth: 1,
+}
 
 const SHADOW: Partial<ViewStyle> = {
   shadowOffset: { width: 0, height: 2 },
@@ -41,6 +45,7 @@ const PRESETS: { [name: string]: ViewStyle } = {
 const PRESETS_SHADOW: { [name: string]: ViewStyle } = {
   default: SHADOW,
   multiline: {
+    paddingTop: 10,
     height: 77,
     width: 273,
   },
@@ -82,6 +87,8 @@ export interface TextFieldProps extends TextInputProps {
    */
   preset?: keyof typeof PRESETS
 
+  error?: boolean
+
   forwardedRef?: any
 }
 
@@ -95,6 +102,7 @@ export function TextField(props: TextFieldProps) {
     placeholder,
     inputStyle: inputStyleOverride,
     forwardedRef,
+    error,
     label,
     ...rest
   } = props
@@ -105,7 +113,11 @@ export function TextField(props: TextFieldProps) {
   )
   const actualPlaceholder = placeholderTx ? translate(placeholderTx) : placeholder
 
-  const shadowStyle = { ...SHADOW, ...(PRESETS_SHADOW[preset] || PRESETS_SHADOW.default) }
+  const shadowStyle = {
+    ...SHADOW,
+    ...(PRESETS_SHADOW[preset] || PRESETS_SHADOW.default),
+    ...(error ? SHADOW_ERROR : {}),
+  }
 
   return (
     <>

@@ -235,7 +235,7 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
           </TouchableOpacity>
         </Box>
         <TouchableOpacity onPress={handleImagePickerAppearance}>
-          <RecipeCreationPicture control={control} />
+          <RecipeCreationPicture control={control} error={!!errors.image} />
         </TouchableOpacity>
         <View style={BODY}>
           <View style={FORM_FIELD}>

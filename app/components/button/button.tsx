@@ -4,12 +4,17 @@ import { Text } from "../text/text"
 import { viewPresets, textPresets } from "./button.presets"
 import { ButtonProps } from "./button.props"
 import { mergeAll, flatten } from "ramda"
+import { color } from "../../theme"
 
 /**
  * For your text displaying needs.
  *
  * This component is a HOC over the built-in React Native one.
  */
+
+const DISABLED = {
+  backgroundColor: color.palette.lightGrey,
+}
 export function Button(props: ButtonProps) {
   // grab the props
   const {
@@ -19,10 +24,19 @@ export function Button(props: ButtonProps) {
     style: styleOverride,
     textStyle: textStyleOverride,
     children,
+    disabled,
     ...rest
   } = props
 
-  const viewStyle = mergeAll(flatten([viewPresets[preset] || viewPresets.primary, styleOverride]))
+  const viewStyle = mergeAll(
+    flatten([
+      viewPresets[preset] || viewPresets.primary,
+      disabled ? [DISABLED] : [],
+      styleOverride,
+    ]),
+  )
+  console.tron.log({ disabled, text })
+  console.tron.log(viewStyle)
   const textStyle = mergeAll(
     flatten([textPresets[preset] || textPresets.primary, textStyleOverride]),
   )

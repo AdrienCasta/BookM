@@ -192,7 +192,12 @@ export const RecipeCreationStockBottomSheet: FC<IRecipeCreationStockBottomSheetP
               />
             ))}
           </ScrollView>
-          <Button preset="large" text="Valider" onPress={onSubmit} />
+          <Button
+            preset="large"
+            text="Valider"
+            onPress={onSubmit}
+            disabled={ingredients.fields.length === 0}
+          />
         </View>
       )}
     />
