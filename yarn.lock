@@ -3274,6 +3274,11 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/netinfo/-/netinfo-5.9.10.tgz#97d3a9fa62a3a4838ec7a6ec91cfec5a26e365b6"
   integrity sha512-1NPlBA2Hu/KWc3EnQcDRPRX0x8Dg9tuQlQQVWVQjlg+u+PjCq7ANEtbikOFKp5yQqfF8tqzU5+84/IfDO8zpiA==
 
+"@react-native-picker/picker@^1.9.10":
+  version "1.9.10"
+  resolved "https://registry.yarnpkg.com/@react-native-picker/picker/-/picker-1.9.10.tgz#c0d445453e91077cc85a3f0a6d0074d44d21e438"
+  integrity sha512-g0C0RLjXXGE4UfmGxNtAOY3LE5Epz8+ck/rB1oErJowskIIG83U6LVqH9oFrx1Hq1k/lbVQGgabURlE0QQ1MHA==
+
 "@react-navigation/bottom-tabs@^5.11.7":
   version "5.11.7"
   resolved "https://registry.yarnpkg.com/@react-navigation/bottom-tabs/-/bottom-tabs-5.11.7.tgz#a1d220afe02b6897c0705ddc40265e65c01fa0ba"
@@ -16116,6 +16121,11 @@ react-native-screens@~2.13.0:
   version "2.13.0"
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.13.0.tgz#6360dfd65d51f73479bea14373a8e289cd58a327"
   integrity sha512-B0kPYq5ZK/2G7pPhcAFLflDfm+HXktdVEeLFHnP/+oPnao+b28hXsOBCi0IgK72gxbdPtnpZME8KONRIKOBDug==
+
+react-native-simple-time-picker@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-simple-time-picker/-/react-native-simple-time-picker-1.1.2.tgz#e8b5f135de1b5dd3eeae73530ca73674f187fac8"
+  integrity sha512-SdHY/jb8NM4DZIXcxsR3XnEieqRk1y6hQykOwgrUxPYqWv0O6Fib2K9Je4PwUztRmcnYAzZp0nEw4H6U0lH/lA==
 
 react-native-splash-screen@3.2.0:
   version "3.2.0"

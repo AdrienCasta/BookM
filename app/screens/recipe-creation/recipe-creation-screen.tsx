@@ -16,11 +16,7 @@ import { color } from "../../theme"
 import shadowViewStyle from "../../utils/shadow"
 // import * as mutations from "../../graphql/mutations"
 import { RecipeCreationInfoBottomSheet } from "./components/recipe-creation-info-bottom-sheet"
-import {
-  IRecipeInfoFormData,
-  reanimatedBottomSheet,
-  recipeInfoIcons,
-} from "./recipe-creation.share"
+import { reanimatedBottomSheet, recipeInfoIcons } from "./recipe-creation.share"
 import { RecipeCreationPicture } from "./components/recipe-creation-picture"
 import { RecipeCreationStockBottomSheet } from "./components/recipe-creation-stock-bottom-sheet"
 import RecipeCreationImagePickerBottomSheet from "./components/recipe-creation-image-picker-bottom-sheet"
@@ -146,19 +142,17 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
   const { user } = useStores()
   const navigation = useNavigation()
   const [ingredientPreview, setIngredientPreview] = useState<ImagePickerResponse>(null)
-  const { control, setValue, watch, handleSubmit, errors, getValues } = useForm<IRecipeFieldValues>(
-    {
-      mode: "onChange",
-      defaultValues: {
-        ingredients: [{ image: {}, label: "" }],
-        steps: [
-          { description: "", trick: "" },
-          { description: "", trick: "" },
-        ],
-      },
-      resolver: yupResolver(RecipeSchema),
+  const { control, setValue, watch, handleSubmit, errors } = useForm<IRecipeFieldValues>({
+    mode: "onChange",
+    defaultValues: {
+      ingredients: [{ image: {}, label: "" }],
+      steps: [
+        { description: "", trick: "" },
+        { description: "", trick: "" },
+      ],
     },
-  )
+    resolver: yupResolver(RecipeSchema),
+  })
   const { fields, append } = useFieldArray({
     control,
     name: "steps",
@@ -167,9 +161,6 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
     control,
     name: "ingredients",
   })
-
-  console.tron.log(errors)
-  console.tron.log(getValues())
 
   const recipeInfoSheetRef = useRef(null)
   const recipeStockSheetRef = useRef(null)
@@ -204,17 +195,6 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
   }
   const handleLaunchingCamera = () => {
     launchCamera(imageOptions, (image) => setValue("image", image))
-  }
-  const handleRecipeInfoSubmit = (
-    recipeInfoFormData: Pick<
-      IRecipeFieldValues,
-      "numberOfPersons" | "time" | "cookingTime" | "numberOfCalories"
-    >,
-  ) => {
-    for (const key in recipeInfoFormData) {
-      setValue(key as keyof typeof recipeInfoFormData, recipeInfoFormData[key])
-    }
-    recipeInfoSheet.animate(recipeInfoSheetRef).slideDown()
   }
 
   const onSubmit = (recipe: IRecipeFieldValues) => {
@@ -282,7 +262,10 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
           </View>
           <Box fd="row" jc="between" style={{ ...FORM_FIELD, ...{ paddingHorizontal: 20 } }}>
             <TouchableOpacity onPress={handleRecipeInfoAppearance}>
-              <RecipeInfo control={control} error={errors} />
+              <RecipeInfo
+                error={errors}
+                values={watch(["numberOfPersons", "time", "cookingTime", "numberOfCalories"])}
+              />
             </TouchableOpacity>
             <TouchableOpacity onPress={handleRecipeStockAppearance}>
               <Box jc="end" style={STOCK}>
@@ -296,8 +279,10 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
         </View>
       </Screen>
       <RecipeCreationInfoBottomSheet
+        values={watch(["time", "cookingTime"])}
         sheetRef={recipeInfoSheetRef}
-        onSubmit={handleRecipeInfoSubmit}
+        control={control}
+        setValue={setValue}
       />
       <RecipeCreationStockBottomSheet
         control={control}
@@ -326,24 +311,30 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
   )
 })
 
-const RecipeInfo = ({ control, error }) => {
-  const recipeInfoFormData: (keyof IRecipeInfoFormData)[] = [
-    "numberOfPersons",
-    "time",
-    "cookingTime",
-    "numberOfCalories",
-  ]
-  const [one, two, three, four] = recipeInfoFormData.map((name) => {
-    const Icon = recipeInfoIcons.get(name)
+const RecipeInfo = ({ error, values }) => {
+  const displayValue = (name) => {
+    if (!values[name]) {
+      return "-"
+    }
+    if (name === "time" || name === "cookingTime") {
+      return `${values[name].getUTCHours() ? values[name].getUTCHours() + "h" : ""} ${values[
+        name
+      ].getMinutes()} mn`
+    }
+    return values[name]
+  }
+  const [one, two, three, four] = Object.keys(values).map((name) => {
+    const Icon = recipeInfoIcons.get(
+      name as keyof Pick<
+        IRecipeFieldValues,
+        "time" | "cookingTime" | "numberOfCalories" | "numberOfPersons"
+      >,
+    )
+    console.tron.log(typeof values[name], values[name])
     return (
       <Box key={name} ai="center">
         <Icon width={23} height={23} color={color.secondary} />
-        <Controller
-          defaultValue=""
-          control={control}
-          name={name}
-          render={({ value }) => <Text text={value || "-"} style={RECIPE_INFO_PANEL_ITEM_TEXT} />}
-        />
+        <Text text={displayValue(name)} style={RECIPE_INFO_PANEL_ITEM_TEXT} />
       </Box>
     )
   })

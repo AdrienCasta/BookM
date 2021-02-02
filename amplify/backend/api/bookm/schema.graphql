@@ -22,10 +22,10 @@ type Recipe @model @auth(rules: [{ allow: owner }]) {
   title: String!
   image: String!
   description: String!
-  time: Int!
+  time: AWSTimestamp!
   numberOfPersons: Int!
   numberOfCalories: Int
-  cookingTime: Int
+  cookingTime: AWSTimestamp
   steps: [RecipeStep!]!
   ingredients: [Ingredient!]!
 }

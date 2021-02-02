@@ -9,7 +9,11 @@ export const RecipeSchema = yup.object({
   image: yup.object({ uri: yup.string().required() }).required(),
   description: yup.string().required(),
   numberOfPersons: yup.number().positive().integer().required(),
-  time: yup.number().positive().integer().required(),
+  time: yup
+    .date()
+    .min(new Date(60000))
+    .max(new Date(24 * 3600 * 1000))
+    .required(),
   steps: yup
     .array(yup.object({ description: yup.string().required(), trick: yup.string() }))
     .min(2),
@@ -24,11 +28,11 @@ export const RecipeSchema = yup.object({
     .min(2)
     .required(),
   cookingTime: yup
-    .number()
-    .transform((value) => (isNaN(value) ? undefined : value))
-    .positive()
-    .integer()
-    .notRequired(),
+    .date()
+    .min(new Date(60000))
+    .max(new Date(24 * 3600 * 1000))
+    .nullable()
+    .default(null),
   numberOfCalories: yup
     .number()
     .transform((value) => (isNaN(value) ? undefined : value))
@@ -45,12 +49,12 @@ export const RecipeModel = types.model({
   description: types.string,
   image: types.model({ uri: types.string }),
   numberOfPersons: types.number,
-  time: types.number,
+  time: types.Date,
   ingredients: types.array(
     types.model({ label: types.string, image: types.model({ uri: types.string }) }),
   ),
-  cookingTime: types.union(types.number, types.number),
-  numberOfCalories: types.union(types.number, types.number),
+  cookingTime: types.union(types.Date, types.null),
+  numberOfCalories: types.union(types.number, types.null),
   steps: types.array(
     types.model({ description: types.string, trick: types.union(types.string, types.null) }),
   ),

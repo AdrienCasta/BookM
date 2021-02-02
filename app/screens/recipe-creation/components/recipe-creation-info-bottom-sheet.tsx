@@ -1,8 +1,9 @@
 import React, { FC, MutableRefObject, useEffect, useRef, useState } from "react"
-import { TextStyle, ViewStyle, TextInput, TouchableOpacity, View } from "react-native"
+import { TextStyle, ViewStyle, TextInput, TouchableOpacity, View, Keyboard } from "react-native"
+import { TimePicker } from "react-native-simple-time-picker"
 import { Box, Text } from "../../../components"
 import BottomSheet from "reanimated-bottom-sheet"
-import { Controller, useForm } from "react-hook-form"
+import { Control, Controller, FieldName, SetFieldValue, SetValueConfig } from "react-hook-form"
 import { color, typography } from "../../../theme"
 import shadowViewStyle from "../../../utils/shadow"
 import {
@@ -10,6 +11,7 @@ import {
   reanimatedBottomSheet,
   recipeInfoIcons,
 } from "../recipe-creation.share"
+import { IRecipeFieldValues } from "../../../models/recipe/recipe"
 
 const BORDER_TOP_RADIUS = 40
 const HEADER_HEIGHT = 80
@@ -78,28 +80,131 @@ const BOTTOMSHEET_HEADER_T: ViewStyle = {
   borderTopLeftRadius: BORDER_TOP_RADIUS,
   borderTopRightRadius: BORDER_TOP_RADIUS,
 }
+
 interface IRecipeCreationInfoBottomSheetProps {
   sheetRef: MutableRefObject<BottomSheet>
-  onSubmit: (data: IRecipeInfoFormData) => void
+  control: Control<IRecipeFieldValues>
+  values: Pick<IRecipeFieldValues, "time" | "cookingTime">
+  setValue(
+    name: FieldName<IRecipeFieldValues>,
+    value: SetFieldValue<IRecipeFieldValues>,
+    config?: SetValueConfig,
+  ): void
 }
 export const RecipeCreationInfoBottomSheet: FC<IRecipeCreationInfoBottomSheetProps> = ({
   sheetRef,
-  onSubmit,
+  setValue,
+  control,
+  values,
 }) => {
   const recipeInfoSheet = reanimatedBottomSheet(["100%", 460, 0], 2)
 
   const handleRecipeInfoSheetContentFocus = () => {
     recipeInfoSheet.animate(sheetRef).slideTop()
   }
-  const handleRecipeInfoSubmit = (recipeInfoFormData: IRecipeInfoFormData) => {
-    onSubmit(recipeInfoFormData)
+  const numberOfPersonsFieldRef = useRef<TextInput>(null)
+  const calorieFieldRef = useRef<TextInput>(null)
+
+  const [timePickerValue, setTimePickerValue] = useState<Record<"hours" | "minutes", number>>({
+    hours: 0,
+    minutes: 0,
+  })
+  const [currentTimeField, setTimeField] = useState<
+    keyof Pick<IRecipeFieldValues, "time" | "cookingTime">
+  >("time")
+
+  const handleChange = ({ hours, minutes }) => {
+    setValue(currentTimeField, new Date((hours * 3600 + minutes * 60) * 1000))
   }
+
+  const [currentFocusFieldRef, setCurrentFocusFieldRef] = useState<MutableRefObject<TextInput>>(
+    null,
+  )
+
+  useEffect(() => {
+    if (values[currentTimeField]) {
+      setTimePickerValue({
+        hours: values[currentTimeField].getUTCHours(),
+        minutes: values[currentTimeField].getMinutes(),
+      })
+    }
+  }, [currentTimeField])
+
+  useEffect(() => {
+    if (currentFocusFieldRef) {
+      currentFocusFieldRef?.current.focus()
+    }
+  }, [currentFocusFieldRef])
+
+  const handlePress = (ref: MutableRefObject<TextInput> | null, name) => () => {
+    handleRecipeInfoSheetContentFocus()
+    if (name === "time" || name === "cookingTime") {
+      setTimeField(name)
+      Keyboard.dismiss()
+      return
+    }
+    setCurrentFocusFieldRef(ref)
+  }
+
+  const recipeInfo: [MutableRefObject<TextInput> | null, keyof IRecipeInfoFormData, string][] = [
+    [numberOfPersonsFieldRef, "numberOfPersons", " personnes"],
+    [null, "time", " min de preparations"],
+    [null, "cookingTime", " min de cuisson"],
+    [calorieFieldRef, "numberOfCalories", " calories / personnes"],
+  ]
+
+  const formatDuration = (date: Date) => {
+    if (!date) {
+      return null
+    }
+    const h = date.getUTCHours()
+    const m = date.getMinutes()
+    return `${h ? h + " h" : ""} ${m}`
+  }
+
+  const [one, two, three, four] = recipeInfo.map(([ref, name, text]) => {
+    const Icon = recipeInfoIcons.get(name)
+    return (
+      <TouchableOpacity
+        key={name}
+        onPressOut={handlePress(ref, name)}
+        style={RECIPE_INFO_SHEET_ITEM}
+      >
+        <Box ai="center" jc="center" style={RECIPE_INFO_SHEET_ITEM_SHADOW}>
+          <Icon width={56} height={55} color={color.palette.orange} />
+        </Box>
+        <Box fd="row" jc="center" ai="end" style={RECIPE_INFO_SHEET_ITEM_TEXT_CONTAINER}>
+          <Controller
+            control={control}
+            name={name}
+            defaultValue=""
+            render={({ onChange, value }) => {
+              return (
+                <TextInput
+                  value={Object.keys(values).includes(name) ? formatDuration(values[name]) : value}
+                  onChangeText={onChange}
+                  maxLength={3}
+                  keyboardType="number-pad"
+                  returnKeyType="done"
+                  ref={ref}
+                  underlineColorAndroid={color.palette.orange}
+                  style={{ color: color.palette.orange }}
+                />
+              )
+            }}
+          />
+          <Text text={text} style={RECIPE_INFO_SHEET_ITEM_TEXT} />
+        </Box>
+      </TouchableOpacity>
+    )
+  })
 
   return (
     <BottomSheet
       ref={sheetRef}
       snapPoints={recipeInfoSheet.snapPoint}
       initialSnap={recipeInfoSheet.initialSnapPoint}
+      onCloseStart={Keyboard.dismiss}
       renderHeader={() => (
         <>
           <View style={BOTTOMSHEET_HEADER_T}></View>
@@ -113,97 +218,31 @@ export const RecipeCreationInfoBottomSheet: FC<IRecipeCreationInfoBottomSheetPro
         </>
       )}
       renderContent={() => (
-        <RecipeInfoSheetContent
-          onSubmit={handleRecipeInfoSubmit}
-          onFocus={handleRecipeInfoSheetContentFocus}
-        />
+        <View style={RECIPE_INFO_SHEET_CONTAINER}>
+          <Box style={RECIPE_INFO_SHEET} jc="between">
+            <Box jc="between" ai="center">
+              <Box fd="row" jc="between" style={RECIPE_INFO_SHEET_ITEM_ROWS}>
+                {one}
+                {two}
+              </Box>
+              <Box
+                fd="row"
+                jc="between"
+                style={{ ...RECIPE_INFO_SHEET_ITEM_ROWS, ...{ marginTop: 30 } }}
+              >
+                {three}
+                {four}
+              </Box>
+            </Box>
+            <TimePicker
+              hoursUnit="h"
+              minutesUnit="mn"
+              value={timePickerValue}
+              onChange={handleChange}
+            />
+          </Box>
+        </View>
       )}
     />
-  )
-}
-const RecipeInfoSheetContent: FC<{
-  onSubmit: (s: IRecipeInfoFormData) => void
-  onFocus: () => void
-}> = ({ onSubmit, onFocus }) => {
-  const numberOfPersonsFieldRef = useRef<TextInput>(null)
-  const timeFieldRef = useRef<TextInput>(null)
-  const cookingTimeFieldRef = useRef<TextInput>(null)
-  const calorieFieldRef = useRef<TextInput>(null)
-
-  const { control, handleSubmit } = useForm<IRecipeInfoFormData>()
-
-  const [currentFocusFieldRef, setCurrentFocusFieldRef] = useState<MutableRefObject<TextInput>>(
-    null,
-  )
-
-  useEffect(() => {
-    if (currentFocusFieldRef) {
-      currentFocusFieldRef?.current.focus()
-      onFocus()
-    }
-  }, [currentFocusFieldRef])
-
-  const handleFocus = (ref: MutableRefObject<TextInput>) => () => {
-    setCurrentFocusFieldRef(ref)
-  }
-
-  const recipeInfo: [MutableRefObject<TextInput>, keyof IRecipeInfoFormData, string][] = [
-    [numberOfPersonsFieldRef, "numberOfPersons", " personnes"],
-    [timeFieldRef, "time", " min de preparations"],
-    [cookingTimeFieldRef, "cookingTime", " min de cuisson"],
-    [calorieFieldRef, "numberOfCalories", " calories / personnes"],
-  ]
-
-  const [one, two, three, four] = recipeInfo.map(([ref, name, text]) => {
-    const Icon = recipeInfoIcons.get(name)
-    return (
-      <TouchableOpacity key={name} onPressOut={handleFocus(ref)} style={RECIPE_INFO_SHEET_ITEM}>
-        <Box ai="center" jc="center" style={RECIPE_INFO_SHEET_ITEM_SHADOW}>
-          <Icon width={56} height={55} color={color.palette.orange} />
-        </Box>
-        <Box fd="row" jc="center" ai="end" style={RECIPE_INFO_SHEET_ITEM_TEXT_CONTAINER}>
-          <Controller
-            control={control}
-            render={({ onChange, value }) => (
-              <TextInput
-                value={value}
-                onChangeText={onChange}
-                maxLength={3}
-                keyboardType="number-pad"
-                returnKeyType="done"
-                onSubmitEditing={handleSubmit(onSubmit)}
-                ref={ref}
-                underlineColorAndroid={color.palette.orange}
-                style={{ color: color.palette.orange }}
-              />
-            )}
-            name={name}
-            defaultValue=""
-          />
-          <Text text={text} style={RECIPE_INFO_SHEET_ITEM_TEXT} />
-        </Box>
-      </TouchableOpacity>
-    )
-  })
-
-  return (
-    <View style={RECIPE_INFO_SHEET_CONTAINER}>
-      <Box style={RECIPE_INFO_SHEET} jc="between">
-        <Box jc="between" ai="center">
-          <Box fd="row" jc="between" style={RECIPE_INFO_SHEET_ITEM_ROWS}>
-            {one}
-            {two}
-          </Box>
-          <Box
-            fd="row"
-            jc="between"
-            style={{ ...RECIPE_INFO_SHEET_ITEM_ROWS, ...{ marginTop: 30 } }}
-          >
-            {three}
-            {four}
-          </Box>
-        </Box>
-      </Box>
-    </View>
   )
 }
