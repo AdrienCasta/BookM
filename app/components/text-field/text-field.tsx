@@ -1,5 +1,5 @@
 import React from "react"
-import { TextInput, TextInputProps, TextStyle, ViewStyle } from "react-native"
+import { Dimensions, TextInput, TextInputProps, TextStyle, View, ViewStyle } from "react-native"
 import { color, spacing, typography } from "../../theme"
 import { translate } from "../../i18n"
 import { Shadow } from "react-native-neomorph-shadows"
@@ -48,6 +48,11 @@ const PRESETS_SHADOW: { [name: string]: ViewStyle } = {
     paddingTop: 10,
     height: 77,
     width: 273,
+  },
+  multilineShort: {
+    paddingTop: 10,
+    height: 77,
+    width: Dimensions.get("window").width * 0.56,
   },
 }
 
@@ -120,7 +125,7 @@ export function TextField(props: TextFieldProps) {
   }
 
   return (
-    <>
+    <View>
       {label && <Text style={FIELD_LABEL} preset="fieldLabel" text={label} />}
       <Shadow inner useArt style={shadowStyle as any}>
         <TextInput
@@ -132,6 +137,6 @@ export function TextField(props: TextFieldProps) {
           ref={forwardedRef}
         />
       </Shadow>
-    </>
+    </View>
   )
 }

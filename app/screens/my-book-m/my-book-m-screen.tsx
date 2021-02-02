@@ -5,7 +5,7 @@ import { useNavigation } from "@react-navigation/native"
 import { TouchableOpacity } from "react-native-gesture-handler"
 import { Box, Screen, Text } from "../../components"
 import CrossIcon from "../../../assets/cross.svg"
-import ChevronIcon from "./assets/chevron.svg"
+import ChevronIcon from "../../../assets/chevron.svg"
 import LinkGradient from "./assets/gradient.svg"
 import { color } from "../../theme"
 

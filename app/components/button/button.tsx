@@ -35,8 +35,7 @@ export function Button(props: ButtonProps) {
       styleOverride,
     ]),
   )
-  console.tron.log({ disabled, text })
-  console.tron.log(viewStyle)
+
   const textStyle = mergeAll(
     flatten([textPresets[preset] || textPresets.primary, textStyleOverride]),
   )
