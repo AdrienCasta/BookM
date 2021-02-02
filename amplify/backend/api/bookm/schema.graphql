@@ -26,8 +26,6 @@ type Recipe @model @auth(rules: [{ allow: owner }]) {
   numberOfPersons: Int!
   numberOfCalories: Int
   cookingTime: Int
-  step1: RecipeStep!
-  step2: RecipeStep!
-  otherSteps: [RecipeStep]
+  steps: [RecipeStep!]!
   ingredients: [Ingredient!]!
 }

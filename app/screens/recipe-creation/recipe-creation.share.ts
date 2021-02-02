@@ -48,8 +48,6 @@ export interface IRecipeFormData extends IRecipeInfoFormData {
   image: any
   title: string
   description: string
-  step1: string
-  step2: string
-  otherSteps?: { value: { description: string; trick?: string } }[]
+  steps: { description: string; trick?: string }[]
   ingredients: { value: { image: ImagePickerResponse; label: string } }[]
 }

@@ -2,45 +2,12 @@
 /* eslint-disable camelcase */
 import { Auth, API, graphqlOperation } from "aws-amplify"
 import { flow, getParent, Instance, SnapshotOut, types } from "mobx-state-tree"
-import { ImagePickerResponse } from "react-native-image-picker"
 import * as queries from "../../graphql/queries"
-
-export interface IRecipeModel {
-  title: string
-  image: any
-  description: string
-  numberOfPersons: number
-  time: number
-  step1: { description: string; trick?: string }
-  step2: { description: string; trick?: string }
-  ingredients: { image: ImagePickerResponse; label: string }[]
-  cookingTime?: number
-  numberOfCalories?: number
-  otherSteps?: { description: string; trick?: string }[]
-}
+import { RecipeModel } from "../recipe/recipe"
 
 /**
  * Model description here for TypeScript hints.
  */
-
-const RecipeModel = types.model({
-  title: types.string,
-  description: types.string,
-  image: types.string,
-  numberOfPersons: types.number,
-  time: types.number,
-  step1: types.model({ description: types.string, trick: types.union(types.string, types.null) }),
-  step2: types.model({ description: types.string, trick: types.union(types.string, types.null) }),
-  ingredients: types.array(types.model({ label: types.string, image: types.string })),
-  cookingTime: types.union(types.number, types.number),
-  numberOfCalories: types.union(types.number, types.number),
-  otherSteps: types.union(
-    types.array(
-      types.model({ description: types.string, trick: types.union(types.string, types.null) }),
-    ),
-    types.null,
-  ),
-})
 
 export const UserModel = types
   .model("User")
@@ -51,6 +18,7 @@ export const UserModel = types
     phone_number: types.optional(types.string, ""),
     email: types.optional(types.string, ""),
     recipes: types.array(RecipeModel),
+    recipe: types.maybe(RecipeModel),
   })
   .views((self) => ({
     get fullName() {
@@ -100,6 +68,9 @@ export const UserModel = types
         throw Error(e)
       }
     }),
+    previewRecipe(recipe) {
+      self.recipe = recipe
+    },
     listRecipes: flow(function* (): any {
       try {
         // const {

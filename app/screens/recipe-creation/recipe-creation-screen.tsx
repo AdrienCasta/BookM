@@ -9,14 +9,14 @@ import {
   launchImageLibrary,
 } from "react-native-image-picker"
 import { useNavigation } from "@react-navigation/native"
-import { API, graphqlOperation, Storage } from "aws-amplify"
+// import { API, graphqlOperation, Storage } from "aws-amplify"
+import { yupResolver } from "@hookform/resolvers/yup"
 import { Box, Screen, Text, TextField } from "../../components"
 import { color } from "../../theme"
 import shadowViewStyle from "../../utils/shadow"
-import * as mutations from "../../graphql/mutations"
+// import * as mutations from "../../graphql/mutations"
 import { RecipeCreationInfoBottomSheet } from "./components/recipe-creation-info-bottom-sheet"
 import {
-  IRecipeFormData,
   IRecipeInfoFormData,
   reanimatedBottomSheet,
   recipeInfoIcons,
@@ -25,6 +25,9 @@ import { RecipeCreationPicture } from "./components/recipe-creation-picture"
 import { RecipeCreationStockBottomSheet } from "./components/recipe-creation-stock-bottom-sheet"
 import RecipeCreationImagePickerBottomSheet from "./components/recipe-creation-image-picker-bottom-sheet"
 import CrossIcon from "../../../assets/cross.svg"
+import { StepsControl } from "./components/steps"
+import { IRecipeFieldValues, RecipeSchema } from "../../models/recipe/recipe"
+import { useStores } from "../../models"
 
 const ROOT: ViewStyle = {}
 const HEADER: ViewStyle = {
@@ -63,14 +66,6 @@ const RECIPE_INFO_PANEL_ITEM_TEXT: TextStyle = {
   paddingTop: 6,
 }
 
-const BUTTON_ADD: ViewStyle = {
-  backgroundColor: "#eee",
-  flex: 1,
-  height: 30,
-  borderRadius: 30,
-  marginTop: 30,
-}
-
 const STOCK: ViewStyle = {
   ...shadowViewStyle(),
   width: 65,
@@ -93,84 +88,88 @@ const imageOptions = {
   maxHeight: 600,
 } as ImageLibraryOptions
 
-const createRecipe = async (recipeFormData: IRecipeFormData) => {
-  const getImageUriFileName = (path: string) => path.substring(path.lastIndexOf("/") + 1)
-  try {
-    const fetches = await Promise.all(
-      [
-        recipeFormData.image.uri,
-        ...recipeFormData.ingredients.map(({ value: { image } }) => image.uri),
-      ].map((data) => fetch(data)),
-    )
+// const createRecipe = async (recipeFormData: IRecipeFieldValues) => {
+//   const getImageUriFileName = (path: string) => path.substring(path.lastIndexOf("/") + 1)
+//   try {
+//     const fetches = await Promise.all(
+//       [
+//         recipeFormData.image.uri,
+//         ...recipeFormData.ingredients.map(({ image }) => image.uri),
+//       ].map((data) => fetch(data)),
+//     )
 
-    for (const data of fetches) {
-      const blob = (await data.blob()) as { _data: { name: string } }
-      const fileName = blob._data.name
+//     for (const data of fetches) {
+//       const blob = (await data.blob()) as { _data: { name: string } }
+//       const fileName = blob._data.name
 
-      await Storage.put(fileName, blob, {
-        contentType: "image/jpeg",
-      })
-    }
+//       await Storage.put(fileName, blob, {
+//         contentType: "image/jpeg",
+//       })
+//     }
 
-    const {
-      numberOfCalories,
-      numberOfPersons,
-      cookingTime,
-      time,
-      title,
-      description,
-      image,
-      ingredients,
-      step1,
-      step2,
-      otherSteps,
-    } = recipeFormData
+//     const {
+//       numberOfCalories,
+//       numberOfPersons,
+//       cookingTime,
+//       time,
+//       title,
+//       description,
+//       image,
+//       ingredients,
+//       steps,
+//     } = recipeFormData
 
-    return await API.graphql(
-      graphqlOperation(mutations.createRecipe, {
-        input: {
-          title,
-          description,
-          image: getImageUriFileName(image.uri),
-          numberOfCalories,
-          numberOfPersons,
-          cookingTime,
-          time,
-          step1: {
-            description: step1,
-          },
-          step2: {
-            description: step2,
-          },
-          ...(otherSteps
-            ? { otherSteps: otherSteps.map(({ value }) => ({ description: value })) }
-            : {}),
-          ingredients: ingredients.map(({ value: { image, label } }) => ({
-            image: getImageUriFileName(image.uri),
-            label,
-          })),
-        },
-      }),
-    )
-  } catch (e) {
-    throw Error(e)
-  }
-}
+//     return await API.graphql(
+//       graphqlOperation(mutations.createRecipe, {
+//         input: {
+//           title,
+//           description,
+//           image: getImageUriFileName(image.uri),
+//           numberOfCalories,
+//           numberOfPersons,
+//           cookingTime,
+//           time,
+//           steps,
+//           ingredients: ingredients.map(({ value: { image, label } }) => ({
+//             image: getImageUriFileName(image.uri),
+//             label,
+//           })),
+//         },
+//       }),
+//     )
+//   } catch (e) {
+//     throw Error(e)
+//   }
+// }
 
 export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
+  const { user } = useStores()
   const navigation = useNavigation()
   const [ingredientPreview, setIngredientPreview] = useState<ImagePickerResponse>(null)
-  const { control, setValue, watch, handleSubmit, errors } = useForm<IRecipeFormData>({
-    mode: "onChange",
-  })
+  const { control, setValue, watch, handleSubmit, errors, getValues } = useForm<IRecipeFieldValues>(
+    {
+      mode: "onChange",
+      defaultValues: {
+        ingredients: [{ image: {}, label: "" }],
+        steps: [
+          { description: "", trick: "" },
+          { description: "", trick: "" },
+        ],
+      },
+      resolver: yupResolver(RecipeSchema),
+    },
+  )
   const { fields, append } = useFieldArray({
     control,
-    name: "otherSteps",
+    name: "steps",
   })
   const ingredients = useFieldArray({
     control,
     name: "ingredients",
   })
+
+  console.tron.log(errors)
+  console.tron.log(getValues())
 
   const recipeInfoSheetRef = useRef(null)
   const recipeStockSheetRef = useRef(null)
@@ -206,20 +205,28 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
   const handleLaunchingCamera = () => {
     launchCamera(imageOptions, (image) => setValue("image", image))
   }
-  const handleRecipeInfoSubmit = (recipeInfoFormData: Omit<IRecipeFormData, "image">) => {
+  const handleRecipeInfoSubmit = (
+    recipeInfoFormData: Pick<
+      IRecipeFieldValues,
+      "numberOfPersons" | "time" | "cookingTime" | "numberOfCalories"
+    >,
+  ) => {
     for (const key in recipeInfoFormData) {
       setValue(key as keyof typeof recipeInfoFormData, recipeInfoFormData[key])
     }
     recipeInfoSheet.animate(recipeInfoSheetRef).slideDown()
   }
 
-  const onSubmit = async (recipe: IRecipeFormData) => {
-    try {
-      await createRecipe(recipe)
-      navigation.navigate("HomeScreen")
-    } catch (e) {
-      console.log(e)
-    }
+  const onSubmit = (recipe: IRecipeFieldValues) => {
+    console.tron.logImportant(recipe)
+    user.previewRecipe(recipe)
+    // return
+    // try {
+    //   await createRecipe(recipe)
+    //   // navigation.navigate("HomeScreen")
+    // } catch (e) {
+    //   console.log(JSON.stringify(e))
+    // }
   }
 
   return (
@@ -243,7 +250,6 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
               control={control}
               defaultValue=""
               name="title"
-              rules={{ required: true }}
               render={({ value, onChange }) => (
                 <TextField
                   error={!!errors.title}
@@ -260,7 +266,6 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
               control={control}
               defaultValue=""
               name="description"
-              rules={{ required: true }}
               render={({ value, onChange }) => (
                 <TextField
                   error={!!errors.description}
@@ -287,74 +292,7 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
               </Box>
             </TouchableOpacity>
           </Box>
-
-          <View style={FORM_FIELD}>
-            <Controller
-              control={control}
-              defaultValue=""
-              name="step1"
-              rules={{ required: true }}
-              render={({ value, onChange }) => (
-                <TextField
-                  error={!!errors.step1}
-                  preset="multiline"
-                  scrollEnabled={false}
-                  value={value}
-                  multiline
-                  onChangeText={onChange}
-                  label="Étape 1 "
-                  placeholder="Votre étape"
-                />
-              )}
-            />
-          </View>
-          <View style={FORM_FIELD}>
-            <Controller
-              control={control}
-              defaultValue=""
-              name="step2"
-              rules={{ required: true }}
-              render={({ value, onChange }) => (
-                <TextField
-                  error={!!errors.step2}
-                  preset="multiline"
-                  scrollEnabled={false}
-                  value={value}
-                  multiline
-                  onChangeText={onChange}
-                  label="Étape 2"
-                  placeholder="Votre étape"
-                />
-              )}
-            />
-          </View>
-          {fields.map((field, index) => (
-            <View style={FORM_FIELD} key={field.id}>
-              <Controller
-                control={control}
-                defaultValue={field.value}
-                name={`otherSteps[${index}].value`}
-                rules={{ required: true }}
-                render={({ value, onChange }) => (
-                  <TextField
-                    error={!!(errors.otherSteps && errors.otherSteps[index])}
-                    preset="multiline"
-                    scrollEnabled={false}
-                    value={value}
-                    multiline
-                    onChangeText={onChange}
-                    label={`Étape ${index + 3}`}
-                    placeholder="Votre étape"
-                  />
-                )}
-              />
-            </View>
-          ))}
-          <TouchableOpacity onPress={() => append({ value: "" })}>
-            <Box jc="center" ai="center" style={BUTTON_ADD}>
-              <Text text="+ Ajouter" />
-            </Box>
-          </TouchableOpacity>
+          <StepsControl control={control} errors={errors} steps={fields} append={append} />
         </View>
       </Screen>
       <RecipeCreationInfoBottomSheet
@@ -401,7 +339,6 @@ const RecipeInfo = ({ control, error }) => {
       <Box key={name} ai="center">
         <Icon width={23} height={23} color={color.secondary} />
         <Controller
-          rules={{ required: ["numberOfPersons", "time"].includes(name) }}
           defaultValue=""
           control={control}
           name={name}

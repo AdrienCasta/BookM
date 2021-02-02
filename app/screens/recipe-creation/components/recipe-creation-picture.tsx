@@ -2,11 +2,11 @@ import React, { FC } from "react"
 import { Control, Controller } from "react-hook-form"
 import { ImageBackground, ViewStyle, View } from "react-native"
 import { Box } from "../../../components"
+import { IRecipeFieldValues } from "../../../models/recipe/recipe"
 import { color } from "../../../theme"
 import shadowViewStyle from "../../../utils/shadow"
 import CameraIcon from "../assets/camera.svg"
 import Gradient from "../assets/gradient.svg"
-import { IRecipeFormData } from "../recipe-creation.share"
 
 const PICTURE_HEIGHT = 267
 const BORDER_RADIUS = 60
@@ -47,7 +47,7 @@ const CAMERA_CONTAINER: ViewStyle = {
 }
 
 interface IRecipeCreationPictureProps {
-  control: Control<IRecipeFormData>
+  control: Control<IRecipeFieldValues>
   error: boolean
 }
 
@@ -61,7 +61,6 @@ export const RecipeCreationPicture: FC<IRecipeCreationPictureProps> = ({ control
         control={control}
         defaultValue={null}
         name="image"
-        rules={{ required: true }}
         render={({ value }) => {
           return (
             <View

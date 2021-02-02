@@ -11,9 +11,7 @@ export type CreateRecipeInput = {
   numberOfPersons: number
   numberOfCalories?: number | null
   cookingTime?: number | null
-  step1: RecipeStepInput
-  step2: RecipeStepInput
-  otherSteps?: Array<RecipeStepInput | null> | null
+  steps: Array<RecipeStepInput>
   ingredients: Array<IngredientInput>
 }
 
@@ -100,9 +98,7 @@ export type UpdateRecipeInput = {
   numberOfPersons?: number | null
   numberOfCalories?: number | null
   cookingTime?: number | null
-  step1?: RecipeStepInput | null
-  step2?: RecipeStepInput | null
-  otherSteps?: Array<RecipeStepInput | null> | null
+  steps?: Array<RecipeStepInput> | null
   ingredients?: Array<IngredientInput> | null
 }
 
@@ -156,21 +152,11 @@ export type CreateRecipeMutation = {
     numberOfPersons: number
     numberOfCalories: number | null
     cookingTime: number | null
-    step1: {
+    steps: Array<{
       __typename: "RecipeStep"
       description: string
       trick: string | null
-    }
-    step2: {
-      __typename: "RecipeStep"
-      description: string
-      trick: string | null
-    }
-    otherSteps: Array<{
-      __typename: "RecipeStep"
-      description: string
-      trick: string | null
-    } | null> | null
+    }>
     ingredients: Array<{
       __typename: "Ingredient"
       image: string
@@ -198,21 +184,11 @@ export type UpdateRecipeMutation = {
     numberOfPersons: number
     numberOfCalories: number | null
     cookingTime: number | null
-    step1: {
+    steps: Array<{
       __typename: "RecipeStep"
       description: string
       trick: string | null
-    }
-    step2: {
-      __typename: "RecipeStep"
-      description: string
-      trick: string | null
-    }
-    otherSteps: Array<{
-      __typename: "RecipeStep"
-      description: string
-      trick: string | null
-    } | null> | null
+    }>
     ingredients: Array<{
       __typename: "Ingredient"
       image: string
@@ -240,21 +216,11 @@ export type DeleteRecipeMutation = {
     numberOfPersons: number
     numberOfCalories: number | null
     cookingTime: number | null
-    step1: {
+    steps: Array<{
       __typename: "RecipeStep"
       description: string
       trick: string | null
-    }
-    step2: {
-      __typename: "RecipeStep"
-      description: string
-      trick: string | null
-    }
-    otherSteps: Array<{
-      __typename: "RecipeStep"
-      description: string
-      trick: string | null
-    } | null> | null
+    }>
     ingredients: Array<{
       __typename: "Ingredient"
       image: string
@@ -281,21 +247,11 @@ export type GetRecipeQuery = {
     numberOfPersons: number
     numberOfCalories: number | null
     cookingTime: number | null
-    step1: {
+    steps: Array<{
       __typename: "RecipeStep"
       description: string
       trick: string | null
-    }
-    step2: {
-      __typename: "RecipeStep"
-      description: string
-      trick: string | null
-    }
-    otherSteps: Array<{
-      __typename: "RecipeStep"
-      description: string
-      trick: string | null
-    } | null> | null
+    }>
     ingredients: Array<{
       __typename: "Ingredient"
       image: string
@@ -326,21 +282,11 @@ export type ListRecipesQuery = {
       numberOfPersons: number
       numberOfCalories: number | null
       cookingTime: number | null
-      step1: {
+      steps: Array<{
         __typename: "RecipeStep"
         description: string
         trick: string | null
-      }
-      step2: {
-        __typename: "RecipeStep"
-        description: string
-        trick: string | null
-      }
-      otherSteps: Array<{
-        __typename: "RecipeStep"
-        description: string
-        trick: string | null
-      } | null> | null
+      }>
       ingredients: Array<{
         __typename: "Ingredient"
         image: string
@@ -369,21 +315,11 @@ export type OnCreateRecipeSubscription = {
     numberOfPersons: number
     numberOfCalories: number | null
     cookingTime: number | null
-    step1: {
+    steps: Array<{
       __typename: "RecipeStep"
       description: string
       trick: string | null
-    }
-    step2: {
-      __typename: "RecipeStep"
-      description: string
-      trick: string | null
-    }
-    otherSteps: Array<{
-      __typename: "RecipeStep"
-      description: string
-      trick: string | null
-    } | null> | null
+    }>
     ingredients: Array<{
       __typename: "Ingredient"
       image: string
@@ -410,21 +346,11 @@ export type OnUpdateRecipeSubscription = {
     numberOfPersons: number
     numberOfCalories: number | null
     cookingTime: number | null
-    step1: {
+    steps: Array<{
       __typename: "RecipeStep"
       description: string
       trick: string | null
-    }
-    step2: {
-      __typename: "RecipeStep"
-      description: string
-      trick: string | null
-    }
-    otherSteps: Array<{
-      __typename: "RecipeStep"
-      description: string
-      trick: string | null
-    } | null> | null
+    }>
     ingredients: Array<{
       __typename: "Ingredient"
       image: string
@@ -451,21 +377,11 @@ export type OnDeleteRecipeSubscription = {
     numberOfPersons: number
     numberOfCalories: number | null
     cookingTime: number | null
-    step1: {
+    steps: Array<{
       __typename: "RecipeStep"
       description: string
       trick: string | null
-    }
-    step2: {
-      __typename: "RecipeStep"
-      description: string
-      trick: string | null
-    }
-    otherSteps: Array<{
-      __typename: "RecipeStep"
-      description: string
-      trick: string | null
-    } | null> | null
+    }>
     ingredients: Array<{
       __typename: "Ingredient"
       image: string

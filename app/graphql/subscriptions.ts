@@ -13,15 +13,7 @@ export const onCreateRecipe = /* GraphQL */ `
       numberOfPersons
       numberOfCalories
       cookingTime
-      step1 {
-        description
-        trick
-      }
-      step2 {
-        description
-        trick
-      }
-      otherSteps {
+      steps {
         description
         trick
       }
@@ -46,15 +38,7 @@ export const onUpdateRecipe = /* GraphQL */ `
       numberOfPersons
       numberOfCalories
       cookingTime
-      step1 {
-        description
-        trick
-      }
-      step2 {
-        description
-        trick
-      }
-      otherSteps {
+      steps {
         description
         trick
       }
@@ -79,15 +63,7 @@ export const onDeleteRecipe = /* GraphQL */ `
       numberOfPersons
       numberOfCalories
       cookingTime
-      step1 {
-        description
-        trick
-      }
-      step2 {
-        description
-        trick
-      }
-      otherSteps {
+      steps {
         description
         trick
       }
