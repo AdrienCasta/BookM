@@ -16,7 +16,6 @@ import { color } from "../../theme"
 // import * as mutations from "../../graphql/mutations"
 import { RecipeCreationInfoBottomSheet } from "./components/recipe-creation-info-bottom-sheet"
 import { reanimatedBottomSheet } from "./recipe-creation.share"
-import { RecipeCreationPicture } from "./components/recipe-creation-picture"
 import { RecipeCreationStockBottomSheet } from "./components/recipe-creation-stock-bottom-sheet"
 import RecipeCreationImagePickerBottomSheet from "./components/recipe-creation-image-picker-bottom-sheet"
 import CrossIcon from "../../../assets/cross.svg"
@@ -25,6 +24,7 @@ import { IRecipeFieldValues, RecipeSchema } from "../../models/recipe/recipe"
 import { useStores } from "../../models"
 import { RecipeQuantifiableCard } from "../../components/recipe-quantifiable-card/recipe-quantifiable-card"
 import { RecipeStockCard } from "../../components/recipe-stock-card/recipe-stock-card"
+import { RecipePicture } from "../../components/recipe-picture/recipe-picture"
 
 const ROOT: ViewStyle = {}
 const HEADER: ViewStyle = {
@@ -189,7 +189,7 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
           </TouchableOpacity>
         </Box>
         <TouchableOpacity onPress={handleImagePickerAppearance}>
-          <RecipeCreationPicture control={control} error={!!errors.image} />
+          <RecipePicture control={control} error={!!errors.image} />
         </TouchableOpacity>
         <View style={BODY}>
           <View style={FORM_FIELD}>

@@ -1,0 +1,95 @@
+import React, { FC } from "react"
+import { Control, Controller } from "react-hook-form"
+import { ImageBackground, ViewStyle, View } from "react-native"
+import { IRecipeFieldValues } from "../../models/recipe/recipe"
+import { color } from "../../theme"
+import shadowViewStyle from "../../utils/shadow"
+import { combine } from "../../utils/style"
+import CameraIcon from "../../screens/recipe-creation/assets/camera.svg"
+import Gradient from "../../screens/recipe-creation/assets/gradient.svg"
+import { Box } from "../box/box"
+
+const PICTURE_HEIGHT = 267
+const BORDER_RADIUS = 60
+
+const BACKGROUND_IMAGE: ViewStyle = {
+  borderBottomLeftRadius: BORDER_RADIUS,
+  height: PICTURE_HEIGHT,
+  overflow: "hidden",
+}
+
+const BACKGROUND_IMAGE_PLACEHOLDER: ViewStyle = {
+  ...shadowViewStyle(0, 4),
+  borderBottomLeftRadius: BORDER_RADIUS,
+  height: PICTURE_HEIGHT,
+}
+const BACKGROUND_IMAGE_PLACEHOLDER_ERROR: ViewStyle = {
+  borderWidth: 1,
+  borderColor: color.error,
+}
+const BACKGROUND_GRADIENT_CONTAINER: ViewStyle = {
+  borderBottomLeftRadius: BORDER_RADIUS,
+  position: "absolute",
+  overflow: "hidden",
+  zIndex: 8,
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+}
+
+const CAMERA_CONTAINER: ViewStyle = {
+  height: "100%",
+  left: 0,
+  right: 0,
+  position: "absolute",
+  zIndex: 1,
+  padding: 20,
+}
+
+interface IRecipePictureProps {
+  error?: boolean
+  control?: Control<IRecipeFieldValues>
+  uri?: string
+}
+
+export const RecipePicture: FC<IRecipePictureProps> = ({ control, error, uri }) => {
+  if (!control) {
+    return (
+      <View style={BACKGROUND_IMAGE_PLACEHOLDER}>
+        <ImageBackground source={{ uri }} style={BACKGROUND_IMAGE} />
+      </View>
+    )
+  }
+  return (
+    <>
+      <Box jc="end" ai="end" style={CAMERA_CONTAINER}>
+        <CameraIcon width={43} height={30} />
+      </Box>
+
+      <Controller
+        control={control}
+        defaultValue={null}
+        name="image"
+        render={({ value }) => {
+          return (
+            <View
+              style={combine(
+                BACKGROUND_IMAGE_PLACEHOLDER,
+                error && BACKGROUND_IMAGE_PLACEHOLDER_ERROR,
+              )}
+            >
+              {!value?.uri ? (
+                <View style={BACKGROUND_GRADIENT_CONTAINER}>
+                  <Gradient height={PICTURE_HEIGHT} />
+                </View>
+              ) : (
+                <ImageBackground source={{ uri: value.uri }} style={BACKGROUND_IMAGE} />
+              )}
+            </View>
+          )
+        }}
+      />
+    </>
+  )
+}

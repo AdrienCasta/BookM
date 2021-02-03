@@ -14,7 +14,7 @@ export const recipeInfoIcons = new Map<keyof IRecipeInfoFormData, FC<SvgProps>>(
   ["numberOfCalories", FireIcon],
 ])
 
-export const reanimatedBottomSheet = (snapPoint, initialSnapPoint) => {
+export const reanimatedBottomSheet = (snapPoint: (number | string)[], initialSnapPoint: number) => {
   return {
     initialSnapPoint,
     snapPoint,
