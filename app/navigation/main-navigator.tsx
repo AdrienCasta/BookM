@@ -9,7 +9,13 @@ import { createStackNavigator } from "@react-navigation/stack"
 import { TextStyle, TouchableOpacity, ViewStyle } from "react-native"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 
-import { RecipeCreationScreen, HomeScreen, RecipeListScreen, MyBookMScreen } from "../screens"
+import {
+  RecipeCreationScreen,
+  HomeScreen,
+  RecipeListScreen,
+  MyBookMScreen,
+  RecipePreviewScreen,
+} from "../screens"
 import LogoWhiteIcon from "../../assets/logo-white.svg"
 import { Box, Text } from "../components"
 import { color, typography } from "../theme"
@@ -36,6 +42,7 @@ export type TabParamList = {
 export type MyBookMStackParamList = {
   MyBookMScreen: undefined
   RecipeCreationScreen: undefined
+  RecipePreviewScreen: undefined
   RecipeListScreen: undefined
 }
 
@@ -155,6 +162,7 @@ export function MyBookMNavigator() {
       <MyBookMStack.Screen name="MyBookMScreen" component={MyBookMScreen} />
       <MyBookMStack.Screen name="RecipeCreationScreen" component={RecipeCreationScreen} />
       <MyBookMStack.Screen name="RecipeListScreen" component={RecipeListScreen} />
+      <MyBookMStack.Screen name="RecipePreviewScreen" component={RecipePreviewScreen} />
     </MyBookMStack.Navigator>
   )
 }

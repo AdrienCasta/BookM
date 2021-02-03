@@ -13,10 +13,9 @@ import { useNavigation } from "@react-navigation/native"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { Box, Screen, Text, TextField } from "../../components"
 import { color } from "../../theme"
-import shadowViewStyle from "../../utils/shadow"
 // import * as mutations from "../../graphql/mutations"
 import { RecipeCreationInfoBottomSheet } from "./components/recipe-creation-info-bottom-sheet"
-import { reanimatedBottomSheet, recipeInfoIcons } from "./recipe-creation.share"
+import { reanimatedBottomSheet } from "./recipe-creation.share"
 import { RecipeCreationPicture } from "./components/recipe-creation-picture"
 import { RecipeCreationStockBottomSheet } from "./components/recipe-creation-stock-bottom-sheet"
 import RecipeCreationImagePickerBottomSheet from "./components/recipe-creation-image-picker-bottom-sheet"
@@ -24,6 +23,8 @@ import CrossIcon from "../../../assets/cross.svg"
 import { StepsControl } from "./components/steps"
 import { IRecipeFieldValues, RecipeSchema } from "../../models/recipe/recipe"
 import { useStores } from "../../models"
+import { RecipeQuantifiableCard } from "../../components/recipe-quantifiable-card/recipe-quantifiable-card"
+import { RecipeStockCard } from "../../components/recipe-stock-card/recipe-stock-card"
 
 const ROOT: ViewStyle = {}
 const HEADER: ViewStyle = {
@@ -40,42 +41,8 @@ const HEADER_TITLE: TextStyle = {
 const BODY: ViewStyle = {
   paddingHorizontal: 50,
 }
-const RECIPE_INFO_PANEL: ViewStyle = {
-  ...shadowViewStyle(2, 4),
-  backgroundColor: color.palette.orange,
-  width: 124,
-  height: 124,
-  borderRadius: 8,
-  padding: 16,
-}
-const RECIPE_INFO_PANEL_ERROR: ViewStyle = {
-  borderWidth: 1,
-  borderColor: color.error,
-}
 const FORM_FIELD: ViewStyle = {
   marginTop: 20,
-}
-const RECIPE_INFO_PANEL_ITEM_TEXT: TextStyle = {
-  color: color.background,
-  fontWeight: "bold",
-  fontSize: 11,
-  paddingTop: 6,
-}
-
-const STOCK: ViewStyle = {
-  ...shadowViewStyle(),
-  width: 65,
-  height: 124,
-  borderRadius: 9,
-  backgroundColor: color.palette.lighterGreen,
-}
-const STOCK_BOTTOM: ViewStyle = {
-  backgroundColor: color.palette.green,
-  height: "50%",
-  borderRadius: 9,
-}
-const STOCK_TEXT: TextStyle = {
-  color: color.secondary,
 }
 
 const imageOptions = {
@@ -262,17 +229,13 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
           </View>
           <Box fd="row" jc="between" style={{ ...FORM_FIELD, ...{ paddingHorizontal: 20 } }}>
             <TouchableOpacity onPress={handleRecipeInfoAppearance}>
-              <RecipeInfo
-                error={errors}
+              <RecipeQuantifiableCard
+                error={!!(errors.numberOfPersons || errors.time)}
                 values={watch(["numberOfPersons", "time", "cookingTime", "numberOfCalories"])}
               />
             </TouchableOpacity>
             <TouchableOpacity onPress={handleRecipeStockAppearance}>
-              <Box jc="end" style={STOCK}>
-                <Box jc="center" ai="center" style={STOCK_BOTTOM}>
-                  <Text text="STOCK" style={STOCK_TEXT} />
-                </Box>
-              </Box>
+              <RecipeStockCard error={!!errors.ingredients} />
             </TouchableOpacity>
           </Box>
           <StepsControl control={control} errors={errors} steps={fields} append={append} />
@@ -310,50 +273,3 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
     </>
   )
 })
-
-const RecipeInfo = ({ error, values }) => {
-  const displayValue = (name) => {
-    if (!values[name]) {
-      return "-"
-    }
-    if (name === "time" || name === "cookingTime") {
-      return `${values[name].getUTCHours() ? values[name].getUTCHours() + "h" : ""} ${values[
-        name
-      ].getMinutes()} mn`
-    }
-    return values[name]
-  }
-  const [one, two, three, four] = Object.keys(values).map((name) => {
-    const Icon = recipeInfoIcons.get(
-      name as keyof Pick<
-        IRecipeFieldValues,
-        "time" | "cookingTime" | "numberOfCalories" | "numberOfPersons"
-      >,
-    )
-    console.tron.log(typeof values[name], values[name])
-    return (
-      <Box key={name} ai="center">
-        <Icon width={23} height={23} color={color.secondary} />
-        <Text text={displayValue(name)} style={RECIPE_INFO_PANEL_ITEM_TEXT} />
-      </Box>
-    )
-  })
-  return (
-    <Box
-      jc="between"
-      style={{
-        ...RECIPE_INFO_PANEL,
-        ...(error.numberOfPersons || error.time ? RECIPE_INFO_PANEL_ERROR : {}),
-      }}
-    >
-      <Box fd="row" jc="between">
-        {one}
-        {two}
-      </Box>
-      <Box fd="row" jc="between">
-        {three}
-        {four}
-      </Box>
-    </Box>
-  )
-}
