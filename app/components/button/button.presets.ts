@@ -1,10 +1,12 @@
 import { ViewStyle, TextStyle } from "react-native"
 import { color } from "../../theme"
+import shadowViewStyle from "../../utils/shadow"
 
 /**
  * All text will start off looking like this.
  */
 const BASE_VIEW: ViewStyle = {
+  ...shadowViewStyle(),
   backgroundColor: color.primary,
   paddingVertical: 12,
   paddingHorizontal: 20,
@@ -29,6 +31,12 @@ export const viewPresets = {
    */
   primary: { ...BASE_VIEW } as ViewStyle,
   large: { ...BASE_VIEW, paddingVertical: 26, maxWidth: "100%" } as ViewStyle,
+  ghostLarge: {
+    ...BASE_VIEW,
+    paddingVertical: 26,
+    maxWidth: "100%",
+    backgroundColor: color.secondary,
+  } as ViewStyle,
 }
 
 export const textPresets = {
@@ -36,6 +44,11 @@ export const textPresets = {
   large: {
     ...BASE_TEXT,
     fontSize: 23,
+  } as TextStyle,
+  ghostLarge: {
+    ...BASE_TEXT,
+    fontSize: 23,
+    color: color.palette.orange,
   } as TextStyle,
 }
 

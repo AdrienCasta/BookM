@@ -5,6 +5,8 @@ import { RecipePreviewTemplate } from "./recipe-preview/recipe.preview-template"
 import { initialWindowMetrics, SafeAreaProvider } from "react-native-safe-area-context"
 import { IRecipeFieldValues } from "../models/recipe/recipe"
 
+const noop = console.log
+
 storiesOf("Screens", module)
   .addDecorator((fn) => (
     <SafeAreaProvider initialMetrics={initialWindowMetrics}>
@@ -39,5 +41,5 @@ storiesOf("Screens", module)
       },
       steps: [],
     }
-    return <RecipePreviewTemplate recipe={recipe} author="Laura" />
+    return <RecipePreviewTemplate recipe={recipe} author="Laura" onCookPress={noop} />
   })
