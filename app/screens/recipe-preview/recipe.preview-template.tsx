@@ -1,6 +1,7 @@
 import React, { useRef } from "react"
 import { ViewStyle, TouchableOpacity, TextStyle, View } from "react-native"
-import { Screen, Text } from "../../components"
+import { Box, Screen, Text } from "../../components"
+import { RecipeFavCard } from "../../components/recipe-fav-card/recipe-fav-card"
 import { RecipePicture } from "../../components/recipe-picture/recipe-picture"
 import { RecipeQuantifiableBottomSheet } from "../../components/recipe-quantifiable-bottom-sheet/recipe-quantifiable-bottom-sheet"
 import { RecipeQuantifiableCard } from "../../components/recipe-quantifiable-card/recipe-quantifiable-card"
@@ -55,17 +56,20 @@ export const RecipePreviewTemplate = function RecipePreviewTemplate({
         <Text text={recipe.title} style={TITLE} />
         <Text text={`par ${author}`} style={AUTHOR} />
         <Text text={recipe.description} style={DESCRIPTION} />
-        <TouchableOpacity onPress={handlePress}>
-          <RecipeQuantifiableCard
-            cookingTime={cookingTime.getMinutes() + ""}
-            time={time.getMinutes() + ""}
-            numberOfPersons={numberOfPersons}
-            numberOfCalories={numberOfCalories}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleStockPress}>
-          <RecipeStockCard />
-        </TouchableOpacity>
+        <Box fd="row" jc="between">
+          <TouchableOpacity onPress={handlePress}>
+            <RecipeQuantifiableCard
+              cookingTime={cookingTime.getMinutes() + ""}
+              time={time.getMinutes() + ""}
+              numberOfPersons={numberOfPersons}
+              numberOfCalories={numberOfCalories}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleStockPress}>
+            <RecipeStockCard />
+          </TouchableOpacity>
+          <RecipeFavCard />
+        </Box>
       </View>
       <RecipeQuantifiableBottomSheet
         sheetRef={ref}
