@@ -41,6 +41,8 @@ export const RecipeQuantifiableCard: React.FC<RecipeQuantifiableCardProps> = ({
   error = false,
   ...cookingInfo
 }) => {
+  console.tron.log(cookingInfo)
+  // return null
   const [one, two, three, four] = Object.keys(cookingInfo).map((name) => {
     const Icon = recipeQuantifiablelIcons.get(
       name as keyof Pick<

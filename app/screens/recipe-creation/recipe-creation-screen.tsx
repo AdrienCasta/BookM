@@ -231,8 +231,8 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
             <TouchableOpacity onPress={handleRecipeInfoAppearance}>
               <RecipeQuantifiableCard
                 error={!!(errors.numberOfPersons || errors.time)}
-                cookingTime={watch("cookingTime").getMinutes()}
-                time={watch("time").getMinutes()}
+                cookingTime={watch("cookingTime") ? watch("cookingTime").getUTCMinutes() : ""}
+                time={watch("time") ? watch("time").getUTCMinutes() : ""}
                 numberOfCalories={watch("numberOfCalories")}
                 numberOfPersons={watch("numberOfPersons")}
               />
