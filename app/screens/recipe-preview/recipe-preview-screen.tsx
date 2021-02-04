@@ -1,5 +1,4 @@
 import React from "react"
-import { observer } from "mobx-react-lite"
 import { ViewStyle } from "react-native"
 import { Screen, Text } from "../../components"
 // import { useNavigation } from "@react-navigation/native"
@@ -11,7 +10,7 @@ const ROOT: ViewStyle = {
   flex: 1,
 }
 
-export const RecipePreviewScreen = observer(function RecipePreviewScreen() {
+export const RecipePreviewScreen = function RecipePreviewScreen() {
   // Pull in one of our MST stores
   // const { someStore, anotherStore } = useStores()
 
@@ -22,4 +21,4 @@ export const RecipePreviewScreen = observer(function RecipePreviewScreen() {
       <Text preset="header" text="" />
     </Screen>
   )
-})
+}

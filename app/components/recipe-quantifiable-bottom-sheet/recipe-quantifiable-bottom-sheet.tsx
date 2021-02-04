@@ -88,9 +88,9 @@ interface IName
     "cookingTime" | "time" | "numberOfPersons" | "numberOfCalories"
   > {}
 
-interface IRecipeQuantifiableBottomSheetProps extends Record<keyof IName, string> {
+interface IRecipeQuantifiableBottomSheetProps extends Record<keyof IName, string | number> {
   sheetRef: MutableRefObject<BottomSheet>
-  onPressItem: (name: keyof IName) => void
+  onPressItem?: (name: keyof IName) => void
 }
 export const RecipeQuantifiableBottomSheet: FC<IRecipeQuantifiableBottomSheetProps> = ({
   sheetRef,
@@ -100,10 +100,12 @@ export const RecipeQuantifiableBottomSheet: FC<IRecipeQuantifiableBottomSheetPro
   cookingTime,
   onPressItem,
 }) => {
-  const recipeInfoSheet = reanimatedBottomSheet(["100%", 460, 0], 1)
+  const recipeInfoSheet = reanimatedBottomSheet(["100%", 460, 0], 2)
 
   const handleItemPress = (name: keyof IName) => () => {
-    onPressItem(name)
+    if (onPressItem) {
+      onPressItem(name)
+    }
   }
 
   return (

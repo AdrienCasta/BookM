@@ -9,23 +9,22 @@ storiesOf("RecipeQuantifiableCard", module)
     <Story>
       <UseCase text="Basic" usage="Display quantifiable recipe info.">
         <RecipeQuantifiableCard
-          error={false}
-          values={{
+          {...{
             numberOfPersons: 7,
-            time: new Date((2 * 3600 + 14 * 60) * 1000),
+            time: new Date((2 * 3600 + 14 * 60) * 1000).getMinutes(),
             numberOfCalories: 70,
-            cookingTime: new Date(45 * 60 * 1000),
+            cookingTime: new Date((2 * 3600 + 14 * 60) * 1000).getMinutes(),
           }}
         />
       </UseCase>
       <UseCase text="Error" usage="Display quantifiable recipe info with error.">
         <RecipeQuantifiableCard
-          error={true}
-          values={{
+          error
+          {...{
             numberOfPersons: 7,
-            time: new Date((2 * 3600 + 14 * 60) * 1000),
+            time: new Date((2 * 3600 + 14 * 60) * 1000).getMinutes(),
             numberOfCalories: 70,
-            cookingTime: new Date(45 * 60 * 1000),
+            cookingTime: new Date((2 * 3600 + 14 * 60) * 1000).getMinutes(),
           }}
         />
       </UseCase>
