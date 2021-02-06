@@ -15,6 +15,7 @@ import {
   RecipeListScreen,
   MyBookMScreen,
   RecipePreviewScreen,
+  RecipePreviewStepScreen,
 } from "../screens"
 import LogoWhiteIcon from "../../assets/logo-white.svg"
 import { Box, Text } from "../components"
@@ -44,6 +45,7 @@ export type MyBookMStackParamList = {
   RecipeCreationScreen: undefined
   RecipePreviewScreen: undefined
   RecipeListScreen: undefined
+  RecipePreviewStepScreen: undefined
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
@@ -146,7 +148,7 @@ export function MainTabNavigator() {
       <Tab.Screen
         name="MyBookMNavigator"
         component={MyBookMNavigator}
-        options={{ tabBarLabel: "BookM", tabBarVisible: false }}
+        options={{ unmountOnBlur: true, tabBarLabel: "BookM", tabBarVisible: false }}
       />
     </Tab.Navigator>
   )
@@ -163,6 +165,7 @@ export function MyBookMNavigator() {
       <MyBookMStack.Screen name="RecipeCreationScreen" component={RecipeCreationScreen} />
       <MyBookMStack.Screen name="RecipeListScreen" component={RecipeListScreen} />
       <MyBookMStack.Screen name="RecipePreviewScreen" component={RecipePreviewScreen} />
+      <MyBookMStack.Screen name="RecipePreviewStepScreen" component={RecipePreviewStepScreen} />
     </MyBookMStack.Navigator>
   )
 }

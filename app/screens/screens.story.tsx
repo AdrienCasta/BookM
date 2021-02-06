@@ -58,7 +58,9 @@ storiesOf("Screens", module)
     </SafeAreaProvider>
   ))
   .add("RecipePreviewScreens", () => {
-    return <RecipePreviewTemplate recipe={recipe} author="Laura" onCookPress={noop} />
+    return (
+      <RecipePreviewTemplate recipe={recipe} author={author} onCookPress={noop} onPublish={noop} />
+    )
   })
   .add("RecipePreviewStepScreen", () => {
     return <RecipePreviewStepTemplate steps={recipe.steps} title={recipe.title} author={author} />

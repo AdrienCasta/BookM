@@ -23,11 +23,10 @@ const LOGO: ViewStyle = {
 
 export const HomeScreen = observer(function HomeScreen() {
   const { user } = useStores()
-  // const navigation = useNavigation()
 
-  // const handleSignOut = () => {
-  //   user.signOut()
-  // }
+  const handleSignOut = () => {
+    user.signOut()
+  }
 
   return (
     <Screen style={ROOT} preset="scroll">
@@ -44,10 +43,10 @@ export const HomeScreen = observer(function HomeScreen() {
           <BurgerIcon />
         </TouchableOpacity>
       </Box>
-      {/* <Text preset="header" text={user.fullName} />
       <TouchableOpacity>
         <Text preset="link" text="déconnexion" onPress={handleSignOut} />
       </TouchableOpacity>
+      {/* <Text preset="header" text={user.fullName} />
       <TouchableOpacity>
         <Text
           preset="link"

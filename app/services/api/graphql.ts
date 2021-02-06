@@ -7,10 +7,10 @@ export type CreateRecipeInput = {
   title: string
   image: string
   description: string
-  time: number
+  time: string
   numberOfPersons: number
   numberOfCalories?: number | null
-  cookingTime?: number | null
+  cookingTime?: string | null
   steps: Array<RecipeStepInput>
   ingredients: Array<IngredientInput>
 }
@@ -29,10 +29,10 @@ export type ModelRecipeConditionInput = {
   title?: ModelStringInput | null
   image?: ModelStringInput | null
   description?: ModelStringInput | null
-  time?: ModelIntInput | null
+  time?: ModelStringInput | null
   numberOfPersons?: ModelIntInput | null
   numberOfCalories?: ModelIntInput | null
-  cookingTime?: ModelIntInput | null
+  cookingTime?: ModelStringInput | null
   and?: Array<ModelRecipeConditionInput | null> | null
   or?: Array<ModelRecipeConditionInput | null> | null
   not?: ModelRecipeConditionInput | null
@@ -94,10 +94,10 @@ export type UpdateRecipeInput = {
   title?: string | null
   image?: string | null
   description?: string | null
-  time?: number | null
+  time?: string | null
   numberOfPersons?: number | null
   numberOfCalories?: number | null
-  cookingTime?: number | null
+  cookingTime?: string | null
   steps?: Array<RecipeStepInput> | null
   ingredients?: Array<IngredientInput> | null
 }
@@ -111,10 +111,10 @@ export type ModelRecipeFilterInput = {
   title?: ModelStringInput | null
   image?: ModelStringInput | null
   description?: ModelStringInput | null
-  time?: ModelIntInput | null
+  time?: ModelStringInput | null
   numberOfPersons?: ModelIntInput | null
   numberOfCalories?: ModelIntInput | null
-  cookingTime?: ModelIntInput | null
+  cookingTime?: ModelStringInput | null
   and?: Array<ModelRecipeFilterInput | null> | null
   or?: Array<ModelRecipeFilterInput | null> | null
   not?: ModelRecipeFilterInput | null
@@ -148,10 +148,10 @@ export type CreateRecipeMutation = {
     title: string
     image: string
     description: string
-    time: number
+    time: string
     numberOfPersons: number
     numberOfCalories: number | null
-    cookingTime: number | null
+    cookingTime: string | null
     steps: Array<{
       __typename: "RecipeStep"
       description: string
@@ -180,10 +180,10 @@ export type UpdateRecipeMutation = {
     title: string
     image: string
     description: string
-    time: number
+    time: string
     numberOfPersons: number
     numberOfCalories: number | null
-    cookingTime: number | null
+    cookingTime: string | null
     steps: Array<{
       __typename: "RecipeStep"
       description: string
@@ -212,10 +212,10 @@ export type DeleteRecipeMutation = {
     title: string
     image: string
     description: string
-    time: number
+    time: string
     numberOfPersons: number
     numberOfCalories: number | null
-    cookingTime: number | null
+    cookingTime: string | null
     steps: Array<{
       __typename: "RecipeStep"
       description: string
@@ -243,10 +243,10 @@ export type GetRecipeQuery = {
     title: string
     image: string
     description: string
-    time: number
+    time: string
     numberOfPersons: number
     numberOfCalories: number | null
-    cookingTime: number | null
+    cookingTime: string | null
     steps: Array<{
       __typename: "RecipeStep"
       description: string
@@ -278,10 +278,10 @@ export type ListRecipesQuery = {
       title: string
       image: string
       description: string
-      time: number
+      time: string
       numberOfPersons: number
       numberOfCalories: number | null
-      cookingTime: number | null
+      cookingTime: string | null
       steps: Array<{
         __typename: "RecipeStep"
         description: string
@@ -311,10 +311,10 @@ export type OnCreateRecipeSubscription = {
     title: string
     image: string
     description: string
-    time: number
+    time: string
     numberOfPersons: number
     numberOfCalories: number | null
-    cookingTime: number | null
+    cookingTime: string | null
     steps: Array<{
       __typename: "RecipeStep"
       description: string
@@ -342,10 +342,10 @@ export type OnUpdateRecipeSubscription = {
     title: string
     image: string
     description: string
-    time: number
+    time: string
     numberOfPersons: number
     numberOfCalories: number | null
-    cookingTime: number | null
+    cookingTime: string | null
     steps: Array<{
       __typename: "RecipeStep"
       description: string
@@ -373,10 +373,10 @@ export type OnDeleteRecipeSubscription = {
     title: string
     image: string
     description: string
-    time: number
+    time: string
     numberOfPersons: number
     numberOfCalories: number | null
-    cookingTime: number | null
+    cookingTime: string | null
     steps: Array<{
       __typename: "RecipeStep"
       description: string

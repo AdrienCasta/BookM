@@ -1,25 +1,23 @@
 import React from "react"
 import { observer } from "mobx-react-lite"
-import { ViewStyle } from "react-native"
-import { Screen, Text } from "../../components"
-// import { useNavigation } from "@react-navigation/native"
-// import { useStores } from "../../models"
-import { color } from "../../theme"
-
-const ROOT: ViewStyle = {
-  backgroundColor: color.palette.black,
-  flex: 1,
-}
+import { useStores } from "../../models"
+import { RecipePreviewStepTemplate } from "./recipe.preview-step-template"
 
 export const RecipePreviewStepScreen = observer(function RecipePreviewStepScreen() {
-  // Pull in one of our MST stores
-  // const { someStore, anotherStore } = useStores()
+  const { user } = useStores()
 
-  // Pull in navigation via hook
-  // const navigation = useNavigation()
+  const author = {
+    firstname: user.firstname,
+    image: {
+      uri:
+        "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8aHVtYW58ZW58MHx8MHw%3D&ixlib=rb-1.2.1&w=1000&q=80",
+    },
+  }
   return (
-    <Screen style={ROOT} preset="scroll">
-      <Text preset="header" text="" />
-    </Screen>
+    <RecipePreviewStepTemplate
+      author={author}
+      title={user.recipe.title}
+      steps={user.recipe.steps}
+    />
   )
 })

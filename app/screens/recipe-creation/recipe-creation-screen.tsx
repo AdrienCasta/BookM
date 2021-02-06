@@ -105,6 +105,15 @@ const imageOptions = {
 //   }
 // }
 
+const fomatDuration = (duration: Date) => {
+  if (!duration) {
+    return ""
+  }
+  const mn = duration.getMinutes() > 9 ? duration.getMinutes() : `0${duration.getMinutes()}`
+  const h = `${duration.getUTCHours() ? duration.getUTCHours() + ":" : "00:"}`
+  return `${h}${mn}`
+}
+
 export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
   const { user } = useStores()
   const navigation = useNavigation()
@@ -167,6 +176,7 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
   const onSubmit = (recipe: IRecipeFieldValues) => {
     console.tron.logImportant(recipe)
     user.previewRecipe(recipe)
+    navigation.navigate("RecipePreviewScreen")
     // return
     // try {
     //   await createRecipe(recipe)
@@ -231,8 +241,8 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
             <TouchableOpacity onPress={handleRecipeInfoAppearance}>
               <RecipeQuantifiableCard
                 error={!!(errors.numberOfPersons || errors.time)}
-                cookingTime={watch("cookingTime") ? watch("cookingTime").getUTCMinutes() : ""}
-                time={watch("time") ? watch("time").getUTCMinutes() : ""}
+                cookingTime={fomatDuration(watch("cookingTime"))}
+                time={fomatDuration(watch("time"))}
                 numberOfCalories={watch("numberOfCalories")}
                 numberOfPersons={watch("numberOfPersons")}
               />

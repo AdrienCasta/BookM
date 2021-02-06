@@ -10,16 +10,29 @@ export const RequestModel = types
     message: types.optional(types.string, ""),
   })
   .actions((self) => ({
-    startRequest: flow(function* (request, ...args) {
+    setIdleStatus() {
+      self.status = "IDLE"
+    },
+  }))
+  .actions((self) => ({
+    startRequest: flow(function* (
+      request,
+      options = { error: "Une erreur est survenue", success: "" },
+    ) {
+      const { error, success } = options
       self.status = "PENDING"
       self.message = ""
       try {
-        const response = yield request(...args)
+        const response = yield request()
         self.status = "SUCCESS"
+        self.message = success
         return response
       } catch (e) {
+        self.message = error
         self.status = "FAILURE"
         throw Error(e)
+      } finally {
+        setTimeout(() => self.setIdleStatus(), 3000)
       }
     }),
   })) // eslint-disable-line @typescript-eslint/no-unused-vars

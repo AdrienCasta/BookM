@@ -29,7 +29,7 @@ const FORM: ViewStyle = {
 
 export const SignInScreen = observer(function SignInScreen() {
   // Pull in one of our MST stores
-  const { user, request } = useStores()
+  const { user } = useStores()
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
 
@@ -40,7 +40,7 @@ export const SignInScreen = observer(function SignInScreen() {
   }
 
   const handleSignIn = () => {
-    request.startRequest(user.signIn, username, password).catch(console.warn)
+    user.signIn(username, password).catch(console.warn)
   }
 
   return (

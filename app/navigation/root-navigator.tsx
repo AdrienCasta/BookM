@@ -61,10 +61,9 @@ const RootStack = observer(function () {
   const sheetRef = React.useRef(null)
   const { request } = useStores()
 
-  console.log({ request })
   useEffect(() => {
     if (sheetRef.current) {
-      const snapPoint = request.status === "FAILURE" ? 0 : 1
+      const snapPoint = ["FAILURE", "SUCCESS"].includes(request.status) ? 0 : 1
       sheetRef.current.snapTo(snapPoint)
     }
   }, [request.status])
@@ -142,7 +141,10 @@ const RootStack = observer(function () {
         renderHeader={() => <View style={BOTTOMSHEET_HEADER}></View>}
         renderContent={() => (
           <View style={BOTTOMSHEET_CONTENT}>
-            <AppToast text={request.message} />
+            <AppToast
+              text={request.message}
+              variant={request.status === "FAILURE" ? "error" : "success"}
+            />
           </View>
         )}
       />

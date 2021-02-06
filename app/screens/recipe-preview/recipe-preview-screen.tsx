@@ -1,24 +1,33 @@
+import { useNavigation } from "@react-navigation/native"
 import React from "react"
-import { ViewStyle } from "react-native"
-import { Screen, Text } from "../../components"
-// import { useNavigation } from "@react-navigation/native"
-// import { useStores } from "../../models"
-import { color } from "../../theme"
 
-const ROOT: ViewStyle = {
-  backgroundColor: color.palette.black,
-  flex: 1,
-}
+import { useStores } from "../../models"
+import { RecipePreviewTemplate } from "./recipe.preview-template"
 
 export const RecipePreviewScreen = function RecipePreviewScreen() {
-  // Pull in one of our MST stores
-  // const { someStore, anotherStore } = useStores()
+  const { user } = useStores()
+  const author = {
+    firstname: user.firstname || "Adrien",
+    image: {
+      uri:
+        "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8aHVtYW58ZW58MHx8MHw%3D&ixlib=rb-1.2.1&w=1000&q=80",
+    },
+  }
+  const navigation = useNavigation()
 
-  // Pull in navigation via hook
-  // const navigation = useNavigation()
+  const handleNavigation = () => {
+    navigation.navigate("RecipePreviewStepScreen")
+  }
+  const handleRecipeCreation = () => {
+    user.createRecipe().then(() => navigation.navigate("HomeScreen"))
+  }
+
   return (
-    <Screen style={ROOT} preset="scroll">
-      <Text preset="header" text="" />
-    </Screen>
+    <RecipePreviewTemplate
+      recipe={user.recipe}
+      onCookPress={handleNavigation}
+      onPublish={handleRecipeCreation}
+      author={author}
+    />
   )
 }
