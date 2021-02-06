@@ -16,6 +16,7 @@ require("../app/components/recipe-quantifiable-bottom-sheet/recipe-quantifiable-
 require("../app/components/recipe-stock-bottom-sheet/recipe-stock-bottom-sheet.story")
 require("../app/components/recipe-fav-card/recipe-fav-card.story")
 require("../app/components/recipe-preview-step/recipe-preview-step.story")
+require("../app/components/avatar/avatar.story")
 
 // SCREENS
 
