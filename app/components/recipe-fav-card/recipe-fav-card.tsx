@@ -2,15 +2,18 @@ import * as React from "react"
 import { View, ViewStyle } from "react-native"
 import { Box } from "../box/box"
 import LogoFire from "../../../assets/fire.svg"
-import LogoCheck from "../../../assets/check.svg"
+import IconCheck from "../../../assets/check.svg"
+import IconCheckSmall from "../../../assets/check-xs.svg"
 import { color } from "../../theme"
 import { combine } from "../../utils/style"
+import shadowViewStyle from "../../utils/shadow"
 
 const CONTAINER: ViewStyle = {
   width: 69,
   height: 124,
+  borderRadius: 10,
+  ...shadowViewStyle(0, 3),
   backgroundColor: color.primary,
-  borderRadius: 9,
 }
 const CONTAINER_COMPACT: ViewStyle = {
   width: 50,
@@ -26,12 +29,15 @@ export interface RecipeFavCardProps {
 
 export const RecipeFavCard = ({ variant = "long" }: RecipeFavCardProps) => {
   const isCompact = variant === "compact"
-  const [checkWidth, checkHeight] = isCompact ? [9, 10] : [22, 32]
   return (
     <Box style={combine(CONTAINER, isCompact && CONTAINER_COMPACT)} jc="center" ai="center">
       <LogoFire width={22} height={31} color={color.secondary} />
-      {isCompact && <View style={SPACE} />}
-      <LogoCheck width={checkWidth} height={checkHeight} color={color.secondary} />
+      {!isCompact && <View style={SPACE} />}
+      {isCompact ? (
+        <IconCheckSmall width={12} color={color.secondary} />
+      ) : (
+        <IconCheck width={22} height={32} color={color.secondary} />
+      )}
     </Box>
   )
 }

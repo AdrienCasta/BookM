@@ -53,7 +53,7 @@ export interface RecipePreviewStepProps {
  * Describe your component here
  */
 export const RecipePreviewStep = (props: RecipePreviewStepProps) => {
-  const { step, trick, instruction, active } = props
+  const { step, trick, instruction, active = false } = props
   return (
     <View style={CONTAINER}>
       <Box style={STEP_NUMBER_WRAPPER} fd="row">
