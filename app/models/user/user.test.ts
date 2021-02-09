@@ -1,4 +1,4 @@
-import { getSnapshot } from "mobx-state-tree"
+import * as mst from "mobx-state-tree"
 import { UserModel } from "./user"
 
 jest.mock("aws-amplify", () => {
@@ -21,9 +21,18 @@ jest.mock("aws-amplify", () => {
   }
 })
 
+beforeEach(() => {
+  const getEnvReturnValue = {
+    request: {
+      startRequest: (fn: () => void) => fn(),
+    },
+  }
+  jest.spyOn(mst, "getParent").mockReturnValue(getEnvReturnValue)
+})
+
 test("can be created", () => {
   const instance = UserModel.create({})
-  expect(getSnapshot(instance)).toMatchSnapshot()
+  expect(mst.getSnapshot(instance)).toMatchSnapshot()
 })
 
 test("view", () => {
@@ -38,7 +47,7 @@ test("signIn", async () => {
   const instance = UserModel.create({})
   await instance.signIn("adrien.castagliola@gmail.com", "passw0rd")
 
-  expect(getSnapshot(instance)).toMatchSnapshot()
+  expect(mst.getSnapshot(instance)).toMatchSnapshot()
 })
 test("signUp", async () => {
   const instance = UserModel.create({})
@@ -51,7 +60,7 @@ test("signUp", async () => {
     },
   })
 
-  expect(getSnapshot(instance)).toMatchSnapshot()
+  expect(mst.getSnapshot(instance)).toMatchSnapshot()
 })
 test("signOut", async () => {
   const instance = UserModel.create({
@@ -60,5 +69,5 @@ test("signOut", async () => {
   })
   await instance.signOut()
 
-  expect(getSnapshot(instance)).toMatchSnapshot()
+  expect(mst.getSnapshot(instance)).toMatchSnapshot()
 })

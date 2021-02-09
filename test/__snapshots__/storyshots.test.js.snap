@@ -1,6 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots AppToast Style Presets 1`] = `
+exports[`Storyshots --RecipeStockBottomSheet Display mode 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    Array [
+      Object {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+/>
+`;
+
+exports[`Storyshots AppToast Basic 1`] = `
 <View
   onLayout={[Function]}
   style={
@@ -79,7 +93,7 @@ exports[`Storyshots AppToast Style Presets 1`] = `
                   }
                 }
               >
-                AppToast
+                Error
               </Text>
             </View>
             <Text
@@ -116,15 +130,8 @@ exports[`Storyshots AppToast Style Presets 1`] = `
                     "backgroundColor": "#ffffff",
                     "borderTopLeftRadius": 65,
                     "borderTopRightRadius": 65,
-                    "elevation": 5,
                     "padding": 15,
                     "shadowColor": "#000",
-                    "shadowOffset": Object {
-                      "height": -2,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0.2,
-                    "shadowRadius": 2,
                   },
                 ]
               }
@@ -161,6 +168,251 @@ exports[`Storyshots AppToast Style Presets 1`] = `
                 Il semble y avoir une erreur dans les informations entrées... vérifiez, puis recommencez.
               </Text>
             </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#eee",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#e6e6e6",
+                "borderBottomWidth": 1,
+                "paddingBottom": 10,
+                "paddingHorizontal": 10,
+                "paddingTop": 20,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderTopColor": "#e6e6e6",
+                  "borderTopWidth": 1,
+                  "flexDirection": "row",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#666",
+                    "fontSize": 10,
+                    "paddingBottom": 2,
+                    "paddingHorizontal": 4,
+                  }
+                }
+              >
+                Use Case
+              </Text>
+            </View>
+            <View
+              style={Object {}}
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#3d3d3d",
+                    "fontWeight": "600",
+                  }
+                }
+              >
+                Success
+              </Text>
+            </View>
+            <Text
+              style={
+                Object {
+                  "color": "#666",
+                  "fontSize": 10,
+                  "paddingTop": 0,
+                }
+              }
+            >
+              So success
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#fff",
+                "padding": 10,
+              }
+            }
+          >
+            <View
+              ai="center"
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "alignSelf": "auto",
+                    "flexDirection": "column",
+                    "justifyContent": "flex-start",
+                  },
+                  Object {
+                    "backgroundColor": "#ffffff",
+                    "borderTopLeftRadius": 65,
+                    "borderTopRightRadius": 65,
+                    "padding": 15,
+                    "shadowColor": "#000",
+                  },
+                ]
+              }
+            >
+              <Image
+                source={1}
+              />
+              <Text
+                style={
+                  Object {
+                    "color": "#000",
+                    "fontFamily": "Comfortaa-Regular",
+                    "fontSize": 15,
+                    "fontWeight": "bold",
+                    "marginBottom": 30,
+                    "marginTop": 15,
+                  }
+                }
+              >
+                Les ingrédients sont pas bons...
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "color": "#000",
+                    "fontFamily": "AvenirLTStd-Roman",
+                    "fontSize": 12,
+                    "lineHeight": 16,
+                    "maxWidth": 280,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                It's ok
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;
+
+exports[`Storyshots Avatar Basic 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#f0f0f0",
+        "flex": 1,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <RCTScrollView>
+      <View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#eee",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#e6e6e6",
+                "borderBottomWidth": 1,
+                "paddingBottom": 10,
+                "paddingHorizontal": 10,
+                "paddingTop": 20,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderTopColor": "#e6e6e6",
+                  "borderTopWidth": 1,
+                  "flexDirection": "row",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#666",
+                    "fontSize": 10,
+                    "paddingBottom": 2,
+                    "paddingHorizontal": 4,
+                  }
+                }
+              >
+                Use Case
+              </Text>
+            </View>
+            <View
+              style={Object {}}
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#3d3d3d",
+                    "fontWeight": "600",
+                  }
+                }
+              >
+                Small
+              </Text>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#fff",
+                "padding": 10,
+              }
+            }
+          >
+            <Image
+              source={
+                Object {
+                  "uri": "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8aHVtYW58ZW58MHx8MHw%3D&ixlib=rb-1.2.1&w=1000&q=80",
+                }
+              }
+              style={
+                Object {
+                  "borderRadius": 10,
+                  "height": 50,
+                  "width": 50,
+                }
+              }
+            />
           </View>
         </View>
       </View>
@@ -630,6 +882,13 @@ exports[`Storyshots Button Style Presets 1`] = `
                   "opacity": 1,
                   "paddingHorizontal": 20,
                   "paddingVertical": 12,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 2,
                 }
               }
             >
@@ -745,6 +1004,13 @@ exports[`Storyshots Button Style Presets 1`] = `
                   "opacity": 1,
                   "paddingHorizontal": 20,
                   "paddingVertical": 26,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 2,
                 }
               }
             >
@@ -893,7 +1159,7 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
                 style={
                   Object {
                     "alignItems": "center",
-                    "borderColor": "#EB9918",
+                    "borderColor": "#74C47F",
                     "borderRadius": 1,
                     "borderWidth": 1,
                     "height": 16,
@@ -1020,7 +1286,7 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
                 style={
                   Object {
                     "alignItems": "center",
-                    "borderColor": "#EB9918",
+                    "borderColor": "#74C47F",
                     "borderRadius": 1,
                     "borderWidth": 1,
                     "height": 16,
@@ -1157,7 +1423,7 @@ exports[`Storyshots Checkbox Behaviour 1`] = `
                 style={
                   Object {
                     "alignItems": "center",
-                    "borderColor": "#EB9918",
+                    "borderColor": "#74C47F",
                     "borderRadius": 1,
                     "borderWidth": 1,
                     "height": 16,
@@ -1315,7 +1581,7 @@ exports[`Storyshots Checkbox Styling 1`] = `
                   style={
                     Object {
                       "alignItems": "center",
-                      "borderColor": "#EB9918",
+                      "borderColor": "#74C47F",
                       "borderRadius": 1,
                       "borderWidth": 1,
                       "height": 16,
@@ -1447,7 +1713,7 @@ exports[`Storyshots Checkbox Styling 1`] = `
                   style={
                     Object {
                       "alignItems": "center",
-                      "borderColor": "#EB9918",
+                      "borderColor": "#74C47F",
                       "borderRadius": 1,
                       "borderWidth": 1,
                       "height": 16,
@@ -1705,7 +1971,7 @@ exports[`Storyshots Checkbox Styling 1`] = `
                   style={
                     Object {
                       "alignItems": "center",
-                      "borderColor": "#EB9918",
+                      "borderColor": "#74C47F",
                       "borderRadius": 1,
                       "borderWidth": 1,
                       "height": 16,
@@ -1985,7 +2251,7 @@ exports[`Storyshots FormRow Assembled 1`] = `
                 style={
                   Object {
                     "color": "#000",
-                    "fontFamily": "AvenirLTStd-Roman",
+                    "fontFamily": "Comfortaa-Regular",
                     "fontSize": 13,
                   }
                 }
@@ -3645,6 +3911,1033 @@ exports[`Storyshots Icon Names 1`] = `
     </RCTScrollView>
   </View>
 </View>
+`;
+
+exports[`Storyshots RecipePicture Display mode 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#f0f0f0",
+        "flex": 1,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <RCTScrollView>
+      <View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#eee",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#e6e6e6",
+                "borderBottomWidth": 1,
+                "paddingBottom": 10,
+                "paddingHorizontal": 10,
+                "paddingTop": 20,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderTopColor": "#e6e6e6",
+                  "borderTopWidth": 1,
+                  "flexDirection": "row",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#666",
+                    "fontSize": 10,
+                    "paddingBottom": 2,
+                    "paddingHorizontal": 4,
+                  }
+                }
+              >
+                Use Case
+              </Text>
+            </View>
+            <View
+              style={Object {}}
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#3d3d3d",
+                    "fontWeight": "600",
+                  }
+                }
+              >
+                Primary
+              </Text>
+            </View>
+            <Text
+              style={
+                Object {
+                  "color": "#666",
+                  "fontSize": 10,
+                  "paddingTop": 0,
+                }
+              }
+            >
+              The primary.
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#fff",
+                "padding": 10,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#F7F7F7",
+                  "borderBottomLeftRadius": 60,
+                  "height": 267,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 4,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 2,
+                }
+              }
+            >
+              <View
+                accessibilityIgnoresInvertColors={true}
+                style={
+                  Object {
+                    "borderBottomLeftRadius": 60,
+                    "height": 267,
+                    "overflow": "hidden",
+                  }
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "uri": "https://images.unsplash.com/photo-1612318079512-40892e233399?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      },
+                      Object {
+                        "height": 267,
+                        "width": undefined,
+                      },
+                      undefined,
+                    ]
+                  }
+                />
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;
+
+exports[`Storyshots RecipePreviewStep Basic 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#f0f0f0",
+        "flex": 1,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <RCTScrollView>
+      <View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#eee",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#e6e6e6",
+                "borderBottomWidth": 1,
+                "paddingBottom": 10,
+                "paddingHorizontal": 10,
+                "paddingTop": 20,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderTopColor": "#e6e6e6",
+                  "borderTopWidth": 1,
+                  "flexDirection": "row",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#666",
+                    "fontSize": 10,
+                    "paddingBottom": 2,
+                    "paddingHorizontal": 4,
+                  }
+                }
+              >
+                Use Case
+              </Text>
+            </View>
+            <View
+              style={Object {}}
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#3d3d3d",
+                    "fontWeight": "600",
+                  }
+                }
+              >
+                With trick
+              </Text>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#fff",
+                "padding": 10,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#F7F7F7",
+                  "borderRadius": 20,
+                  "padding": 10,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 2,
+                }
+              }
+            >
+              <View
+                fd="row"
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "stretch",
+                      "alignSelf": "auto",
+                      "flexDirection": "row",
+                      "justifyContent": "flex-start",
+                    },
+                    Object {
+                      "marginBottom": 17,
+                    },
+                  ]
+                }
+              >
+                <View
+                  ai="center"
+                  aself="start"
+                  jc="center"
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "alignSelf": "flex-start",
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "backgroundColor": "#4F4F4F",
+                        "borderRadius": 100,
+                        "height": 22,
+                        "marginBottom": 17,
+                        "paddingHorizontal": 12,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "#ffffff",
+                        "fontFamily": "AvenirLTStd-Roman",
+                        "fontSize": 10,
+                        "fontWeight": "300",
+                      }
+                    }
+                  >
+                    Etape 
+                    1
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "#2AC940",
+                      "borderRadius": 2,
+                      "height": 8,
+                      "marginLeft": 5,
+                      "shadowColor": "#000",
+                      "shadowOffset": Object {
+                        "height": 1,
+                        "width": 0,
+                      },
+                      "shadowOpacity": 0.2,
+                      "shadowRadius": 2,
+                      "width": 8,
+                    }
+                  }
+                />
+              </View>
+              <Text
+                style={
+                  Object {
+                    "color": "#000",
+                    "fontFamily": "AvenirLTStd-Roman",
+                    "fontSize": 13,
+                    "marginBottom": 10,
+                  }
+                }
+              >
+                laver et couper vos tomates en 4
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "color": "#33E1FF",
+                    "fontFamily": "AvenirLTStd-Roman",
+                    "fontSize": 15,
+                  }
+                }
+              >
+                Personnelement j'utilise la fourchette.
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#eee",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#e6e6e6",
+                "borderBottomWidth": 1,
+                "paddingBottom": 10,
+                "paddingHorizontal": 10,
+                "paddingTop": 20,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderTopColor": "#e6e6e6",
+                  "borderTopWidth": 1,
+                  "flexDirection": "row",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#666",
+                    "fontSize": 10,
+                    "paddingBottom": 2,
+                    "paddingHorizontal": 4,
+                  }
+                }
+              >
+                Use Case
+              </Text>
+            </View>
+            <View
+              style={Object {}}
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#3d3d3d",
+                    "fontWeight": "600",
+                  }
+                }
+              >
+                Without trick
+              </Text>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#fff",
+                "padding": 10,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#F7F7F7",
+                  "borderRadius": 20,
+                  "padding": 10,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 2,
+                }
+              }
+            >
+              <View
+                fd="row"
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "stretch",
+                      "alignSelf": "auto",
+                      "flexDirection": "row",
+                      "justifyContent": "flex-start",
+                    },
+                    Object {
+                      "marginBottom": 17,
+                    },
+                  ]
+                }
+              >
+                <View
+                  ai="center"
+                  aself="start"
+                  jc="center"
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "alignSelf": "flex-start",
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "backgroundColor": "#4F4F4F",
+                        "borderRadius": 100,
+                        "height": 22,
+                        "marginBottom": 17,
+                        "paddingHorizontal": 12,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "#ffffff",
+                        "fontFamily": "AvenirLTStd-Roman",
+                        "fontSize": 10,
+                        "fontWeight": "300",
+                      }
+                    }
+                  >
+                    Etape 
+                    1
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "#2AC940",
+                      "borderRadius": 2,
+                      "height": 8,
+                      "marginLeft": 5,
+                      "shadowColor": "#000",
+                      "shadowOffset": Object {
+                        "height": 1,
+                        "width": 0,
+                      },
+                      "shadowOpacity": 0.2,
+                      "shadowRadius": 2,
+                      "width": 8,
+                    }
+                  }
+                />
+              </View>
+              <Text
+                style={
+                  Object {
+                    "color": "#000",
+                    "fontFamily": "AvenirLTStd-Roman",
+                    "fontSize": 13,
+                    "marginBottom": 10,
+                  }
+                }
+              >
+                laver et couper vos tomates en 4
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#eee",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#e6e6e6",
+                "borderBottomWidth": 1,
+                "paddingBottom": 10,
+                "paddingHorizontal": 10,
+                "paddingTop": 20,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderTopColor": "#e6e6e6",
+                  "borderTopWidth": 1,
+                  "flexDirection": "row",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#666",
+                    "fontSize": 10,
+                    "paddingBottom": 2,
+                    "paddingHorizontal": 4,
+                  }
+                }
+              >
+                Use Case
+              </Text>
+            </View>
+            <View
+              style={Object {}}
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#3d3d3d",
+                    "fontWeight": "600",
+                  }
+                }
+              >
+                No active
+              </Text>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#fff",
+                "padding": 10,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#F7F7F7",
+                  "borderRadius": 20,
+                  "padding": 10,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.2,
+                  "shadowRadius": 2,
+                }
+              }
+            >
+              <View
+                fd="row"
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "stretch",
+                      "alignSelf": "auto",
+                      "flexDirection": "row",
+                      "justifyContent": "flex-start",
+                    },
+                    Object {
+                      "marginBottom": 17,
+                    },
+                  ]
+                }
+              >
+                <View
+                  ai="center"
+                  aself="start"
+                  jc="center"
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "alignSelf": "flex-start",
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                      Object {
+                        "backgroundColor": "#4F4F4F",
+                        "borderRadius": 100,
+                        "height": 22,
+                        "marginBottom": 17,
+                        "paddingHorizontal": 12,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "#ffffff",
+                        "fontFamily": "AvenirLTStd-Roman",
+                        "fontSize": 10,
+                        "fontWeight": "300",
+                      }
+                    }
+                  >
+                    Etape 
+                    1
+                  </Text>
+                </View>
+              </View>
+              <Text
+                style={
+                  Object {
+                    "color": "#000",
+                    "fontFamily": "AvenirLTStd-Roman",
+                    "fontSize": 13,
+                    "marginBottom": 10,
+                  }
+                }
+              >
+                laver et couper vos tomates en 4
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;
+
+exports[`Storyshots RecipeStockCard Style Presets 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#f0f0f0",
+        "flex": 1,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <RCTScrollView>
+      <View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#eee",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#e6e6e6",
+                "borderBottomWidth": 1,
+                "paddingBottom": 10,
+                "paddingHorizontal": 10,
+                "paddingTop": 20,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderTopColor": "#e6e6e6",
+                  "borderTopWidth": 1,
+                  "flexDirection": "row",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#666",
+                    "fontSize": 10,
+                    "paddingBottom": 2,
+                    "paddingHorizontal": 4,
+                  }
+                }
+              >
+                Use Case
+              </Text>
+            </View>
+            <View
+              style={Object {}}
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#3d3d3d",
+                    "fontWeight": "600",
+                  }
+                }
+              >
+                Basic
+              </Text>
+            </View>
+            <Text
+              style={
+                Object {
+                  "color": "#666",
+                  "fontSize": 10,
+                  "paddingTop": 0,
+                }
+              }
+            >
+              Stock ui card
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#fff",
+                "padding": 10,
+              }
+            }
+          >
+            <View
+              jc="end"
+              style={
+                Array [
+                  Object {
+                    "alignItems": "stretch",
+                    "alignSelf": "auto",
+                    "flexDirection": "column",
+                    "justifyContent": "flex-end",
+                  },
+                  Object {
+                    "backgroundColor": "#74C47F",
+                    "borderRadius": 9,
+                    "height": 124,
+                    "shadowColor": "#000",
+                    "shadowOffset": Object {
+                      "height": 1,
+                      "width": 0,
+                    },
+                    "shadowOpacity": 0.2,
+                    "shadowRadius": 2,
+                    "width": 65,
+                  },
+                ]
+              }
+            >
+              <View
+                ai="center"
+                jc="center"
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "alignSelf": "auto",
+                      "flexDirection": "column",
+                      "justifyContent": "center",
+                    },
+                    Object {
+                      "backgroundColor": "#2AC940",
+                      "borderRadius": 9,
+                      "height": "50%",
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "color": "#ffffff",
+                      "fontFamily": "AvenirLTStd-Roman",
+                      "fontSize": 15,
+                    }
+                  }
+                >
+                  STOCK
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "backgroundColor": "#eee",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#e6e6e6",
+                "borderBottomWidth": 1,
+                "paddingBottom": 10,
+                "paddingHorizontal": 10,
+                "paddingTop": 20,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderTopColor": "#e6e6e6",
+                  "borderTopWidth": 1,
+                  "flexDirection": "row",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#666",
+                    "fontSize": 10,
+                    "paddingBottom": 2,
+                    "paddingHorizontal": 4,
+                  }
+                }
+              >
+                Use Case
+              </Text>
+            </View>
+            <View
+              style={Object {}}
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "#3d3d3d",
+                    "fontWeight": "600",
+                  }
+                }
+              >
+                Basic
+              </Text>
+            </View>
+            <Text
+              style={
+                Object {
+                  "color": "#666",
+                  "fontSize": 10,
+                  "paddingTop": 0,
+                }
+              }
+            >
+              Stock ui card with error
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#fff",
+                "padding": 10,
+              }
+            }
+          >
+            <View
+              jc="end"
+              style={
+                Array [
+                  Object {
+                    "alignItems": "stretch",
+                    "alignSelf": "auto",
+                    "flexDirection": "column",
+                    "justifyContent": "flex-end",
+                  },
+                  Object {
+                    "backgroundColor": "#74C47F",
+                    "borderColor": "#dd3333",
+                    "borderRadius": 9,
+                    "borderWidth": 1,
+                    "height": 124,
+                    "shadowColor": "#000",
+                    "shadowOffset": Object {
+                      "height": 1,
+                      "width": 0,
+                    },
+                    "shadowOpacity": 0.2,
+                    "shadowRadius": 2,
+                    "width": 65,
+                  },
+                ]
+              }
+            >
+              <View
+                ai="center"
+                jc="center"
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "alignSelf": "auto",
+                      "flexDirection": "column",
+                      "justifyContent": "center",
+                    },
+                    Object {
+                      "backgroundColor": "#2AC940",
+                      "borderRadius": 9,
+                      "height": "50%",
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "color": "#ffffff",
+                      "fontFamily": "AvenirLTStd-Roman",
+                      "fontSize": 15,
+                    }
+                  }
+                >
+                  STOCK
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;
+
+exports[`Storyshots Screens RecipePreviewScreens 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    Array [
+      Object {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+/>
+`;
+
+exports[`Storyshots Screens RecipePreviewStepScreen 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    Array [
+      Object {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+/>
 `;
 
 exports[`Storyshots Switch Behaviour 1`] = `
@@ -5543,186 +6836,199 @@ exports[`Storyshots TextField Labelling 1`] = `
               }
             }
           >
-            <View
-              style={
-                Object {
-                  "backfaceVisibility": undefined,
-                  "borderRadius": 20,
-                  "bottom": undefined,
-                  "direction": undefined,
-                  "display": undefined,
-                  "end": undefined,
-                  "height": 40,
-                  "left": undefined,
-                  "margin": undefined,
-                  "marginBottom": undefined,
-                  "marginEnd": undefined,
-                  "marginHorizontal": undefined,
-                  "marginLeft": undefined,
-                  "marginRight": undefined,
-                  "marginStart": undefined,
-                  "marginTop": undefined,
-                  "marginVertical": undefined,
-                  "opacity": undefined,
-                  "position": undefined,
-                  "right": undefined,
-                  "start": undefined,
-                  "top": undefined,
-                  "transform": undefined,
-                  "width": 180,
-                  "zIndex": undefined,
-                }
-              }
-              useArt={true}
-            >
-              <View
+            <View>
+              <Text
                 style={
-                  Array [
-                    Object {
-                      "backgroundColor": "transparent",
-                      "overflow": "hidden",
-                      "position": "absolute",
-                    },
-                    Object {
-                      "backgroundColor": "#ffffff",
-                      "borderRadius": 20,
-                      "height": 40,
-                      "width": 180,
-                    },
-                  ]
+                  Object {
+                    "color": "#000",
+                    "fontFamily": "Comfortaa-Regular",
+                    "fontSize": 13,
+                    "marginBottom": 13,
+                  }
                 }
               >
-                <ARTSurfaceView
+                Name
+              </Text>
+              <View
+                style={
+                  Object {
+                    "backfaceVisibility": undefined,
+                    "borderRadius": 20,
+                    "bottom": undefined,
+                    "direction": undefined,
+                    "display": undefined,
+                    "end": undefined,
+                    "height": 40,
+                    "left": undefined,
+                    "margin": undefined,
+                    "marginBottom": undefined,
+                    "marginEnd": undefined,
+                    "marginHorizontal": undefined,
+                    "marginLeft": undefined,
+                    "marginRight": undefined,
+                    "marginStart": undefined,
+                    "marginTop": undefined,
+                    "marginVertical": undefined,
+                    "opacity": undefined,
+                    "position": undefined,
+                    "right": undefined,
+                    "start": undefined,
+                    "top": undefined,
+                    "transform": undefined,
+                    "width": 180,
+                    "zIndex": undefined,
+                  }
+                }
+                useArt={true}
+              >
+                <View
                   style={
                     Array [
                       Object {
+                        "backgroundColor": "transparent",
+                        "overflow": "hidden",
                         "position": "absolute",
                       },
                       Object {
+                        "backgroundColor": "#ffffff",
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 180,
                       },
                     ]
                   }
                 >
-                  <ARTGroup
-                    opacity={1}
-                    transform={
+                  <ARTSurfaceView
+                    style={
                       Array [
-                        1,
-                        0,
-                        0,
-                        1,
-                        -17,
-                        -17,
+                        Object {
+                          "position": "absolute",
+                        },
+                        Object {
+                          "height": 40,
+                          "width": 180,
+                        },
                       ]
                     }
                   >
-                    <ARTShape
-                      d={
-                        Array [
-                          0,
-                          0,
-                          36,
-                          3,
-                          0,
-                          16.117749006091444,
-                          16.117749006091433,
-                          7.105427357601002e-15,
-                          35.99999999999999,
-                          0,
-                          2,
-                          178,
-                          0,
-                          3,
-                          197.88225099390857,
-                          0,
-                          214,
-                          16.11774900609144,
-                          214,
-                          36,
-                          2,
-                          214,
-                          38,
-                          3,
-                          214,
-                          57.882250993908556,
-                          197.88225099390857,
-                          74,
-                          178,
-                          74,
-                          2,
-                          36,
-                          74,
-                          3,
-                          16.117749006091444,
-                          74,
-                          7.105427357601002e-15,
-                          57.88225099390856,
-                          0,
-                          38.00000000000001,
-                          1,
-                        ]
-                      }
-                      fill={null}
+                    <ARTGroup
                       opacity={1}
-                      shadow={
-                        Array [
-                          4278190080,
-                          0.25,
-                          8,
-                          0,
-                          2,
-                        ]
-                      }
-                      stroke="#ffffff"
-                      strokeCap={1}
-                      strokeDash={null}
-                      strokeJoin={1}
-                      strokeWidth={32}
                       transform={
                         Array [
                           1,
                           0,
                           0,
                           1,
-                          0,
-                          0,
+                          -17,
+                          -17,
                         ]
                       }
-                    />
-                  </ARTGroup>
-                </ARTSurfaceView>
-              </View>
-              <View
-                style={
-                  Object {
-                    "borderRadius": 20,
-                    "height": 40,
-                    "width": 180,
-                  }
-                }
-              >
-                <TextInput
-                  allowFontScaling={true}
-                  label="Name"
-                  onChangeText={[Function]}
-                  placeholder="omg your name"
-                  placeholderTextColor="#CDD4DA"
-                  rejectResponderTermination={true}
+                    >
+                      <ARTShape
+                        d={
+                          Array [
+                            0,
+                            0,
+                            36,
+                            3,
+                            0,
+                            16.117749006091444,
+                            16.117749006091433,
+                            7.105427357601002e-15,
+                            35.99999999999999,
+                            0,
+                            2,
+                            178,
+                            0,
+                            3,
+                            197.88225099390857,
+                            0,
+                            214,
+                            16.11774900609144,
+                            214,
+                            36,
+                            2,
+                            214,
+                            38,
+                            3,
+                            214,
+                            57.882250993908556,
+                            197.88225099390857,
+                            74,
+                            178,
+                            74,
+                            2,
+                            36,
+                            74,
+                            3,
+                            16.117749006091444,
+                            74,
+                            7.105427357601002e-15,
+                            57.88225099390856,
+                            0,
+                            38.00000000000001,
+                            1,
+                          ]
+                        }
+                        fill={null}
+                        opacity={1}
+                        shadow={
+                          Array [
+                            4278190080,
+                            0.25,
+                            8,
+                            0,
+                            2,
+                          ]
+                        }
+                        stroke="#ffffff"
+                        strokeCap={1}
+                        strokeDash={null}
+                        strokeJoin={1}
+                        strokeWidth={32}
+                        transform={
+                          Array [
+                            1,
+                            0,
+                            0,
+                            1,
+                            0,
+                            0,
+                          ]
+                        }
+                      />
+                    </ARTGroup>
+                  </ARTSurfaceView>
+                </View>
+                <View
                   style={
                     Object {
                       "borderRadius": 20,
-                      "color": "#000",
-                      "fontFamily": "AvenirLTStd-Roman",
-                      "fontSize": 12,
-                      "height": "100%",
-                      "padding": 12,
+                      "height": 40,
+                      "width": 180,
                     }
                   }
-                  underlineColorAndroid="rgba(0, 0, 0, 0)"
-                  value=""
-                />
+                >
+                  <TextInput
+                    allowFontScaling={true}
+                    onChangeText={[Function]}
+                    placeholder="omg your name"
+                    placeholderTextColor="#CDD4DA"
+                    rejectResponderTermination={true}
+                    style={
+                      Object {
+                        "borderRadius": 20,
+                        "color": "#000",
+                        "fontFamily": "AvenirLTStd-Roman",
+                        "fontSize": 12,
+                        "height": "100%",
+                        "padding": 12,
+                      }
+                    }
+                    underlineColorAndroid="rgba(0, 0, 0, 0)"
+                    value=""
+                  />
+                </View>
               </View>
             </View>
           </View>
@@ -5824,195 +7130,208 @@ exports[`Storyshots TextField Ref Forwarding 1`] = `
               }
             }
           >
-            <View
-              style={
-                Object {
-                  "backfaceVisibility": undefined,
-                  "borderRadius": 20,
-                  "bottom": undefined,
-                  "direction": undefined,
-                  "display": undefined,
-                  "end": undefined,
-                  "height": 40,
-                  "left": undefined,
-                  "margin": undefined,
-                  "marginBottom": undefined,
-                  "marginEnd": undefined,
-                  "marginHorizontal": undefined,
-                  "marginLeft": undefined,
-                  "marginRight": undefined,
-                  "marginStart": undefined,
-                  "marginTop": undefined,
-                  "marginVertical": undefined,
-                  "opacity": undefined,
-                  "position": undefined,
-                  "right": undefined,
-                  "start": undefined,
-                  "top": undefined,
-                  "transform": undefined,
-                  "width": 180,
-                  "zIndex": undefined,
-                }
-              }
-              useArt={true}
-            >
-              <View
+            <View>
+              <Text
                 style={
-                  Array [
-                    Object {
-                      "backgroundColor": "transparent",
-                      "overflow": "hidden",
-                      "position": "absolute",
-                    },
-                    Object {
-                      "backgroundColor": "#ffffff",
-                      "borderRadius": 20,
-                      "height": 40,
-                      "width": 180,
-                    },
-                  ]
+                  Object {
+                    "color": "#000",
+                    "fontFamily": "Comfortaa-Regular",
+                    "fontSize": 13,
+                    "marginBottom": 13,
+                  }
                 }
               >
-                <ARTSurfaceView
+                Name
+              </Text>
+              <View
+                style={
+                  Object {
+                    "backfaceVisibility": undefined,
+                    "borderRadius": 20,
+                    "bottom": undefined,
+                    "direction": undefined,
+                    "display": undefined,
+                    "end": undefined,
+                    "height": 40,
+                    "left": undefined,
+                    "margin": undefined,
+                    "marginBottom": undefined,
+                    "marginEnd": undefined,
+                    "marginHorizontal": undefined,
+                    "marginLeft": undefined,
+                    "marginRight": undefined,
+                    "marginStart": undefined,
+                    "marginTop": undefined,
+                    "marginVertical": undefined,
+                    "opacity": undefined,
+                    "position": undefined,
+                    "right": undefined,
+                    "start": undefined,
+                    "top": undefined,
+                    "transform": undefined,
+                    "width": 180,
+                    "zIndex": undefined,
+                  }
+                }
+                useArt={true}
+              >
+                <View
                   style={
                     Array [
                       Object {
+                        "backgroundColor": "transparent",
+                        "overflow": "hidden",
                         "position": "absolute",
                       },
                       Object {
+                        "backgroundColor": "#ffffff",
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 180,
                       },
                     ]
                   }
                 >
-                  <ARTGroup
-                    opacity={1}
-                    transform={
+                  <ARTSurfaceView
+                    style={
                       Array [
-                        1,
-                        0,
-                        0,
-                        1,
-                        -17,
-                        -17,
+                        Object {
+                          "position": "absolute",
+                        },
+                        Object {
+                          "height": 40,
+                          "width": 180,
+                        },
                       ]
                     }
                   >
-                    <ARTShape
-                      d={
-                        Array [
-                          0,
-                          0,
-                          36,
-                          3,
-                          0,
-                          16.117749006091444,
-                          16.117749006091433,
-                          7.105427357601002e-15,
-                          35.99999999999999,
-                          0,
-                          2,
-                          178,
-                          0,
-                          3,
-                          197.88225099390857,
-                          0,
-                          214,
-                          16.11774900609144,
-                          214,
-                          36,
-                          2,
-                          214,
-                          38,
-                          3,
-                          214,
-                          57.882250993908556,
-                          197.88225099390857,
-                          74,
-                          178,
-                          74,
-                          2,
-                          36,
-                          74,
-                          3,
-                          16.117749006091444,
-                          74,
-                          7.105427357601002e-15,
-                          57.88225099390856,
-                          0,
-                          38.00000000000001,
-                          1,
-                        ]
-                      }
-                      fill={null}
+                    <ARTGroup
                       opacity={1}
-                      shadow={
-                        Array [
-                          4278190080,
-                          0.25,
-                          8,
-                          0,
-                          2,
-                        ]
-                      }
-                      stroke="#ffffff"
-                      strokeCap={1}
-                      strokeDash={null}
-                      strokeJoin={1}
-                      strokeWidth={32}
                       transform={
                         Array [
                           1,
                           0,
                           0,
                           1,
-                          0,
-                          0,
+                          -17,
+                          -17,
                         ]
                       }
-                    />
-                  </ARTGroup>
-                </ARTSurfaceView>
-              </View>
-              <View
-                style={
-                  Object {
-                    "borderRadius": 20,
-                    "height": 40,
-                    "width": 180,
-                  }
-                }
-              >
-                <TextInput
-                  allowFontScaling={true}
-                  label="Name"
-                  onChangeText={[Function]}
-                  onFocus={[Function]}
-                  placeholderTextColor="#CDD4DA"
-                  rejectResponderTermination={true}
+                    >
+                      <ARTShape
+                        d={
+                          Array [
+                            0,
+                            0,
+                            36,
+                            3,
+                            0,
+                            16.117749006091444,
+                            16.117749006091433,
+                            7.105427357601002e-15,
+                            35.99999999999999,
+                            0,
+                            2,
+                            178,
+                            0,
+                            3,
+                            197.88225099390857,
+                            0,
+                            214,
+                            16.11774900609144,
+                            214,
+                            36,
+                            2,
+                            214,
+                            38,
+                            3,
+                            214,
+                            57.882250993908556,
+                            197.88225099390857,
+                            74,
+                            178,
+                            74,
+                            2,
+                            36,
+                            74,
+                            3,
+                            16.117749006091444,
+                            74,
+                            7.105427357601002e-15,
+                            57.88225099390856,
+                            0,
+                            38.00000000000001,
+                            1,
+                          ]
+                        }
+                        fill={null}
+                        opacity={1}
+                        shadow={
+                          Array [
+                            4278190080,
+                            0.25,
+                            8,
+                            0,
+                            2,
+                          ]
+                        }
+                        stroke="#ffffff"
+                        strokeCap={1}
+                        strokeDash={null}
+                        strokeJoin={1}
+                        strokeWidth={32}
+                        transform={
+                          Array [
+                            1,
+                            0,
+                            0,
+                            1,
+                            0,
+                            0,
+                          ]
+                        }
+                      />
+                    </ARTGroup>
+                  </ARTSurfaceView>
+                </View>
+                <View
                   style={
                     Object {
-                      "backgroundColor": "rebeccapurple",
-                      "borderColor": "hotpink",
-                      "borderRadius": 4,
-                      "borderWidth": 10,
-                      "color": "white",
-                      "fontFamily": "AvenirLTStd-Roman",
-                      "fontSize": 12,
-                      "height": "100%",
-                      "padding": 40,
+                      "borderRadius": 20,
+                      "height": 40,
+                      "width": 180,
                     }
                   }
-                  underlineColorAndroid="rgba(0, 0, 0, 0)"
-                  value="fancy colour"
-                />
+                >
+                  <TextInput
+                    allowFontScaling={true}
+                    onChangeText={[Function]}
+                    onFocus={[Function]}
+                    placeholderTextColor="#CDD4DA"
+                    rejectResponderTermination={true}
+                    style={
+                      Object {
+                        "backgroundColor": "rebeccapurple",
+                        "borderColor": "hotpink",
+                        "borderRadius": 4,
+                        "borderWidth": 10,
+                        "color": "white",
+                        "fontFamily": "AvenirLTStd-Roman",
+                        "fontSize": 12,
+                        "height": "100%",
+                        "padding": 40,
+                      }
+                    }
+                    underlineColorAndroid="rgba(0, 0, 0, 0)"
+                    value="fancy colour"
+                  />
+                </View>
               </View>
             </View>
             <Text
               style={
                 Object {
-                  "color": "#B8B8B8",
+                  "color": "#eee",
                   "fontFamily": "AvenirLTStd-Roman",
                   "fontSize": 9,
                 }
@@ -6130,366 +7449,392 @@ exports[`Storyshots TextField Style Overrides 1`] = `
               }
             }
           >
-            <View
-              style={
-                Object {
-                  "backfaceVisibility": undefined,
-                  "borderRadius": 20,
-                  "bottom": undefined,
-                  "direction": undefined,
-                  "display": undefined,
-                  "end": undefined,
-                  "height": 40,
-                  "left": undefined,
-                  "margin": undefined,
-                  "marginBottom": undefined,
-                  "marginEnd": undefined,
-                  "marginHorizontal": undefined,
-                  "marginLeft": undefined,
-                  "marginRight": undefined,
-                  "marginStart": undefined,
-                  "marginTop": undefined,
-                  "marginVertical": undefined,
-                  "opacity": undefined,
-                  "position": undefined,
-                  "right": undefined,
-                  "start": undefined,
-                  "top": undefined,
-                  "transform": undefined,
-                  "width": 180,
-                  "zIndex": undefined,
-                }
-              }
-              useArt={true}
-            >
-              <View
+            <View>
+              <Text
                 style={
-                  Array [
-                    Object {
-                      "backgroundColor": "transparent",
-                      "overflow": "hidden",
-                      "position": "absolute",
-                    },
-                    Object {
-                      "backgroundColor": "#ffffff",
-                      "borderRadius": 20,
-                      "height": 40,
-                      "width": 180,
-                    },
-                  ]
+                  Object {
+                    "color": "#000",
+                    "fontFamily": "Comfortaa-Regular",
+                    "fontSize": 13,
+                    "marginBottom": 13,
+                  }
                 }
               >
-                <ARTSurfaceView
+                First Name
+              </Text>
+              <View
+                style={
+                  Object {
+                    "backfaceVisibility": undefined,
+                    "borderRadius": 20,
+                    "bottom": undefined,
+                    "direction": undefined,
+                    "display": undefined,
+                    "end": undefined,
+                    "height": 40,
+                    "left": undefined,
+                    "margin": undefined,
+                    "marginBottom": undefined,
+                    "marginEnd": undefined,
+                    "marginHorizontal": undefined,
+                    "marginLeft": undefined,
+                    "marginRight": undefined,
+                    "marginStart": undefined,
+                    "marginTop": undefined,
+                    "marginVertical": undefined,
+                    "opacity": undefined,
+                    "position": undefined,
+                    "right": undefined,
+                    "start": undefined,
+                    "top": undefined,
+                    "transform": undefined,
+                    "width": 180,
+                    "zIndex": undefined,
+                  }
+                }
+                useArt={true}
+              >
+                <View
                   style={
                     Array [
                       Object {
+                        "backgroundColor": "transparent",
+                        "overflow": "hidden",
                         "position": "absolute",
                       },
                       Object {
+                        "backgroundColor": "#ffffff",
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 180,
                       },
                     ]
                   }
                 >
-                  <ARTGroup
-                    opacity={1}
-                    transform={
+                  <ARTSurfaceView
+                    style={
                       Array [
-                        1,
-                        0,
-                        0,
-                        1,
-                        -17,
-                        -17,
+                        Object {
+                          "position": "absolute",
+                        },
+                        Object {
+                          "height": 40,
+                          "width": 180,
+                        },
                       ]
                     }
                   >
-                    <ARTShape
-                      d={
-                        Array [
-                          0,
-                          0,
-                          36,
-                          3,
-                          0,
-                          16.117749006091444,
-                          16.117749006091433,
-                          7.105427357601002e-15,
-                          35.99999999999999,
-                          0,
-                          2,
-                          178,
-                          0,
-                          3,
-                          197.88225099390857,
-                          0,
-                          214,
-                          16.11774900609144,
-                          214,
-                          36,
-                          2,
-                          214,
-                          38,
-                          3,
-                          214,
-                          57.882250993908556,
-                          197.88225099390857,
-                          74,
-                          178,
-                          74,
-                          2,
-                          36,
-                          74,
-                          3,
-                          16.117749006091444,
-                          74,
-                          7.105427357601002e-15,
-                          57.88225099390856,
-                          0,
-                          38.00000000000001,
-                          1,
-                        ]
-                      }
-                      fill={null}
+                    <ARTGroup
                       opacity={1}
-                      shadow={
-                        Array [
-                          4278190080,
-                          0.25,
-                          8,
-                          0,
-                          2,
-                        ]
-                      }
-                      stroke="#ffffff"
-                      strokeCap={1}
-                      strokeDash={null}
-                      strokeJoin={1}
-                      strokeWidth={32}
                       transform={
                         Array [
                           1,
                           0,
                           0,
                           1,
-                          0,
-                          0,
+                          -17,
+                          -17,
                         ]
                       }
-                    />
-                  </ARTGroup>
-                </ARTSurfaceView>
-              </View>
-              <View
-                style={
-                  Object {
-                    "borderRadius": 20,
-                    "height": 40,
-                    "width": 180,
-                  }
-                }
-              >
-                <TextInput
-                  allowFontScaling={true}
-                  label="First Name"
-                  onChangeText={[Function]}
-                  placeholderTextColor="#CDD4DA"
-                  rejectResponderTermination={true}
+                    >
+                      <ARTShape
+                        d={
+                          Array [
+                            0,
+                            0,
+                            36,
+                            3,
+                            0,
+                            16.117749006091444,
+                            16.117749006091433,
+                            7.105427357601002e-15,
+                            35.99999999999999,
+                            0,
+                            2,
+                            178,
+                            0,
+                            3,
+                            197.88225099390857,
+                            0,
+                            214,
+                            16.11774900609144,
+                            214,
+                            36,
+                            2,
+                            214,
+                            38,
+                            3,
+                            214,
+                            57.882250993908556,
+                            197.88225099390857,
+                            74,
+                            178,
+                            74,
+                            2,
+                            36,
+                            74,
+                            3,
+                            16.117749006091444,
+                            74,
+                            7.105427357601002e-15,
+                            57.88225099390856,
+                            0,
+                            38.00000000000001,
+                            1,
+                          ]
+                        }
+                        fill={null}
+                        opacity={1}
+                        shadow={
+                          Array [
+                            4278190080,
+                            0.25,
+                            8,
+                            0,
+                            2,
+                          ]
+                        }
+                        stroke="#ffffff"
+                        strokeCap={1}
+                        strokeDash={null}
+                        strokeJoin={1}
+                        strokeWidth={32}
+                        transform={
+                          Array [
+                            1,
+                            0,
+                            0,
+                            1,
+                            0,
+                            0,
+                          ]
+                        }
+                      />
+                    </ARTGroup>
+                  </ARTSurfaceView>
+                </View>
+                <View
                   style={
                     Object {
                       "borderRadius": 20,
-                      "color": "#000",
-                      "fontFamily": "AvenirLTStd-Roman",
-                      "fontSize": 12,
-                      "height": "100%",
-                      "padding": 12,
+                      "height": 40,
+                      "width": 180,
                     }
                   }
-                  underlineColorAndroid="rgba(0, 0, 0, 0)"
-                  value="Inigo"
-                />
+                >
+                  <TextInput
+                    allowFontScaling={true}
+                    onChangeText={[Function]}
+                    placeholderTextColor="#CDD4DA"
+                    rejectResponderTermination={true}
+                    style={
+                      Object {
+                        "borderRadius": 20,
+                        "color": "#000",
+                        "fontFamily": "AvenirLTStd-Roman",
+                        "fontSize": 12,
+                        "height": "100%",
+                        "padding": 12,
+                      }
+                    }
+                    underlineColorAndroid="rgba(0, 0, 0, 0)"
+                    value="Inigo"
+                  />
+                </View>
               </View>
             </View>
-            <View
-              style={
-                Object {
-                  "backfaceVisibility": undefined,
-                  "borderRadius": 20,
-                  "bottom": undefined,
-                  "direction": undefined,
-                  "display": undefined,
-                  "end": undefined,
-                  "height": 40,
-                  "left": undefined,
-                  "margin": undefined,
-                  "marginBottom": undefined,
-                  "marginEnd": undefined,
-                  "marginHorizontal": undefined,
-                  "marginLeft": undefined,
-                  "marginRight": undefined,
-                  "marginStart": undefined,
-                  "marginTop": undefined,
-                  "marginVertical": undefined,
-                  "opacity": undefined,
-                  "position": undefined,
-                  "right": undefined,
-                  "start": undefined,
-                  "top": undefined,
-                  "transform": undefined,
-                  "width": 180,
-                  "zIndex": undefined,
-                }
-              }
-              useArt={true}
-            >
-              <View
+            <View>
+              <Text
                 style={
-                  Array [
-                    Object {
-                      "backgroundColor": "transparent",
-                      "overflow": "hidden",
-                      "position": "absolute",
-                    },
-                    Object {
-                      "backgroundColor": "#ffffff",
-                      "borderRadius": 20,
-                      "height": 40,
-                      "width": 180,
-                    },
-                  ]
+                  Object {
+                    "color": "#000",
+                    "fontFamily": "Comfortaa-Regular",
+                    "fontSize": 13,
+                    "marginBottom": 13,
+                  }
                 }
               >
-                <ARTSurfaceView
+                Last Name
+              </Text>
+              <View
+                style={
+                  Object {
+                    "backfaceVisibility": undefined,
+                    "borderRadius": 20,
+                    "bottom": undefined,
+                    "direction": undefined,
+                    "display": undefined,
+                    "end": undefined,
+                    "height": 40,
+                    "left": undefined,
+                    "margin": undefined,
+                    "marginBottom": undefined,
+                    "marginEnd": undefined,
+                    "marginHorizontal": undefined,
+                    "marginLeft": undefined,
+                    "marginRight": undefined,
+                    "marginStart": undefined,
+                    "marginTop": undefined,
+                    "marginVertical": undefined,
+                    "opacity": undefined,
+                    "position": undefined,
+                    "right": undefined,
+                    "start": undefined,
+                    "top": undefined,
+                    "transform": undefined,
+                    "width": 180,
+                    "zIndex": undefined,
+                  }
+                }
+                useArt={true}
+              >
+                <View
                   style={
                     Array [
                       Object {
+                        "backgroundColor": "transparent",
+                        "overflow": "hidden",
                         "position": "absolute",
                       },
                       Object {
+                        "backgroundColor": "#ffffff",
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 180,
                       },
                     ]
                   }
                 >
-                  <ARTGroup
-                    opacity={1}
-                    transform={
+                  <ARTSurfaceView
+                    style={
                       Array [
-                        1,
-                        0,
-                        0,
-                        1,
-                        -17,
-                        -17,
+                        Object {
+                          "position": "absolute",
+                        },
+                        Object {
+                          "height": 40,
+                          "width": 180,
+                        },
                       ]
                     }
                   >
-                    <ARTShape
-                      d={
-                        Array [
-                          0,
-                          0,
-                          36,
-                          3,
-                          0,
-                          16.117749006091444,
-                          16.117749006091433,
-                          7.105427357601002e-15,
-                          35.99999999999999,
-                          0,
-                          2,
-                          178,
-                          0,
-                          3,
-                          197.88225099390857,
-                          0,
-                          214,
-                          16.11774900609144,
-                          214,
-                          36,
-                          2,
-                          214,
-                          38,
-                          3,
-                          214,
-                          57.882250993908556,
-                          197.88225099390857,
-                          74,
-                          178,
-                          74,
-                          2,
-                          36,
-                          74,
-                          3,
-                          16.117749006091444,
-                          74,
-                          7.105427357601002e-15,
-                          57.88225099390856,
-                          0,
-                          38.00000000000001,
-                          1,
-                        ]
-                      }
-                      fill={null}
+                    <ARTGroup
                       opacity={1}
-                      shadow={
-                        Array [
-                          4278190080,
-                          0.25,
-                          8,
-                          0,
-                          2,
-                        ]
-                      }
-                      stroke="#ffffff"
-                      strokeCap={1}
-                      strokeDash={null}
-                      strokeJoin={1}
-                      strokeWidth={32}
                       transform={
                         Array [
                           1,
                           0,
                           0,
                           1,
-                          0,
-                          0,
+                          -17,
+                          -17,
                         ]
                       }
-                    />
-                  </ARTGroup>
-                </ARTSurfaceView>
-              </View>
-              <View
-                style={
-                  Object {
-                    "borderRadius": 20,
-                    "height": 40,
-                    "width": 180,
-                  }
-                }
-              >
-                <TextInput
-                  allowFontScaling={true}
-                  label="Last Name"
-                  onChangeText={[Function]}
-                  placeholderTextColor="#CDD4DA"
-                  rejectResponderTermination={true}
+                    >
+                      <ARTShape
+                        d={
+                          Array [
+                            0,
+                            0,
+                            36,
+                            3,
+                            0,
+                            16.117749006091444,
+                            16.117749006091433,
+                            7.105427357601002e-15,
+                            35.99999999999999,
+                            0,
+                            2,
+                            178,
+                            0,
+                            3,
+                            197.88225099390857,
+                            0,
+                            214,
+                            16.11774900609144,
+                            214,
+                            36,
+                            2,
+                            214,
+                            38,
+                            3,
+                            214,
+                            57.882250993908556,
+                            197.88225099390857,
+                            74,
+                            178,
+                            74,
+                            2,
+                            36,
+                            74,
+                            3,
+                            16.117749006091444,
+                            74,
+                            7.105427357601002e-15,
+                            57.88225099390856,
+                            0,
+                            38.00000000000001,
+                            1,
+                          ]
+                        }
+                        fill={null}
+                        opacity={1}
+                        shadow={
+                          Array [
+                            4278190080,
+                            0.25,
+                            8,
+                            0,
+                            2,
+                          ]
+                        }
+                        stroke="#ffffff"
+                        strokeCap={1}
+                        strokeDash={null}
+                        strokeJoin={1}
+                        strokeWidth={32}
+                        transform={
+                          Array [
+                            1,
+                            0,
+                            0,
+                            1,
+                            0,
+                            0,
+                          ]
+                        }
+                      />
+                    </ARTGroup>
+                  </ARTSurfaceView>
+                </View>
+                <View
                   style={
                     Object {
                       "borderRadius": 20,
-                      "color": "#000",
-                      "fontFamily": "AvenirLTStd-Roman",
-                      "fontSize": 12,
-                      "height": "100%",
-                      "padding": 12,
+                      "height": 40,
+                      "width": 180,
                     }
                   }
-                  underlineColorAndroid="rgba(0, 0, 0, 0)"
-                  value="Montoya"
-                />
+                >
+                  <TextInput
+                    allowFontScaling={true}
+                    onChangeText={[Function]}
+                    placeholderTextColor="#CDD4DA"
+                    rejectResponderTermination={true}
+                    style={
+                      Object {
+                        "borderRadius": 20,
+                        "color": "#000",
+                        "fontFamily": "AvenirLTStd-Roman",
+                        "fontSize": 12,
+                        "height": "100%",
+                        "padding": 12,
+                      }
+                    }
+                    underlineColorAndroid="rgba(0, 0, 0, 0)"
+                    value="Montoya"
+                  />
+                </View>
               </View>
             </View>
           </View>
@@ -6572,194 +7917,207 @@ exports[`Storyshots TextField Style Overrides 1`] = `
               }
             }
           >
-            <View
-              style={
-                Object {
-                  "backfaceVisibility": undefined,
-                  "borderRadius": 20,
-                  "bottom": undefined,
-                  "direction": undefined,
-                  "display": undefined,
-                  "end": undefined,
-                  "height": 40,
-                  "left": undefined,
-                  "margin": undefined,
-                  "marginBottom": undefined,
-                  "marginEnd": undefined,
-                  "marginHorizontal": undefined,
-                  "marginLeft": undefined,
-                  "marginRight": undefined,
-                  "marginStart": undefined,
-                  "marginTop": undefined,
-                  "marginVertical": undefined,
-                  "opacity": undefined,
-                  "position": undefined,
-                  "right": undefined,
-                  "start": undefined,
-                  "top": undefined,
-                  "transform": undefined,
-                  "width": 180,
-                  "zIndex": undefined,
-                }
-              }
-              useArt={true}
-            >
-              <View
+            <View>
+              <Text
                 style={
-                  Array [
-                    Object {
-                      "backgroundColor": "transparent",
-                      "overflow": "hidden",
-                      "position": "absolute",
-                    },
-                    Object {
-                      "backgroundColor": "#ffffff",
-                      "borderRadius": 20,
-                      "height": 40,
-                      "width": 180,
-                    },
-                  ]
+                  Object {
+                    "color": "#000",
+                    "fontFamily": "Comfortaa-Regular",
+                    "fontSize": 13,
+                    "marginBottom": 13,
+                  }
                 }
               >
-                <ARTSurfaceView
+                Name
+              </Text>
+              <View
+                style={
+                  Object {
+                    "backfaceVisibility": undefined,
+                    "borderRadius": 20,
+                    "bottom": undefined,
+                    "direction": undefined,
+                    "display": undefined,
+                    "end": undefined,
+                    "height": 40,
+                    "left": undefined,
+                    "margin": undefined,
+                    "marginBottom": undefined,
+                    "marginEnd": undefined,
+                    "marginHorizontal": undefined,
+                    "marginLeft": undefined,
+                    "marginRight": undefined,
+                    "marginStart": undefined,
+                    "marginTop": undefined,
+                    "marginVertical": undefined,
+                    "opacity": undefined,
+                    "position": undefined,
+                    "right": undefined,
+                    "start": undefined,
+                    "top": undefined,
+                    "transform": undefined,
+                    "width": 180,
+                    "zIndex": undefined,
+                  }
+                }
+                useArt={true}
+              >
+                <View
                   style={
                     Array [
                       Object {
+                        "backgroundColor": "transparent",
+                        "overflow": "hidden",
                         "position": "absolute",
                       },
                       Object {
+                        "backgroundColor": "#ffffff",
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 180,
                       },
                     ]
                   }
                 >
-                  <ARTGroup
-                    opacity={1}
-                    transform={
+                  <ARTSurfaceView
+                    style={
                       Array [
-                        1,
-                        0,
-                        0,
-                        1,
-                        -17,
-                        -17,
+                        Object {
+                          "position": "absolute",
+                        },
+                        Object {
+                          "height": 40,
+                          "width": 180,
+                        },
                       ]
                     }
                   >
-                    <ARTShape
-                      d={
-                        Array [
-                          0,
-                          0,
-                          36,
-                          3,
-                          0,
-                          16.117749006091444,
-                          16.117749006091433,
-                          7.105427357601002e-15,
-                          35.99999999999999,
-                          0,
-                          2,
-                          178,
-                          0,
-                          3,
-                          197.88225099390857,
-                          0,
-                          214,
-                          16.11774900609144,
-                          214,
-                          36,
-                          2,
-                          214,
-                          38,
-                          3,
-                          214,
-                          57.882250993908556,
-                          197.88225099390857,
-                          74,
-                          178,
-                          74,
-                          2,
-                          36,
-                          74,
-                          3,
-                          16.117749006091444,
-                          74,
-                          7.105427357601002e-15,
-                          57.88225099390856,
-                          0,
-                          38.00000000000001,
-                          1,
-                        ]
-                      }
-                      fill={null}
+                    <ARTGroup
                       opacity={1}
-                      shadow={
-                        Array [
-                          4278190080,
-                          0.25,
-                          8,
-                          0,
-                          2,
-                        ]
-                      }
-                      stroke="#ffffff"
-                      strokeCap={1}
-                      strokeDash={null}
-                      strokeJoin={1}
-                      strokeWidth={32}
                       transform={
                         Array [
                           1,
                           0,
                           0,
                           1,
-                          0,
-                          0,
+                          -17,
+                          -17,
                         ]
                       }
-                    />
-                  </ARTGroup>
-                </ARTSurfaceView>
-              </View>
-              <View
-                style={
-                  Object {
-                    "borderRadius": 20,
-                    "height": 40,
-                    "width": 180,
-                  }
-                }
-              >
-                <TextInput
-                  allowFontScaling={true}
-                  label="Name"
-                  onChangeText={[Function]}
-                  placeholderTextColor="#CDD4DA"
-                  rejectResponderTermination={true}
+                    >
+                      <ARTShape
+                        d={
+                          Array [
+                            0,
+                            0,
+                            36,
+                            3,
+                            0,
+                            16.117749006091444,
+                            16.117749006091433,
+                            7.105427357601002e-15,
+                            35.99999999999999,
+                            0,
+                            2,
+                            178,
+                            0,
+                            3,
+                            197.88225099390857,
+                            0,
+                            214,
+                            16.11774900609144,
+                            214,
+                            36,
+                            2,
+                            214,
+                            38,
+                            3,
+                            214,
+                            57.882250993908556,
+                            197.88225099390857,
+                            74,
+                            178,
+                            74,
+                            2,
+                            36,
+                            74,
+                            3,
+                            16.117749006091444,
+                            74,
+                            7.105427357601002e-15,
+                            57.88225099390856,
+                            0,
+                            38.00000000000001,
+                            1,
+                          ]
+                        }
+                        fill={null}
+                        opacity={1}
+                        shadow={
+                          Array [
+                            4278190080,
+                            0.25,
+                            8,
+                            0,
+                            2,
+                          ]
+                        }
+                        stroke="#ffffff"
+                        strokeCap={1}
+                        strokeDash={null}
+                        strokeJoin={1}
+                        strokeWidth={32}
+                        transform={
+                          Array [
+                            1,
+                            0,
+                            0,
+                            1,
+                            0,
+                            0,
+                          ]
+                        }
+                      />
+                    </ARTGroup>
+                  </ARTSurfaceView>
+                </View>
+                <View
                   style={
                     Object {
-                      "backgroundColor": "rebeccapurple",
-                      "borderColor": "hotpink",
-                      "borderRadius": 4,
-                      "borderWidth": 10,
-                      "color": "white",
-                      "fontFamily": "AvenirLTStd-Roman",
-                      "fontSize": 12,
-                      "height": "100%",
-                      "padding": 40,
+                      "borderRadius": 20,
+                      "height": 40,
+                      "width": 180,
                     }
                   }
-                  underlineColorAndroid="rgba(0, 0, 0, 0)"
-                  value="fancy colour"
-                />
+                >
+                  <TextInput
+                    allowFontScaling={true}
+                    onChangeText={[Function]}
+                    placeholderTextColor="#CDD4DA"
+                    rejectResponderTermination={true}
+                    style={
+                      Object {
+                        "backgroundColor": "rebeccapurple",
+                        "borderColor": "hotpink",
+                        "borderRadius": 4,
+                        "borderWidth": 10,
+                        "color": "white",
+                        "fontFamily": "AvenirLTStd-Roman",
+                        "fontSize": 12,
+                        "height": "100%",
+                        "padding": 40,
+                      }
+                    }
+                    underlineColorAndroid="rgba(0, 0, 0, 0)"
+                    value="fancy colour"
+                  />
+                </View>
               </View>
             </View>
             <Text
               style={
                 Object {
-                  "color": "#B8B8B8",
+                  "color": "#eee",
                   "fontFamily": "AvenirLTStd-Roman",
                   "fontSize": 9,
                 }
@@ -6847,194 +8205,207 @@ exports[`Storyshots TextField Style Overrides 1`] = `
               }
             }
           >
-            <View
-              style={
-                Object {
-                  "backfaceVisibility": undefined,
-                  "borderRadius": 20,
-                  "bottom": undefined,
-                  "direction": undefined,
-                  "display": undefined,
-                  "end": undefined,
-                  "height": 40,
-                  "left": undefined,
-                  "margin": undefined,
-                  "marginBottom": undefined,
-                  "marginEnd": undefined,
-                  "marginHorizontal": undefined,
-                  "marginLeft": undefined,
-                  "marginRight": undefined,
-                  "marginStart": undefined,
-                  "marginTop": undefined,
-                  "marginVertical": undefined,
-                  "opacity": undefined,
-                  "position": undefined,
-                  "right": undefined,
-                  "start": undefined,
-                  "top": undefined,
-                  "transform": undefined,
-                  "width": 180,
-                  "zIndex": undefined,
-                }
-              }
-              useArt={true}
-            >
-              <View
+            <View>
+              <Text
                 style={
-                  Array [
-                    Object {
-                      "backgroundColor": "transparent",
-                      "overflow": "hidden",
-                      "position": "absolute",
-                    },
-                    Object {
-                      "backgroundColor": "#ffffff",
-                      "borderRadius": 20,
-                      "height": 40,
-                      "width": 180,
-                    },
-                  ]
+                  Object {
+                    "color": "#000",
+                    "fontFamily": "Comfortaa-Regular",
+                    "fontSize": 13,
+                    "marginBottom": 13,
+                  }
                 }
               >
-                <ARTSurfaceView
+                Name
+              </Text>
+              <View
+                style={
+                  Object {
+                    "backfaceVisibility": undefined,
+                    "borderRadius": 20,
+                    "bottom": undefined,
+                    "direction": undefined,
+                    "display": undefined,
+                    "end": undefined,
+                    "height": 40,
+                    "left": undefined,
+                    "margin": undefined,
+                    "marginBottom": undefined,
+                    "marginEnd": undefined,
+                    "marginHorizontal": undefined,
+                    "marginLeft": undefined,
+                    "marginRight": undefined,
+                    "marginStart": undefined,
+                    "marginTop": undefined,
+                    "marginVertical": undefined,
+                    "opacity": undefined,
+                    "position": undefined,
+                    "right": undefined,
+                    "start": undefined,
+                    "top": undefined,
+                    "transform": undefined,
+                    "width": 180,
+                    "zIndex": undefined,
+                  }
+                }
+                useArt={true}
+              >
+                <View
                   style={
                     Array [
                       Object {
+                        "backgroundColor": "transparent",
+                        "overflow": "hidden",
                         "position": "absolute",
                       },
                       Object {
+                        "backgroundColor": "#ffffff",
+                        "borderRadius": 20,
                         "height": 40,
                         "width": 180,
                       },
                     ]
                   }
                 >
-                  <ARTGroup
-                    opacity={1}
-                    transform={
+                  <ARTSurfaceView
+                    style={
                       Array [
-                        1,
-                        0,
-                        0,
-                        1,
-                        -17,
-                        -17,
+                        Object {
+                          "position": "absolute",
+                        },
+                        Object {
+                          "height": 40,
+                          "width": 180,
+                        },
                       ]
                     }
                   >
-                    <ARTShape
-                      d={
-                        Array [
-                          0,
-                          0,
-                          36,
-                          3,
-                          0,
-                          16.117749006091444,
-                          16.117749006091433,
-                          7.105427357601002e-15,
-                          35.99999999999999,
-                          0,
-                          2,
-                          178,
-                          0,
-                          3,
-                          197.88225099390857,
-                          0,
-                          214,
-                          16.11774900609144,
-                          214,
-                          36,
-                          2,
-                          214,
-                          38,
-                          3,
-                          214,
-                          57.882250993908556,
-                          197.88225099390857,
-                          74,
-                          178,
-                          74,
-                          2,
-                          36,
-                          74,
-                          3,
-                          16.117749006091444,
-                          74,
-                          7.105427357601002e-15,
-                          57.88225099390856,
-                          0,
-                          38.00000000000001,
-                          1,
-                        ]
-                      }
-                      fill={null}
+                    <ARTGroup
                       opacity={1}
-                      shadow={
-                        Array [
-                          4278190080,
-                          0.25,
-                          8,
-                          0,
-                          2,
-                        ]
-                      }
-                      stroke="#ffffff"
-                      strokeCap={1}
-                      strokeDash={null}
-                      strokeJoin={1}
-                      strokeWidth={32}
                       transform={
                         Array [
                           1,
                           0,
                           0,
                           1,
-                          0,
-                          0,
+                          -17,
+                          -17,
                         ]
                       }
-                    />
-                  </ARTGroup>
-                </ARTSurfaceView>
-              </View>
-              <View
-                style={
-                  Object {
-                    "borderRadius": 20,
-                    "height": 40,
-                    "width": 180,
-                  }
-                }
-              >
-                <TextInput
-                  allowFontScaling={true}
-                  label="Name"
-                  onChangeText={[Function]}
-                  placeholderTextColor="#CDD4DA"
-                  rejectResponderTermination={true}
+                    >
+                      <ARTShape
+                        d={
+                          Array [
+                            0,
+                            0,
+                            36,
+                            3,
+                            0,
+                            16.117749006091444,
+                            16.117749006091433,
+                            7.105427357601002e-15,
+                            35.99999999999999,
+                            0,
+                            2,
+                            178,
+                            0,
+                            3,
+                            197.88225099390857,
+                            0,
+                            214,
+                            16.11774900609144,
+                            214,
+                            36,
+                            2,
+                            214,
+                            38,
+                            3,
+                            214,
+                            57.882250993908556,
+                            197.88225099390857,
+                            74,
+                            178,
+                            74,
+                            2,
+                            36,
+                            74,
+                            3,
+                            16.117749006091444,
+                            74,
+                            7.105427357601002e-15,
+                            57.88225099390856,
+                            0,
+                            38.00000000000001,
+                            1,
+                          ]
+                        }
+                        fill={null}
+                        opacity={1}
+                        shadow={
+                          Array [
+                            4278190080,
+                            0.25,
+                            8,
+                            0,
+                            2,
+                          ]
+                        }
+                        stroke="#ffffff"
+                        strokeCap={1}
+                        strokeDash={null}
+                        strokeJoin={1}
+                        strokeWidth={32}
+                        transform={
+                          Array [
+                            1,
+                            0,
+                            0,
+                            1,
+                            0,
+                            0,
+                          ]
+                        }
+                      />
+                    </ARTGroup>
+                  </ARTSurfaceView>
+                </View>
+                <View
                   style={
                     Object {
-                      "backgroundColor": "rebeccapurple",
-                      "borderColor": "#7fff00",
-                      "borderRadius": 4,
-                      "borderWidth": 10,
-                      "color": "white",
-                      "fontFamily": "AvenirLTStd-Roman",
-                      "fontSize": 12,
-                      "height": "100%",
-                      "padding": 40,
+                      "borderRadius": 20,
+                      "height": 40,
+                      "width": 180,
                     }
                   }
-                  underlineColorAndroid="rgba(0, 0, 0, 0)"
-                  value="fancy colour"
-                />
+                >
+                  <TextInput
+                    allowFontScaling={true}
+                    onChangeText={[Function]}
+                    placeholderTextColor="#CDD4DA"
+                    rejectResponderTermination={true}
+                    style={
+                      Object {
+                        "backgroundColor": "rebeccapurple",
+                        "borderColor": "#7fff00",
+                        "borderRadius": 4,
+                        "borderWidth": 10,
+                        "color": "white",
+                        "fontFamily": "AvenirLTStd-Roman",
+                        "fontSize": 12,
+                        "height": "100%",
+                        "padding": 40,
+                      }
+                    }
+                    underlineColorAndroid="rgba(0, 0, 0, 0)"
+                    value="fancy colour"
+                  />
+                </View>
               </View>
             </View>
             <Text
               style={
                 Object {
-                  "color": "#B8B8B8",
+                  "color": "#eee",
                   "fontFamily": "AvenirLTStd-Roman",
                   "fontSize": 9,
                 }

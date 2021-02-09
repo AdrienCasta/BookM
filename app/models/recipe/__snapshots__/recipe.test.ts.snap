@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`recipe store can add new recipe 1`] = `
+Object {
+  "recipe": Object {
+    "cookingTime": null,
+    "description": "",
+    "image": Object {
+      "uri": "",
+    },
+    "ingredients": Array [
+      Object {
+        "image": Object {
+          "uri": "test",
+        },
+        "label": "",
+      },
+    ],
+    "numberOfCalories": null,
+    "numberOfPersons": 0,
+    "steps": Array [
+      Object {
+        "description": "",
+        "trick": "",
+      },
+      Object {
+        "description": "",
+        "trick": "",
+      },
+    ],
+    "time": 0,
+    "title": "",
+  },
+  "recipes": Array [],
+}
+`;
+
+exports[`recipe store can clear recipe 1`] = `
+Object {
+  "recipe": undefined,
+  "recipes": Array [],
+}
+`;
+
+exports[`recipe store can list recipes 1`] = `
+Object {
+  "recipe": undefined,
+  "recipes": Array [],
+}
+`;
