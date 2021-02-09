@@ -106,7 +106,6 @@ const RootStack = observer(function () {
   }, [])
 
   useEffect(() => {
-    console.tron.log({ stack })
     if (stack !== null) {
       return
     }

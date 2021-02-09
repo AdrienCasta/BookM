@@ -1,22 +1,31 @@
-import { Instance, SnapshotOut, types } from "mobx-state-tree"
+import { getParent, Instance, SnapshotOut, types, flow } from "mobx-state-tree"
 import * as yup from "yup"
 import type { Asserts } from "yup"
+import { RootStoreModel } from "../root-store/root-store"
+import { Storage, API, graphqlOperation } from "aws-amplify"
+import * as mutations from "../../graphql/mutations"
+import * as queries from "../../graphql/queries"
 
 export interface IRecipeFieldValues extends Asserts<typeof RecipeSchema> {}
 
 export const RecipeSchema = yup.object({
-  title: yup.string().required(),
-  image: yup.object({ uri: yup.string().required() }).required(),
-  description: yup.string().required(),
-  numberOfPersons: yup.number().positive().integer().required(),
+  title: yup.string().required().default(""),
+  image: yup.object({ uri: yup.string().required() }).required().default({ uri: "" }),
+  description: yup.string().required().default(""),
+  numberOfPersons: yup.number().positive().integer().required().default(0),
   time: yup
     .date()
     .min(new Date(60000))
     .max(new Date(24 * 3600 * 1000))
-    .required(),
+    .required()
+    .default(new Date(0)),
   steps: yup
     .array(yup.object({ description: yup.string().required(), trick: yup.string() }))
-    .min(2),
+    .min(2)
+    .default([
+      { description: "", trick: "" },
+      { description: "", trick: "" },
+    ]),
   ingredients: yup
     .array(
       yup.object({
@@ -38,13 +47,14 @@ export const RecipeSchema = yup.object({
     .transform((value) => (isNaN(value) ? undefined : value))
     .positive()
     .integer()
-    .notRequired(),
+    .nullable()
+    .default(null),
 })
 
 /**
  * Model description here for TypeScript hints.
  */
-export const RecipeModel = types.model({
+export const RecipeModel = types.model("RecipeModel", {
   title: types.string,
   description: types.string,
   image: types.model({ uri: types.string }),
@@ -59,6 +69,85 @@ export const RecipeModel = types.model({
     types.model({ description: types.string, trick: types.union(types.string, types.null) }),
   ),
 })
+
+export const RecipeStore = types
+  .model("RecipeStore", {
+    recipe: types.maybe(RecipeModel),
+    recipes: types.array(RecipeModel),
+  })
+  .views((self) => ({
+    get handleRequest() {
+      return getParent<typeof RootStoreModel>(self).request.startRequest
+    },
+  }))
+  .actions((self) => {
+    const clearRecipe = () => {
+      self.recipe = undefined
+    }
+    return {
+      clearRecipe,
+      addRecipe(recipe) {
+        self.recipe = recipe
+      },
+      listRecipes: flow(function* (): any {
+        try {
+          const response = yield API.graphql(graphqlOperation(queries.listRecipes))
+
+          self.recipes = response.data.listRecipes.items
+
+          return response
+        } catch (e) {
+          throw Error(e)
+        }
+      }),
+      createRecipe: flow(function* () {
+        try {
+          const reponse = yield self.handleRequest(
+            async function () {
+              const getImageUriFileName = (path: string) =>
+                path.substring(path.lastIndexOf("/") + 1)
+
+              const fetches = await Promise.all(
+                [
+                  self.recipe.image.uri,
+                  ...self.recipe.ingredients.map(({ image }) => image.uri),
+                ].map((data) => fetch(data)),
+              )
+              for (const data of fetches) {
+                const blob = (await data.blob()) as { _data: { name: string } }
+                const fileName = blob._data.name
+
+                await Storage.put(fileName, blob, {
+                  contentType: "image/jpeg",
+                })
+              }
+              const { image, ingredients, time, cookingTime } = self.recipe
+
+              return await API.graphql(
+                graphqlOperation(mutations.createRecipe, {
+                  input: {
+                    ...self.recipe,
+                    time: time.toISOString(),
+                    cookingTime: cookingTime.toISOString(),
+                    image: getImageUriFileName(image.uri),
+                    ingredients: ingredients.map(({ image, label }) => ({
+                      image: getImageUriFileName(image.uri),
+                      label,
+                    })),
+                  },
+                }),
+              )
+            },
+            { error: "Une erreur est survenue", success: "Votre recette à bien été publiée" },
+          )
+          clearRecipe()
+          return reponse
+        } catch (e) {
+          throw Error(e)
+        }
+      }),
+    }
+  })
 
 /**
   * Un-comment the following to omit model attributes from your snapshots (and from async storage).

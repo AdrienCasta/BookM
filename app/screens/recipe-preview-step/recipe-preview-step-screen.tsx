@@ -4,7 +4,7 @@ import { useStores } from "../../models"
 import { RecipePreviewStepTemplate } from "./recipe.preview-step-template"
 
 export const RecipePreviewStepScreen = observer(function RecipePreviewStepScreen() {
-  const { user } = useStores()
+  const { user, recipeStore } = useStores()
 
   const author = {
     firstname: user.firstname,
@@ -16,8 +16,8 @@ export const RecipePreviewStepScreen = observer(function RecipePreviewStepScreen
   return (
     <RecipePreviewStepTemplate
       author={author}
-      title={user.recipe.title}
-      steps={user.recipe.steps}
+      title={recipeStore.recipe.title}
+      steps={recipeStore.recipe.steps}
     />
   )
 })

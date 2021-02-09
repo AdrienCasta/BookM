@@ -5,7 +5,7 @@ import { useStores } from "../../models"
 import { RecipePreviewTemplate } from "./recipe.preview-template"
 
 export const RecipePreviewScreen = function RecipePreviewScreen() {
-  const { user } = useStores()
+  const { user, recipeStore } = useStores()
   const author = {
     firstname: user.firstname || "Adrien",
     image: {
@@ -19,12 +19,12 @@ export const RecipePreviewScreen = function RecipePreviewScreen() {
     navigation.navigate("RecipePreviewStepScreen")
   }
   const handleRecipeCreation = () => {
-    user.createRecipe().then(() => navigation.navigate("HomeScreen"))
+    recipeStore.createRecipe()
   }
 
   return (
     <RecipePreviewTemplate
-      recipe={user.recipe}
+      recipe={recipeStore.recipe}
       onCookPress={handleNavigation}
       onPublish={handleRecipeCreation}
       author={author}

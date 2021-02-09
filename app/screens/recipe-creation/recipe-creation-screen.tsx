@@ -9,11 +9,9 @@ import {
   launchImageLibrary,
 } from "react-native-image-picker"
 import { useNavigation } from "@react-navigation/native"
-// import { API, graphqlOperation, Storage } from "aws-amplify"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { Box, Screen, Text, TextField } from "../../components"
 import { color } from "../../theme"
-// import * as mutations from "../../graphql/mutations"
 import { RecipeCreationInfoBottomSheet } from "./components/recipe-creation-info-bottom-sheet"
 import { reanimatedBottomSheet } from "./recipe-creation.share"
 import { RecipeCreationStockBottomSheet } from "./components/recipe-creation-stock-bottom-sheet"
@@ -51,60 +49,6 @@ const imageOptions = {
   maxHeight: 600,
 } as ImageLibraryOptions
 
-// const createRecipe = async (recipeFormData: IRecipeFieldValues) => {
-//   const getImageUriFileName = (path: string) => path.substring(path.lastIndexOf("/") + 1)
-//   try {
-//     const fetches = await Promise.all(
-//       [
-//         recipeFormData.image.uri,
-//         ...recipeFormData.ingredients.map(({ image }) => image.uri),
-//       ].map((data) => fetch(data)),
-//     )
-
-//     for (const data of fetches) {
-//       const blob = (await data.blob()) as { _data: { name: string } }
-//       const fileName = blob._data.name
-
-//       await Storage.put(fileName, blob, {
-//         contentType: "image/jpeg",
-//       })
-//     }
-
-//     const {
-//       numberOfCalories,
-//       numberOfPersons,
-//       cookingTime,
-//       time,
-//       title,
-//       description,
-//       image,
-//       ingredients,
-//       steps,
-//     } = recipeFormData
-
-//     return await API.graphql(
-//       graphqlOperation(mutations.createRecipe, {
-//         input: {
-//           title,
-//           description,
-//           image: getImageUriFileName(image.uri),
-//           numberOfCalories,
-//           numberOfPersons,
-//           cookingTime,
-//           time,
-//           steps,
-//           ingredients: ingredients.map(({ value: { image, label } }) => ({
-//             image: getImageUriFileName(image.uri),
-//             label,
-//           })),
-//         },
-//       }),
-//     )
-//   } catch (e) {
-//     throw Error(e)
-//   }
-// }
-
 const fomatDuration = (duration: Date) => {
   if (!duration) {
     return ""
@@ -115,7 +59,7 @@ const fomatDuration = (duration: Date) => {
 }
 
 export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
-  const { user } = useStores()
+  const { recipeStore } = useStores()
   const navigation = useNavigation()
   const [ingredientPreview, setIngredientPreview] = useState<ImagePickerResponse>(null)
   const { control, setValue, watch, handleSubmit, errors } = useForm<IRecipeFieldValues>({
@@ -174,16 +118,8 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
   }
 
   const onSubmit = (recipe: IRecipeFieldValues) => {
-    console.tron.logImportant(recipe)
-    user.previewRecipe(recipe)
+    recipeStore.addRecipe(recipe)
     navigation.navigate("RecipePreviewScreen")
-    // return
-    // try {
-    //   await createRecipe(recipe)
-    //   // navigation.navigate("HomeScreen")
-    // } catch (e) {
-    //   console.log(JSON.stringify(e))
-    // }
   }
 
   return (
