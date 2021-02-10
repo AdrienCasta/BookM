@@ -22,6 +22,8 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		E7310CFC68414CCCB84D2239 /* AvenirLTStd-Roman.otf in Resources */ = {isa = PBXBuildFile; fileRef = F8680B7868BD4C829222290B /* AvenirLTStd-Roman.otf */; };
 		E83168F65ED8E12385E7A654 /* libPods-BookM-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDD331FA4FEF606A96146D1 /* libPods-BookM-tvOSTests.a */; };
+		923FEBADBCBD4B9DB37CD93B /* AvenirLTPro-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1B84C2CB9B5748B8890707BF /* AvenirLTPro-Black.otf */; };
+		6F5E8E7638C7454FB9B4AE7D /* AvenirLTStd-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9556F43B1E654DF2A0860FC3 /* AvenirLTStd-Regular.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,8 @@
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F8680B7868BD4C829222290B /* AvenirLTStd-Roman.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "AvenirLTStd-Roman.otf"; path = "../assets/fonts/AvenirLTStd-Roman.otf"; sourceTree = "<group>"; };
 		FB5D93C5184049624F77DEDE /* Pods-BookM-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookM-tvOS.release.xcconfig"; path = "Target Support Files/Pods-BookM-tvOS/Pods-BookM-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		1B84C2CB9B5748B8890707BF /* AvenirLTPro-Black.otf */ = {isa = PBXFileReference; name = "AvenirLTPro-Black.otf"; path = "../assets/fonts/AvenirLTPro-Black.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9556F43B1E654DF2A0860FC3 /* AvenirLTStd-Regular.otf */ = {isa = PBXFileReference; name = "AvenirLTStd-Regular.otf"; path = "../assets/fonts/AvenirLTStd-Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +194,8 @@
 			children = (
 				7E65BA462C424A8DAD8CB715 /* Comfortaa-Regular.ttf */,
 				F8680B7868BD4C829222290B /* AvenirLTStd-Roman.otf */,
+				1B84C2CB9B5748B8890707BF /* AvenirLTPro-Black.otf */,
+				9556F43B1E654DF2A0860FC3 /* AvenirLTStd-Regular.otf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -356,6 +362,8 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				1BAC5B373C4545108A88263B /* Comfortaa-Regular.ttf in Resources */,
 				E7310CFC68414CCCB84D2239 /* AvenirLTStd-Roman.otf in Resources */,
+				923FEBADBCBD4B9DB37CD93B /* AvenirLTPro-Black.otf in Resources */,
+				6F5E8E7638C7454FB9B4AE7D /* AvenirLTStd-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

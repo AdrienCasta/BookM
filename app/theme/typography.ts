@@ -17,7 +17,7 @@ export const typography = {
   /**
    * The primary font.  Used in most places.
    */
-  primary: Platform.select({ ios: "AvenirLTStd-Roman", android: "AvenirLTStd-Roman" }),
+  primary: Platform.select({ ios: "AvenirLTStd", android: "AvenirLTStd-Regular" }),
 
   /**
    * An alternate font used for perhaps titles and stuff.
