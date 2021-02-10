@@ -5,6 +5,7 @@ import { RecipePreviewTemplate } from "./recipe-preview/recipe.preview-template"
 import { initialWindowMetrics, SafeAreaProvider } from "react-native-safe-area-context"
 import { IRecipeFieldValues } from "../models/recipe/recipe"
 import { RecipePreviewStepTemplate } from "./recipe-preview-step/recipe.preview-step-template"
+import ProfilScreenTemplate from "./profile/profile-screen-template"
 
 const noop = console.log
 const recipe: IRecipeFieldValues = {
@@ -64,4 +65,15 @@ storiesOf("Screens", module)
   })
   .add("RecipePreviewStepScreen", () => {
     return <RecipePreviewStepTemplate steps={recipe.steps} title={recipe.title} author={author} />
+  })
+  .add("ProfilScreen", () => {
+    return (
+      <ProfilScreenTemplate
+        author={author}
+        recipes={3}
+        subscribers={55}
+        subscribtions={122}
+        description="loremipsum"
+      />
+    )
   })
