@@ -50,9 +50,8 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Comfortaa-Regular.ttf</string>
-		<string>AvenirLTStd-Roman.otf</string>
-		<string>AvenirLTPro-Black.otf</string>
-		<string>AvenirLTStd-Regular.otf</string>
+		<string>AvenirLTStd.otf</string>
+		<string>Avenir.otf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
