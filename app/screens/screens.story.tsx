@@ -74,6 +74,7 @@ storiesOf("Screens", module)
         subscribers={55}
         subscribtions={122}
         description="loremipsum"
+        onEditPress={console.log}
       />
     )
   })

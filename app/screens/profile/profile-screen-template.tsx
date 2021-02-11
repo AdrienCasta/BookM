@@ -1,6 +1,6 @@
 import React from "react"
-import { Image, ImageStyle, TextStyle, View, ViewStyle } from "react-native"
-import { Box, Screen, Text } from "../../components"
+import { TextStyle, View, ViewStyle, TouchableOpacity } from "react-native"
+import { Box, Screen, Text, Picture } from "../../components"
 import { color, typography } from "../../theme"
 import shadowViewStyle from "../../utils/shadow"
 import { combine } from "../../utils/style"
@@ -10,102 +10,107 @@ interface Props {
   subscribers: number
   subscribtions: number
   description: string
+  onEditPress: () => void
   author: {
     firstname: string
     image: Record<"uri", string>
   }
 }
 
+const ROOT: ViewStyle = {
+  paddingHorizontal: 14,
+}
+const TITLE: TextStyle = {
+  marginVertical: 20,
+  fontFamily: typography.secondary,
+  fontSize: 15,
+  fontWeight: "bold",
+}
+const INFO: ViewStyle = {}
+const INFO_DATA: ViewStyle = {
+  width: "100%",
+}
+const INFO_FIRSTNAME: TextStyle = {
+  fontSize: 27,
+  marginBottom: 10,
+}
+const INFO_DATA_ITEM: TextStyle = {
+  fontSize: 12,
+}
+const INFO_DATA_ITEM_BOLD: TextStyle = {
+  fontWeight: "700",
+  marginRight: 3,
+}
+const DESCRIPTION: ViewStyle = {
+  marginTop: 8,
+}
+const INFO_DATA_WRAPPER: ViewStyle = {
+  flexShrink: 1,
+  marginLeft: 20,
+}
+const BEST_RECIPES: ViewStyle = {
+  paddingHorizontal: 40,
+  marginTop: 7,
+}
+const BEST_RECIPES_TITLE: TextStyle = {
+  ...TITLE,
+  fontSize: 13,
+  marginBottom: 27,
+}
+const BEST_RECIPES_ITEM: ViewStyle = {
+  width: 60,
+}
+const BEST_RECIPES_ITEM_SHADOW: ViewStyle = {
+  ...shadowViewStyle(0, 3),
+  backgroundColor: color.secondary,
+  borderRadius: 12,
+  width: 53,
+  height: 53,
+}
+const BEST_RECIPE_ITEM_LABEL: TextStyle = {
+  marginTop: 11,
+  fontSize: 8,
+  fontWeight: "300",
+  textAlign: "center",
+}
+const RECIPES_TITLE: TextStyle = {
+  ...TITLE,
+  marginBottom: 26,
+}
+
+const RECIPES_ITEM_SHADOW: ViewStyle = {
+  ...shadowViewStyle(0, 3),
+  backgroundColor: color.secondary,
+  borderRadius: 12,
+  width: 108,
+  height: 108,
+}
+const RECIPES_ITEM_SHADOW_SPACE: ViewStyle = {
+  marginTop: 10,
+}
+
+const RECIPES_LIST: ViewStyle = {
+  flexWrap: "wrap",
+}
+const INFO_STAT_SPACE: ViewStyle = {
+  marginTop: 20,
+}
+const EDIT: TextStyle = {
+  fontFamily: typography.secondary,
+  fontWeight: "700",
+}
 const ProfilScreenTemplate = (props: Props) => {
-  const { recipes, subscribers, subscribtions, description, author } = props
-
-  const ROOT: ViewStyle = {
-    flex: 1,
-    paddingHorizontal: 14,
-  }
-  const INFO: ViewStyle = {}
-  const INFO_DATA: ViewStyle = {
-    width: "100%",
-  }
-  const INFO_FIRSTNAME: TextStyle = {
-    fontSize: 27,
-    marginBottom: 10,
-  }
-  const INFO_DATA_ITEM: TextStyle = {
-    fontSize: 12,
-  }
-  const INFO_DATA_ITEM_BOLD: TextStyle = {
-    fontWeight: "700",
-    marginRight: 3,
-  }
-  const DESCRIPTION: ViewStyle = {
-    marginTop: 8,
-  }
-  const INFO_DATA_WRAPPER: ViewStyle = {
-    flexShrink: 1,
-  }
-  const INFO_PROFIL_PICTURE: ImageStyle = {
-    marginRight: 20,
-    width: 80,
-    height: 86,
-    borderRadius: 10,
-  }
-  const BEST_RECIPES: ViewStyle = {
-    paddingHorizontal: 40,
-    marginTop: 30,
-  }
-  const BEST_RECIPES_TITLE: TextStyle = {
-    fontFamily: typography.secondary,
-    marginBottom: 27,
-    fontWeight: "bold",
-  }
-  const BEST_RECIPES_ITEM: ViewStyle = {
-    width: 60,
-  }
-  const BEST_RECIPES_ITEM_SHADOW: ViewStyle = {
-    ...shadowViewStyle(0, 3),
-    backgroundColor: color.secondary,
-    borderRadius: 12,
-    width: 53,
-    height: 53,
-  }
-  const BEST_RECIPES_ITEM_IMAGE: ImageStyle = {
-    borderRadius: 12,
-    width: 53,
-    height: 53,
-  }
-  const BEST_RECIPE_ITEM_LABEL: TextStyle = {
-    marginTop: 11,
-    fontSize: 8,
-    fontWeight: "300",
-    textAlign: "center",
-  }
-  const RECIPES_TITLE: TextStyle = {
-    fontFamily: typography.secondary,
-    marginTop: 20,
-    marginBottom: 26,
-    fontWeight: "bold",
-    fontSize: 15,
-  }
-
-  const RECIPES_ITEM_SHADOW: ViewStyle = {
-    ...shadowViewStyle(0, 3),
-    backgroundColor: color.secondary,
-    borderRadius: 12,
-    width: 108,
-    height: 108,
-  }
-
-  const RECIPES_ITEM_IMAGE: ImageStyle = {
-    borderRadius: 12,
-    width: 108,
-    height: 108,
-  }
+  const { recipes, subscribers, subscribtions, description, author, onEditPress } = props
 
   return (
     <Screen style={ROOT} preset="scroll">
+      <Box fd="row" jc="end">
+        <TouchableOpacity onPress={onEditPress}>
+          <Text text="Modifier" style={EDIT} />
+        </TouchableOpacity>
+      </Box>
       <Box style={INFO} fd="row">
-        <Image style={INFO_PROFIL_PICTURE} source={{ uri: author.image.uri }} />
+        <Picture variant="long" uri={author.image.uri} />
         <View style={INFO_DATA_WRAPPER}>
           <Text text={author.firstname} style={INFO_FIRSTNAME} />
           <Box style={INFO_DATA} fd="row" jc="between">
@@ -134,17 +139,32 @@ const ProfilScreenTemplate = (props: Props) => {
           </Box>
           <Box jc="center" style={BEST_RECIPES_ITEM}>
             <View style={BEST_RECIPES_ITEM_SHADOW}>
-              <Image style={BEST_RECIPES_ITEM_IMAGE} source={{ uri: author.image.uri }} />
+              <Picture variant="s" uri={author.image.uri} />
             </View>
             <Text text="Penne au pesto pistache" style={BEST_RECIPE_ITEM_LABEL} />
           </Box>
         </Box>
         <Text text="Mes recettes" style={RECIPES_TITLE} />
-        <View>
-          <View style={RECIPES_ITEM_SHADOW}>
-            <Image style={RECIPES_ITEM_IMAGE} source={{ uri: author.image.uri }} />
-          </View>
-        </View>
+      </View>
+      <Box fd="row" jc="between" style={RECIPES_LIST}>
+        {[1, 2, 3, 4].map((v, i) => {
+          return (
+            <View key={v} style={combine(RECIPES_ITEM_SHADOW, i > 2 && RECIPES_ITEM_SHADOW_SPACE)}>
+              <Picture variant="l" uri={author.image.uri} />
+            </View>
+          )
+        })}
+      </Box>
+      <View style={BEST_RECIPES}>
+        <Text text="Statistiques" style={RECIPES_TITLE} />
+        <Box fd="row">
+          <Text style={combine(INFO_DATA_ITEM, INFO_DATA_ITEM_BOLD)} text={61} />
+          <Text style={INFO_DATA_ITEM} text="cuisines partagés " />
+        </Box>
+        <Box fd="row" style={INFO_STAT_SPACE}>
+          <Text style={combine(INFO_DATA_ITEM, INFO_DATA_ITEM_BOLD)} text={151} />
+          <Text style={INFO_DATA_ITEM} text="recettes BookM" />
+        </Box>
       </View>
     </Screen>
   )
