@@ -6,6 +6,7 @@ import { initialWindowMetrics, SafeAreaProvider } from "react-native-safe-area-c
 import { IRecipeFieldValues } from "../models/recipe/recipe"
 import { RecipePreviewStepTemplate } from "./recipe-preview-step/recipe.preview-step-template"
 import ProfilScreenTemplate from "./profile/profile-screen-template"
+import { SignInScreenTemplate } from "./sign-in/sign-in-screen-template"
 
 const noop = console.log
 const recipe: IRecipeFieldValues = {
@@ -77,4 +78,7 @@ storiesOf("Screens", module)
         onEditPress={console.log}
       />
     )
+  })
+  .add("SignInScreen", () => {
+    return <SignInScreenTemplate onSignInSubmit={noop} onSignUpNavigation={noop} />
   })

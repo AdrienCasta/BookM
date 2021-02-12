@@ -34,6 +34,12 @@ const SHADOW: Partial<ViewStyle> = {
 const FIELD_LABEL: TextStyle = {
   marginBottom: 13,
 }
+const FIELD_ERROR: TextStyle = {
+  fontSize: 9,
+  marginLeft: 12,
+  marginTop: 6,
+  color: color.error,
+}
 
 // currently we have no presets, but that changes quickly when you build your app.
 const PRESETS: { [name: string]: ViewStyle } = {
@@ -92,7 +98,7 @@ export interface TextFieldProps extends TextInputProps {
    */
   preset?: keyof typeof PRESETS
 
-  error?: boolean
+  error?: string
 
   forwardedRef?: any
 }
@@ -107,7 +113,7 @@ export function TextField(props: TextFieldProps) {
     placeholder,
     inputStyle: inputStyleOverride,
     forwardedRef,
-    error,
+    error = "",
     label,
     ...rest
   } = props
@@ -137,6 +143,7 @@ export function TextField(props: TextFieldProps) {
           ref={forwardedRef}
         />
       </Shadow>
+      <Text style={FIELD_ERROR} text={error} />
     </View>
   )
 }

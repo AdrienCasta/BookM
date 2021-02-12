@@ -145,7 +145,7 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
               name="title"
               render={({ value, onChange }) => (
                 <TextField
-                  error={!!errors.title}
+                  error={errors?.title.message}
                   value={value}
                   onChangeText={onChange}
                   label="Ajouter un titre"
@@ -161,7 +161,7 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
               name="description"
               render={({ value, onChange }) => (
                 <TextField
-                  error={!!errors.description}
+                  error={errors?.description.message}
                   preset="multiline"
                   scrollEnabled={false}
                   value={value}
