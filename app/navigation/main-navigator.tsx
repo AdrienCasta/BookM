@@ -20,6 +20,7 @@ import {
 import LogoWhiteIcon from "../../assets/logo-white.svg"
 import { Box, Text } from "../components"
 import { color, typography } from "../theme"
+import { ProfilScreen } from "../screens/profile/profile-screen"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -39,6 +40,7 @@ export type PrimaryParamList = {
 export type TabParamList = {
   HomeScreen: undefined
   MyBookMNavigator: undefined
+  ProfilScreen: undefined
 }
 export type MyBookMStackParamList = {
   MyBookMScreen: undefined
@@ -149,6 +151,11 @@ export function MainTabNavigator() {
         name="MyBookMNavigator"
         component={MyBookMNavigator}
         options={{ unmountOnBlur: true, tabBarLabel: "BookM", tabBarVisible: false }}
+      />
+      <Tab.Screen
+        name="ProfilScreen"
+        component={ProfilScreen}
+        options={{ unmountOnBlur: true, tabBarLabel: "Profil", tabBarVisible: false }}
       />
     </Tab.Navigator>
   )

@@ -1,14 +1,13 @@
 import React from "react"
 import { TextStyle, View, ViewStyle, TouchableOpacity } from "react-native"
 import { Box, Screen, Text, Picture, RecipeThumbnailList } from "../../components"
-import { IRecipeFieldValues } from "../../models/recipe/recipe"
 import { color, typography } from "../../theme"
 import shadowViewStyle from "../../utils/shadow"
 import { combine } from "../../utils/style"
 
 interface Props {
   recipes: number
-  recipeList: Partial<IRecipeFieldValues & { id: string }>[]
+  recipeList: { id: string; image: string }[]
   subscribers: number
   subscribtions: number
   description: string

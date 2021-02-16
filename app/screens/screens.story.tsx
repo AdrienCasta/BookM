@@ -69,7 +69,7 @@ storiesOf("Screens", module)
     return <RecipePreviewStepTemplate steps={recipe.steps} title={recipe.title} author={author} />
   })
   .add("ProfilScreen", () => {
-    const recipeList = [1, 2, 3, 4, 5].map((v) => ({ ...recipe, id: v + "" }))
+    const recipeList = [1, 2, 3, 4, 5].map((v) => ({ image: recipe.image.uri, id: v + "" }))
     return (
       <ProfilScreenTemplate
         author={author}
@@ -86,6 +86,9 @@ storiesOf("Screens", module)
     return <SignInScreenTemplate onSignInSubmit={noop} onSignUpNavigation={noop} />
   })
   .add("MyRecipesScreen", () => {
-    const recipeList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((v) => ({ ...recipe, id: v + "" }))
+    const recipeList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((v) => ({
+      image: recipe.image.uri,
+      id: v + "",
+    }))
     return <MyRecipesTemplate onRecipePress={noop} recipes={recipeList} />
   })

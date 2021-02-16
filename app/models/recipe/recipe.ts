@@ -69,11 +69,25 @@ export const RecipeModel = types.model("RecipeModel", {
     types.model({ description: types.string, trick: types.union(types.string, types.null) }),
   ),
 })
+export const RecipeModelFromAWS = types.model("RecipeModelFromAWS", {
+  id: types.string,
+  title: types.string,
+  description: types.string,
+  image: types.string,
+  numberOfPersons: types.number,
+  time: types.string,
+  ingredients: types.array(types.model({ label: types.string, image: types.string })),
+  cookingTime: types.union(types.string, types.null),
+  numberOfCalories: types.union(types.number, types.null),
+  steps: types.array(
+    types.model({ description: types.string, trick: types.union(types.string, types.null) }),
+  ),
+})
 
 export const RecipeStore = types
   .model("RecipeStore", {
     recipe: types.maybe(RecipeModel),
-    recipes: types.array(RecipeModel),
+    recipes: types.array(RecipeModelFromAWS),
   })
   .views((self) => ({
     get handleRequest() {
@@ -92,8 +106,23 @@ export const RecipeStore = types
       listRecipes: flow(function* (): any {
         try {
           const response = yield API.graphql(graphqlOperation(queries.listRecipes))
+          const recipes = yield Promise.all(
+            response.data.listRecipes.items.map(async (recipe) => {
+              const ingredientsWithS3Image = await Promise.all(
+                recipe.ingredients.map(async (ingredient) => {
+                  const s3IngredientImage = await Storage.get(ingredient.image)
+                  ingredient.image = s3IngredientImage
+                  return ingredient
+                }),
+              )
+              const s3Image = await Storage.get(recipe.image)
+              recipe.image = s3Image
+              recipe.ingredients = ingredientsWithS3Image
+              return recipe
+            }),
+          )
 
-          self.recipes = response.data.listRecipes.items
+          self.recipes = recipes
 
           return response
         } catch (e) {
