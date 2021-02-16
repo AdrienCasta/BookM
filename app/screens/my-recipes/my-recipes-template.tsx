@@ -21,7 +21,7 @@ const TITLE: TextStyle = {
 }
 
 interface Props {
-  recipes: (Partial<IRecipeFieldValues> & { id: string })[]
+  recipes: { id: string; image: string }[]
   onRecipePress: (recipe: Partial<IRecipeFieldValues> & { id: string }) => void
 }
 

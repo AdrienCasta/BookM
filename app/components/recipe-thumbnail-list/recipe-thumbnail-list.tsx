@@ -28,7 +28,7 @@ const RECIPES_EMPTY_ITEM: ViewStyle = {
 }
 
 export interface RecipeThumbnailListProps {
-  recipes: Partial<IRecipeFieldValues & { id: string }>[]
+  recipes: Partial<{ id: string; image: string }>[]
   onItemPress: (d: Partial<IRecipeFieldValues & { id: string }>) => void
 }
 
@@ -48,7 +48,7 @@ export const RecipeThumbnailList = (props: RecipeThumbnailListProps) => {
             onPress={handlePress(recipe)}
             style={RECIPES_ITEM_SHADOW}
           >
-            <Picture variant="l" uri={recipe.image.uri} />
+            <Picture variant="l" uri={recipe.image} />
           </TouchableOpacity>
         )
       })}
