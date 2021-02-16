@@ -7,6 +7,7 @@ import { IRecipeFieldValues } from "../models/recipe/recipe"
 import { RecipePreviewStepTemplate } from "./recipe-preview-step/recipe.preview-step-template"
 import ProfilScreenTemplate from "./profile/profile-screen-template"
 import { SignInScreenTemplate } from "./sign-in/sign-in-screen-template"
+import { MyRecipesTemplate } from "./my-recipes/my-recipes-template"
 
 const noop = console.log
 const recipe: IRecipeFieldValues = {
@@ -68,10 +69,12 @@ storiesOf("Screens", module)
     return <RecipePreviewStepTemplate steps={recipe.steps} title={recipe.title} author={author} />
   })
   .add("ProfilScreen", () => {
+    const recipeList = [1, 2, 3, 4, 5].map((v) => ({ ...recipe, id: v + "" }))
     return (
       <ProfilScreenTemplate
         author={author}
         recipes={3}
+        recipeList={recipeList}
         subscribers={55}
         subscribtions={122}
         description="loremipsum"
@@ -81,4 +84,8 @@ storiesOf("Screens", module)
   })
   .add("SignInScreen", () => {
     return <SignInScreenTemplate onSignInSubmit={noop} onSignUpNavigation={noop} />
+  })
+  .add("MyRecipesScreen", () => {
+    const recipeList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((v) => ({ ...recipe, id: v + "" }))
+    return <MyRecipesTemplate onRecipePress={noop} recipes={recipeList} />
   })

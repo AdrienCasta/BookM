@@ -1,12 +1,14 @@
 import React from "react"
 import { TextStyle, View, ViewStyle, TouchableOpacity } from "react-native"
-import { Box, Screen, Text, Picture } from "../../components"
+import { Box, Screen, Text, Picture, RecipeThumbnailList } from "../../components"
+import { IRecipeFieldValues } from "../../models/recipe/recipe"
 import { color, typography } from "../../theme"
 import shadowViewStyle from "../../utils/shadow"
 import { combine } from "../../utils/style"
 
 interface Props {
   recipes: number
+  recipeList: Partial<IRecipeFieldValues & { id: string }>[]
   subscribers: number
   subscribtions: number
   description: string
@@ -78,20 +80,6 @@ const RECIPES_TITLE: TextStyle = {
   marginBottom: 26,
 }
 
-const RECIPES_ITEM_SHADOW: ViewStyle = {
-  ...shadowViewStyle(0, 3),
-  backgroundColor: color.secondary,
-  borderRadius: 12,
-  width: 108,
-  height: 108,
-}
-const RECIPES_ITEM_SHADOW_SPACE: ViewStyle = {
-  marginTop: 10,
-}
-
-const RECIPES_LIST: ViewStyle = {
-  flexWrap: "wrap",
-}
 const INFO_STAT_SPACE: ViewStyle = {
   marginTop: 20,
 }
@@ -100,7 +88,19 @@ const EDIT: TextStyle = {
   fontWeight: "700",
 }
 const ProfilScreenTemplate = (props: Props) => {
-  const { recipes, subscribers, subscribtions, description, author, onEditPress } = props
+  const {
+    recipeList,
+    recipes,
+    subscribers,
+    subscribtions,
+    description,
+    author,
+    onEditPress,
+  } = props
+
+  const handleRecipeItemPress = () => {
+    // todo
+  }
 
   return (
     <Screen style={ROOT} preset="scroll">
@@ -146,15 +146,7 @@ const ProfilScreenTemplate = (props: Props) => {
         </Box>
         <Text text="Mes recettes" style={RECIPES_TITLE} />
       </View>
-      <Box fd="row" jc="between" style={RECIPES_LIST}>
-        {[1, 2, 3, 4].map((v, i) => {
-          return (
-            <View key={v} style={combine(RECIPES_ITEM_SHADOW, i > 2 && RECIPES_ITEM_SHADOW_SPACE)}>
-              <Picture variant="l" uri={author.image.uri} />
-            </View>
-          )
-        })}
-      </Box>
+      <RecipeThumbnailList recipes={recipeList} onItemPress={handleRecipeItemPress} />
       <View style={BEST_RECIPES}>
         <Text text="Statistiques" style={RECIPES_TITLE} />
         <Box fd="row">

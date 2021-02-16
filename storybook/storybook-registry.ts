@@ -19,6 +19,8 @@ require("../app/components/recipe-preview-step/recipe-preview-step.story")
 require("../app/components/avatar/avatar.story")
 require("../app/components/picture/picture.story")
 require("../app/components/contact-card/contact-card.story")
+require("../app/components/contact-card/contact-card.story")
+require("../app/components/recipe-thumbnail-list/recipe-thumbnail-list.story")
 
 // SCREENS
 
