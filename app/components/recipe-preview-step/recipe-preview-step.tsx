@@ -63,7 +63,7 @@ export const RecipePreviewStep = (props: RecipePreviewStepProps) => {
         {active && <View style={ACTIVE_STEP} />}
       </Box>
       <Text style={STEP_INSTRUCTION}>{instruction}</Text>
-      {trick && <Text style={STEP_INSTRUCTION_TRICK}>{trick}</Text>}
+      <Text style={STEP_INSTRUCTION_TRICK}>{trick}</Text>
     </View>
   )
 }
