@@ -16,5 +16,23 @@
         "bookm97e064b8": {}
       }
     }
+  },
+  "next": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-bookm-next-92528-authRole",
+      "UnauthRoleArn": "arn:aws:iam::791047319140:role/amplify-bookm-next-92528-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::791047319140:role/amplify-bookm-next-92528-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-bookm-next-92528-deployment",
+      "UnauthRoleName": "amplify-bookm-next-92528-unauthRole",
+      "StackName": "amplify-bookm-next-92528",
+      "StackId": "arn:aws:cloudformation:us-east-2:791047319140:stack/amplify-bookm-next-92528/ce975f10-7365-11eb-b335-027752755cb2",
+      "AmplifyAppId": "d16uluf983cj77"
+    },
+    "categories": {
+      "auth": {
+        "bookm97e064b8": {}
+      }
+    }
   }
 }

@@ -1,6 +1,6 @@
 {
     "identityPoolName": "bookm97e064b8_identitypool_97e064b8",
-    "allowUnauthenticatedIdentities": true,
+    "allowUnauthenticatedIdentities": false,
     "resourceNameTruncated": "bookm97e064b8",
     "userPoolName": "bookm97e064b8_userpool_97e064b8",
     "autoVerifiedAttributes": [
@@ -25,13 +25,19 @@
     "userpoolClientGenerateSecret": true,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [
-        "email"
+        "picture",
+        "email",
+        "family_name",
+        "given_name"
     ],
     "userpoolClientReadAttributes": [
-        "email"
+        "email",
+        "family_name",
+        "given_name",
+        "picture"
     ],
     "userpoolClientLambdaRole": "bookm997e064b8_userpoolclient_lambda_role",
-    "userpoolClientSetAttributes": false,
+    "userpoolClientSetAttributes": true,
     "sharedId": "97e064b8",
     "resourceName": "bookm97e064b8",
     "authSelections": "identityPoolAndUserPool",
@@ -47,17 +53,24 @@
             "Arn"
         ]
     },
-    "useDefault": "default",
+    "useDefault": "manual",
     "usernameAttributes": [
         "email"
     ],
     "triggers": "{}",
-    "userPoolGroupList": [],
+    "userPoolGroupList": [
+        "admin",
+        "users"
+    ],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
     "parentStack": {
         "Ref": "AWS::StackId"
     },
     "permissions": [],
-    "dependsOn": []
+    "dependsOn": [],
+    "thirdPartyAuth": false,
+    "userPoolGroups": true,
+    "adminQueries": false,
+    "hostedUI": false
 }
