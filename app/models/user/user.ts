@@ -1,8 +1,29 @@
 /* eslint-disable generator-star-spacing */
 /* eslint-disable camelcase */
 import { Auth } from "aws-amplify"
+import * as yup from "yup"
+import type { Asserts } from "yup"
 import { flow, getParent, Instance, SnapshotOut, types } from "mobx-state-tree"
 import { RootStoreModel } from "../root-store/root-store"
+
+export interface UserFormData extends Asserts<typeof UserSchema> {}
+
+export const UserSchema = yup.object({
+  image: yup.string().nullable().default(null),
+  firstname: yup.string().required("champ obligatoire").default(""),
+  lastname: yup.string().required("champ obligatoire").default(""),
+  description: yup.string().default(""),
+  tags: yup
+    .array()
+    .of(
+      yup.object({
+        id: yup.string(),
+        label: yup.string(),
+      }),
+    )
+    .notRequired()
+    .default([]),
+})
 
 /**
  * Model description here for TypeScript hints.

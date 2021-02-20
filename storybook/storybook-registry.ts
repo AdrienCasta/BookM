@@ -18,8 +18,9 @@ require("../app/components/recipe-fav-card/recipe-fav-card.story")
 require("../app/components/recipe-preview-step/recipe-preview-step.story")
 require("../app/components/avatar/avatar.story")
 require("../app/components/picture/picture.story")
+require("../app/components/picture-placeholder/picture-placeholder.story")
 require("../app/components/contact-card/contact-card.story")
-require("../app/components/contact-card/contact-card.story")
+require("../app/components/bottom-sheet-picture-picker/bottom-sheet-picture-picker.story")
 require("../app/components/recipe-thumbnail-list/recipe-thumbnail-list.story")
 
 // SCREENS
