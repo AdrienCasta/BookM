@@ -108,10 +108,10 @@ export const ProfileEditTemplate = ({ profile, onEditCancel, onSubmit }: Props) 
   }, [watch("image")])
 
   const handleImageLibraryLaunching = () => {
-    launchImageLibrary(imageOptions, (image) => setValue("image", image.uri))
+    launchImageLibrary(imageOptions, (image) => setValue("picture", image.uri))
   }
   const handleCameraLaunching = () => {
-    launchCamera(imageOptions, (image) => setValue("image", image.uri))
+    launchCamera(imageOptions, (image) => setValue("picture", image.uri))
   }
 
   const handleTagAppending = () => {
@@ -136,7 +136,7 @@ export const ProfileEditTemplate = ({ profile, onEditCancel, onSubmit }: Props) 
         <View style={CONTAINER}>
           <Box ai="center" style={PICTURE}>
             <TouchableOpacity onPress={handleImagePickerAppearance}>
-              <PicturePlaceholder control={control} name="image" />
+              <PicturePlaceholder control={control} name="picture" />
             </TouchableOpacity>
           </Box>
           <Controller

@@ -5,19 +5,24 @@ import { Screen, Text } from "../../components"
 
 import { useStores } from "../../models"
 import ProfilScreenTemplate from "./profile-screen-template"
+import { useNavigation } from "@react-navigation/native"
 
 const ROOT: ViewStyle = {}
 
-export const ProfilScreen = observer(function ProfilScreen() {
+export const ProfileScreen = observer(function ProfilScreen() {
   // Pull in one of our MST stores
   const { user, recipeStore } = useStores()
+  const navigation = useNavigation()
 
   useEffect(() => {
     recipeStore.listRecipes()
   }, [])
 
+  const handleEditProfileScreennavigation = () => {
+    navigation.navigate("ProfileEditScreen")
+  }
+
   // Pull in navigation via hook
-  // const navigation = useNavigation()
   const author = {
     ...user,
     image: {
@@ -33,7 +38,7 @@ export const ProfilScreen = observer(function ProfilScreen() {
         description={""}
         recipes={recipeStore.recipes.length}
         recipeList={recipeStore.recipes}
-        onEditPress={console.log}
+        onEditPress={handleEditProfileScreennavigation}
       />
       <Text preset="header" text={JSON.stringify(user, null, 2)} />
       <Text preset="header" text={JSON.stringify(recipeStore, null, 2)} />

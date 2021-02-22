@@ -16,11 +16,12 @@ import {
   MyBookMScreen,
   RecipePreviewScreen,
   RecipePreviewStepScreen,
+  ProfileEditScreen,
+  ProfileScreen,
 } from "../screens"
 import LogoWhiteIcon from "../../assets/logo-white.svg"
 import { Box, Text } from "../components"
 import { color, typography } from "../theme"
-import { ProfilScreen } from "../screens/profile/profile-screen"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -40,7 +41,7 @@ export type PrimaryParamList = {
 export type TabParamList = {
   HomeScreen: undefined
   MyBookMNavigator: undefined
-  ProfilScreen: undefined
+  ProfileStackNavigator: undefined
 }
 export type MyBookMStackParamList = {
   MyBookMScreen: undefined
@@ -49,10 +50,15 @@ export type MyBookMStackParamList = {
   RecipeListScreen: undefined
   RecipePreviewStepScreen: undefined
 }
+export type ProfileStackParamList = {
+  ProfileEditScreen: undefined
+  ProfileScreen: undefined
+}
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
 const Stack = createStackNavigator<PrimaryParamList>()
 const MyBookMStack = createStackNavigator<MyBookMStackParamList>()
+const ProfileStack = createStackNavigator<ProfileStackParamList>()
 const Tab = createBottomTabNavigator<TabParamList>()
 
 const TAB_BAR: ViewStyle = {
@@ -87,9 +93,9 @@ function MyTabBar({ state, descriptors, navigation }) {
   return (
     <Box fd="row" ai="center" style={TAB_BAR}>
       {state.routes.map((route, index) => {
-        if (route.name === "HomeScreen") {
-          return null
-        }
+        // if (route.name === "HomeScreen") {
+        //   return null
+        // }
         const { options } = descriptors[route.key]
         const label =
           options.tabBarLabel !== undefined
@@ -153,11 +159,24 @@ export function MainTabNavigator() {
         options={{ unmountOnBlur: true, tabBarLabel: "BookM", tabBarVisible: false }}
       />
       <Tab.Screen
-        name="ProfilScreen"
-        component={ProfilScreen}
-        options={{ unmountOnBlur: true, tabBarLabel: "Profil", tabBarVisible: false }}
+        name="ProfileStackNavigator"
+        component={ProfileStackNavigator}
+        options={{ unmountOnBlur: true, tabBarLabel: "Profil" }}
       />
     </Tab.Navigator>
+  )
+}
+export function ProfileStackNavigator() {
+  return (
+    <ProfileStack.Navigator
+      initialRouteName="ProfileScreen"
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <ProfileStack.Screen name="ProfileScreen" component={ProfileScreen} />
+      <ProfileStack.Screen name="ProfileEditScreen" component={ProfileEditScreen} />
+    </ProfileStack.Navigator>
   )
 }
 export function MyBookMNavigator() {

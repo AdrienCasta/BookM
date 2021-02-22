@@ -31,7 +31,8 @@
     },
     "categories": {
       "auth": {
-        "bookm97e064b8": {}
+        "bookm97e064b8": {},
+        "userPoolGroups": {}
       }
     }
   }
