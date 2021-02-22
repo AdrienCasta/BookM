@@ -98,6 +98,7 @@ export const PicturePlaceholder: FC<IPicturePlaceholderProps> = ({
   if (!name) {
     throw Error("`name` is required if controls has been provided")
   }
+
   return (
     <Controller
       control={control}

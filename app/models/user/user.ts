@@ -17,8 +17,7 @@ export const UserSchema = yup.object({
     .array()
     .of(
       yup.object({
-        id: yup.string(),
-        label: yup.string(),
+        value: yup.string(),
       }),
     )
     .notRequired()
@@ -39,6 +38,7 @@ export const UserModel = types
     email: types.optional(types.string, ""),
     description: types.optional(types.string, ""),
     picture: types.optional(types.string, ""),
+    tags: types.optional(types.string, ""),
   })
   .views((self) => ({
     get fullName() {
@@ -52,11 +52,12 @@ export const UserModel = types
     signIn: flow(function* (username: string, password: string) {
       try {
         const { attributes } = yield self.handleRequest(() => Auth.signIn(username, password))
-        self.picture = (yield Storage.get(attributes.picture)) as string
+        self.picture = (yield Storage.get(attributes.picture, { level: "protected" })) as string
         self.firstname = attributes.given_name
         self.lastname = attributes.family_name
-        self.description = attributes["custom:description"]
         self.email = attributes.email
+        self.tags = attributes["custom:tags"]
+        self.description = attributes["custom:description"]
         return self
       } catch (error) {
         throw Error(error)
@@ -90,12 +91,20 @@ export const UserModel = types
         throw Error(e)
       }
     }),
-    edit: flow(function* ({ description, firstname: given_name, lastname: family_name, picture }) {
+    edit: flow(function* ({
+      description,
+      firstname: given_name,
+      lastname: family_name,
+      picture,
+      tags,
+    }) {
       const getImageUriFileName = (path: string) => path.substring(path.lastIndexOf("/") + 1)
       try {
         const response = yield self.handleRequest(async () => {
           if (picture !== self.picture) {
             if (self.picture) {
+              console.tron.log(getImageUriFileName(self.picture))
+
               await Storage.remove(getImageUriFileName(self.picture), { level: "protected" })
             }
             const fetchedPicture = await fetch(picture)
@@ -112,12 +121,14 @@ export const UserModel = types
             given_name,
             family_name,
             "custom:description": description,
+            "custom:tags": tags.map(({ value }) => value).join(","),
           })
         })
 
         self.firstname = given_name
         self.picture = picture
         self.lastname = family_name
+        self.tags = tags.map(({ value }) => value).join(",")
 
         return response
       } catch (e) {

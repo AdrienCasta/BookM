@@ -72,30 +72,31 @@ interface Props {
     firstname: string
     lastname: string
     desription: string
-    tags: string[]
+    tags: string
   }>
 }
 const defaultUserSchemaValues = UserSchema.cast(UserSchema)
 
 const imageOptions = {
   mediaType: "photo",
-  maxWidth: 600,
-  maxHeight: 600,
+  maxWidth: 300,
+  maxHeight: 300,
 } as ImageLibraryOptions
 
 export const ProfileEditTemplate = ({ profile, onEditCancel, onSubmit }: Props) => {
+  const defaultValues = {
+    ...defaultUserSchemaValues,
+    ...profile,
+    tags: profile.tags.split(",").map((value) => ({ value })),
+  }
   const { control, handleSubmit, errors, setValue, watch } = useForm<UserFormData>({
     resolver: yupResolver(UserSchema),
-    defaultValues: {
-      ...defaultUserSchemaValues,
-      ...profile,
-    },
+    defaultValues,
   })
 
   const { fields: tagFields, append, remove } = useFieldArray({
     control,
     name: "tags",
-    keyName: "key",
   })
 
   const imagePickerSheetRef = useRef(null)
@@ -115,7 +116,7 @@ export const ProfileEditTemplate = ({ profile, onEditCancel, onSubmit }: Props) 
   }
 
   const handleTagAppending = () => {
-    Alert.prompt("Entrez votre nouveau tag", "", (tagLabel) => append({ label: tagLabel }))
+    Alert.prompt("Entrez votre nouveau tag", "", (tagLabel) => append({ value: tagLabel }))
   }
   const handleTagRemoving = (index) => () => {
     remove(index)
@@ -178,6 +179,9 @@ export const ProfileEditTemplate = ({ profile, onEditCancel, onSubmit }: Props) 
               return (
                 <TextField
                   value={value}
+                  scrollEnabled={false}
+                  placeholder="Votre description"
+                  multiline
                   preset="multiline"
                   label="Biographie"
                   onChangeText={onChange}
@@ -192,28 +196,22 @@ export const ProfileEditTemplate = ({ profile, onEditCancel, onSubmit }: Props) 
           <Box fd="row">
             {tagFields.length > 0 &&
               tagFields.map((field, index) => (
-                <View key={field.key} style={TAG_WRAPPER}>
+                <View key={field.id} style={TAG_WRAPPER}>
                   <TouchableOpacity onPress={handleTagRemoving(index)}>
                     <Controller
                       control={control}
-                      name={`tags[${index}].label`}
-                      defaultValue={field.label}
+                      name={`tags[${index}].value`}
+                      defaultValue={field.value}
                       render={() => {
                         return (
                           <Box style={TAG} fd="row">
-                            <Text text={field.label} />
+                            <Text text={field.value} />
                             <View style={REMOVE_ICON_WRAPPER}>
                               <CrossIcon width={8} height={8} style={REMOVE_ICON} />
                             </View>
                           </Box>
                         )
                       }}
-                    />
-                    <Controller
-                      control={control}
-                      name={`tags[${index}].id`}
-                      defaultValue={field.id}
-                      render={() => null}
                     />
                   </TouchableOpacity>
                 </View>
