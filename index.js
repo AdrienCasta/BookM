@@ -9,6 +9,7 @@
 // It's easier just to leave it here.
 import App from "./app/app.tsx"
 import { AppRegistry } from "react-native"
+import "react-native-url-polyfill/auto"
 
 AppRegistry.registerComponent("BookM", () => App)
 export default App

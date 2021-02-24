@@ -98,7 +98,14 @@ export const UserModel = types
       picture,
       tags,
     }) {
-      const getImageUriFileName = (path: string) => path.substring(path.lastIndexOf("/") + 1)
+      const getImageUriFileName = (url: string) => {
+        return decodeURIComponent(
+          new URL(url).pathname
+            .split("/")
+            .filter((part) => part !== "")
+            .pop(),
+        )
+      }
       try {
         const response = yield self.handleRequest(async () => {
           if (picture !== self.picture) {
