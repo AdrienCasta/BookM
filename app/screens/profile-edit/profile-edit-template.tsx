@@ -12,10 +12,11 @@ import {
   PicturePlaceholder,
   BottomSheetPicturePicker,
 } from "../../components"
-import { UserFormData, UserSchema } from "../../models/user/user"
+import { UserFormData, UserSchema, UserSnapshot } from "../../models/user/user"
 import { color } from "../../theme"
 import reanimatedBottomSheet from "../../utils/reanimatedBottomSheet"
 import shadowViewStyle from "../../utils/shadow"
+import { useNavigation } from "@react-navigation/native"
 
 const CONTAINER: ViewStyle = {
   paddingHorizontal: 54,
@@ -37,9 +38,6 @@ const TAG: ViewStyle = {
 const SPACE: ViewStyle = {
   height: 30,
 }
-const CROSS_ICON: TextStyle = {
-  color: color.primary,
-}
 const REMOVE_ICON: TextStyle = {
   color: color.secondary,
   alignSelf: "flex-end",
@@ -54,26 +52,10 @@ const REMOVE_ICON_WRAPPER: ViewStyle = {
   backgroundColor: color.palette.lighterGrey,
 }
 
-const HEADER: ViewStyle = {
-  width: "100%",
-  height: 40,
-  paddingHorizontal: 20,
-}
-
-const HEADER_TITLE: TextStyle = {
-  fontSize: 20,
-}
-
 interface Props {
   onEditCancel: () => void
   onSubmit: (data: UserFormData) => void
-  profile?: Partial<{
-    image: string
-    firstname: string
-    lastname: string
-    desription: string
-    tags: string
-  }>
+  profile?: UserSnapshot
 }
 const defaultUserSchemaValues = UserSchema.cast(UserSchema)
 
@@ -83,7 +65,8 @@ const imageOptions = {
   maxHeight: 300,
 } as ImageLibraryOptions
 
-export const ProfileEditTemplate = ({ profile, onEditCancel, onSubmit }: Props) => {
+export const ProfileEditTemplate = ({ profile, onSubmit }: Props) => {
+  const navigation = useNavigation()
   const defaultValues = {
     ...defaultUserSchemaValues,
     ...profile,
@@ -98,6 +81,16 @@ export const ProfileEditTemplate = ({ profile, onEditCancel, onSubmit }: Props) 
     control,
     name: "tags",
   })
+
+  React.useEffect(() => {
+    const unsubscribe = navigation.addListener("beforeRemove", ({ data }) => {
+      if ((data.action.payload as { params: { save?: true } }).params?.save) {
+        handleSubmit(onSubmit)()
+      }
+    })
+
+    return unsubscribe
+  }, [navigation])
 
   const imagePickerSheetRef = useRef(null)
   const imagePickerSheet = reanimatedBottomSheet([300, 0], 1)
@@ -124,8 +117,8 @@ export const ProfileEditTemplate = ({ profile, onEditCancel, onSubmit }: Props) 
 
   return (
     <>
-      <Screen preset="scroll">
-        <Box fd="row" ai="center" jc="between" style={HEADER}>
+      <Screen preset="scroll" unsafe>
+        {/* <Box fd="row" ai="center" jc="between" style={HEADER}>
           <TouchableOpacity onPress={onEditCancel}>
             <CrossIcon width={12} height={12} style={CROSS_ICON} />
           </TouchableOpacity>
@@ -133,7 +126,7 @@ export const ProfileEditTemplate = ({ profile, onEditCancel, onSubmit }: Props) 
           <TouchableOpacity onPress={handleSubmit(onSubmit)}>
             <Text text="terminer" />
           </TouchableOpacity>
-        </Box>
+        </Box> */}
         <View style={CONTAINER}>
           <Box ai="center" style={PICTURE}>
             <TouchableOpacity onPress={handleImagePickerAppearance}>

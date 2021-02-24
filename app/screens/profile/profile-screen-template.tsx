@@ -1,21 +1,14 @@
 import React from "react"
-import { TextStyle, View, ViewStyle, TouchableOpacity } from "react-native"
+import { TextStyle, View, ViewStyle } from "react-native"
 import { Box, Screen, Text, Picture, RecipeThumbnailList } from "../../components"
-import { color, typography } from "../../theme"
-import shadowViewStyle from "../../utils/shadow"
+import { UserSnapshot } from "../../models/user/user"
+import { typography } from "../../theme"
 import { combine } from "../../utils/style"
 
 interface Props {
-  recipes: number
+  profile: UserSnapshot
   recipeList: { id: string; image: string }[]
-  subscribers: number
-  subscribtions: number
-  description: string
   onEditPress: () => void
-  author: {
-    firstname: string
-    image: Record<"uri", string>
-  }
 }
 
 const ROOT: ViewStyle = {
@@ -53,27 +46,6 @@ const BEST_RECIPES: ViewStyle = {
   paddingHorizontal: 40,
   marginTop: 7,
 }
-const BEST_RECIPES_TITLE: TextStyle = {
-  ...TITLE,
-  fontSize: 13,
-  marginBottom: 27,
-}
-const BEST_RECIPES_ITEM: ViewStyle = {
-  width: 60,
-}
-const BEST_RECIPES_ITEM_SHADOW: ViewStyle = {
-  ...shadowViewStyle(0, 3),
-  backgroundColor: color.secondary,
-  borderRadius: 12,
-  width: 53,
-  height: 53,
-}
-const BEST_RECIPE_ITEM_LABEL: TextStyle = {
-  marginTop: 11,
-  fontSize: 8,
-  fontWeight: "300",
-  textAlign: "center",
-}
 const RECIPES_TITLE: TextStyle = {
   ...TITLE,
   marginBottom: 26,
@@ -82,55 +54,37 @@ const RECIPES_TITLE: TextStyle = {
 const INFO_STAT_SPACE: ViewStyle = {
   marginTop: 20,
 }
-const EDIT: TextStyle = {
-  fontFamily: typography.secondary,
-  fontWeight: "700",
-}
-const ProfilScreenTemplate = (props: Props) => {
-  const {
-    recipeList,
-    recipes,
-    subscribers,
-    subscribtions,
-    description,
-    author,
-    onEditPress,
-  } = props
 
+const ProfilScreenTemplate = ({ profile, recipeList }: Props) => {
   const handleRecipeItemPress = () => {
     // todo
   }
 
   return (
-    <Screen style={ROOT} preset="scroll">
-      <Box fd="row" jc="end">
-        <TouchableOpacity onPress={onEditPress}>
-          <Text text="Modifier" style={EDIT} />
-        </TouchableOpacity>
-      </Box>
+    <Screen style={ROOT} preset="scroll" unsafe>
       <Box style={INFO} fd="row">
-        <Picture variant="long" uri={author.image.uri} />
+        <Picture variant="long" uri={profile.picture} />
         <View style={INFO_DATA_WRAPPER}>
-          <Text text={author.firstname} style={INFO_FIRSTNAME} />
+          <Text text={profile.firstname} style={INFO_FIRSTNAME} />
           <Box style={INFO_DATA} fd="row" jc="between">
             <Box fd="row">
-              <Text style={combine(INFO_DATA_ITEM, INFO_DATA_ITEM_BOLD)} text={recipes} />
+              <Text style={combine(INFO_DATA_ITEM, INFO_DATA_ITEM_BOLD)} text="0" />
               <Text style={INFO_DATA_ITEM} text="recettes" />
             </Box>
             <Box fd="row">
-              <Text style={combine(INFO_DATA_ITEM, INFO_DATA_ITEM_BOLD)} text={subscribers} />
+              <Text style={combine(INFO_DATA_ITEM, INFO_DATA_ITEM_BOLD)} text="0" />
               <Text style={INFO_DATA_ITEM} text="abonnés" />
             </Box>
             <Box fd="row">
-              <Text style={combine(INFO_DATA_ITEM, INFO_DATA_ITEM_BOLD)} text={subscribtions} />
+              <Text style={combine(INFO_DATA_ITEM, INFO_DATA_ITEM_BOLD)} text="0" />
               <Text style={INFO_DATA_ITEM} text="abonnements" />
             </Box>
           </Box>
-          <Text text={description} style={DESCRIPTION} />
+          <Text text={profile.description} style={DESCRIPTION} />
         </View>
       </Box>
       <View style={BEST_RECIPES}>
-        <Text text="Mes meilleurs recettes" style={BEST_RECIPES_TITLE} />
+        {/* <Text text="Mes meilleurs recettes" style={BEST_RECIPES_TITLE} />
         <Box fd="row" ai="start">
           <Box jc="center" style={BEST_RECIPES_ITEM}>
             <View style={BEST_RECIPES_ITEM_SHADOW} />
@@ -138,11 +92,11 @@ const ProfilScreenTemplate = (props: Props) => {
           </Box>
           <Box jc="center" style={BEST_RECIPES_ITEM}>
             <View style={BEST_RECIPES_ITEM_SHADOW}>
-              <Picture variant="s" uri={author.image.uri} />
+              <Picture variant="s" uri={profile.picture} />
             </View>
             <Text text="Penne au pesto pistache" style={BEST_RECIPE_ITEM_LABEL} />
           </Box>
-        </Box>
+        </Box> */}
         <Text text="Mes recettes" style={RECIPES_TITLE} />
       </View>
       <RecipeThumbnailList recipes={recipeList} onItemPress={handleRecipeItemPress} />

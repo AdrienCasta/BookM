@@ -1,3 +1,5 @@
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable react/display-name */
 /**
  * This is the navigator you will modify to display the logged-in screens of your app.
  * You can use RootNavigator to also display an auth flow or other user flows.
@@ -6,7 +8,7 @@
  */
 import React from "react"
 import { createStackNavigator } from "@react-navigation/stack"
-import { TextStyle, TouchableOpacity, ViewStyle } from "react-native"
+import { Image, ImageStyle, TextStyle, TouchableOpacity, ViewStyle } from "react-native"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 
 import {
@@ -20,8 +22,11 @@ import {
   ProfileScreen,
 } from "../screens"
 import LogoWhiteIcon from "../../assets/logo-white.svg"
+import CrossIcon from "../../assets/cross.svg"
 import { Box, Text } from "../components"
 import { color, typography } from "../theme"
+import { useNavigation } from "@react-navigation/native"
+import { useStores } from "../models"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -82,8 +87,14 @@ const TAB_SCREEN_ITEM_NAME: TextStyle = {
   fontFamily: typography.secondary,
   fontSize: 7,
 }
+const TAB_PROFILE: ImageStyle = {
+  width: 34,
+  height: 34,
+  borderRadius: 10,
+}
 
 function MyTabBar({ state, descriptors, navigation }) {
+  const { user } = useStores()
   const focusedOptions = descriptors[state.routes[state.index].key].options
 
   if (focusedOptions.tabBarVisible === false) {
@@ -93,9 +104,9 @@ function MyTabBar({ state, descriptors, navigation }) {
   return (
     <Box fd="row" ai="center" style={TAB_BAR}>
       {state.routes.map((route, index) => {
-        // if (route.name === "HomeScreen") {
-        //   return null
-        // }
+        if (route.name === "HomeScreen") {
+          return null
+        }
         const { options } = descriptors[route.key]
         const label =
           options.tabBarLabel !== undefined
@@ -125,6 +136,13 @@ function MyTabBar({ state, descriptors, navigation }) {
           })
         }
 
+        const TabBarIcon = new Map([
+          [
+            "ProfileStackNavigator",
+            <Image key={user.picture} source={{ uri: user.picture }} style={TAB_PROFILE} />,
+          ],
+        ]).get(route.name) || <LogoWhiteIcon width={22} height={31} />
+
         return (
           <TouchableOpacity
             key={route.name}
@@ -138,7 +156,7 @@ function MyTabBar({ state, descriptors, navigation }) {
           >
             <Box jc="center" ai="center">
               <Box jc="center" ai="center" style={TAB_SCREEN_ITEM}>
-                <LogoWhiteIcon width={22} height={31} />
+                {TabBarIcon}
               </Box>
               <Text text={label} style={TAB_SCREEN_ITEM_NAME} />
             </Box>
@@ -152,30 +170,86 @@ function MyTabBar({ state, descriptors, navigation }) {
 export function MainTabNavigator() {
   return (
     <Tab.Navigator initialRouteName="HomeScreen" tabBar={(props) => <MyTabBar {...props} />}>
+      <Tab.Screen
+        name="ProfileStackNavigator"
+        component={ProfileStackNavigator}
+        options={{ unmountOnBlur: true, tabBarLabel: "Profil" }}
+      />
       <Tab.Screen name="HomeScreen" component={HomeScreen} />
       <Tab.Screen
         name="MyBookMNavigator"
         component={MyBookMNavigator}
         options={{ unmountOnBlur: true, tabBarLabel: "BookM", tabBarVisible: false }}
       />
-      <Tab.Screen
-        name="ProfileStackNavigator"
-        component={ProfileStackNavigator}
-        options={{ unmountOnBlur: true, tabBarLabel: "Profil" }}
-      />
     </Tab.Navigator>
   )
 }
 export function ProfileStackNavigator() {
+  const navigation = useNavigation()
+
+  const handlePress = () => {
+    navigation.navigate("ProfileEditScreen")
+  }
+  const handleProfileScreenNavigation = () => {
+    navigation.navigate("ProfileScreen")
+  }
+  const handleProfileScreenNavigationWithSubmit = () => {
+    navigation.navigate("ProfileScreen", {
+      save: true,
+    })
+  }
   return (
-    <ProfileStack.Navigator
-      initialRouteName="ProfileScreen"
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <ProfileStack.Screen name="ProfileScreen" component={ProfileScreen} />
-      <ProfileStack.Screen name="ProfileEditScreen" component={ProfileEditScreen} />
+    <ProfileStack.Navigator initialRouteName="ProfileScreen">
+      <ProfileStack.Screen
+        name="ProfileScreen"
+        component={ProfileScreen}
+        options={{
+          headerTitle: null,
+          headerRightContainerStyle: {
+            paddingRight: 20,
+          },
+          headerStyle: {
+            shadowColor: "transparent",
+          },
+          headerRight: () => {
+            return (
+              <TouchableOpacity onPress={handlePress}>
+                <Text text="Modifier" />
+              </TouchableOpacity>
+            )
+          },
+        }}
+      />
+      <ProfileStack.Screen
+        name="ProfileEditScreen"
+        component={ProfileEditScreen}
+        options={{
+          headerRightContainerStyle: {
+            paddingRight: 20,
+          },
+          headerLeftContainerStyle: {
+            paddingLeft: 20,
+          },
+          headerStyle: {
+            shadowColor: "transparent",
+          },
+          headerTitle: (props) => <Text text="Modifier profil" style={{ fontSize: 20 }} />,
+          headerRight: () => {
+            return (
+              <TouchableOpacity onPress={handleProfileScreenNavigationWithSubmit}>
+                <Text text="Terminer" />
+              </TouchableOpacity>
+            )
+          },
+          headerLeft: () => {
+            return (
+              <TouchableOpacity onPress={handleProfileScreenNavigation}>
+                <CrossIcon width={12} height={12} style={{ color: color.primary } as TextStyle} />
+              </TouchableOpacity>
+            )
+          },
+        }}
+      />
     </ProfileStack.Navigator>
   )
 }

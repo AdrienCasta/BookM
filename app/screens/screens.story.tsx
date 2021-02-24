@@ -72,15 +72,7 @@ storiesOf("Screens", module)
   .add("ProfilScreen", () => {
     const recipeList = [1, 2, 3, 4, 5].map((v) => ({ image: recipe.image.uri, id: v + "" }))
     return (
-      <ProfilScreenTemplate
-        author={author}
-        recipes={3}
-        recipeList={recipeList}
-        subscribers={55}
-        subscribtions={122}
-        description="loremipsum"
-        onEditPress={console.log}
-      />
+      <ProfilScreenTemplate profile={author} recipeList={recipeList} onEditPress={console.log} />
     )
   })
   .add("ProfilEditScreen", () => {
