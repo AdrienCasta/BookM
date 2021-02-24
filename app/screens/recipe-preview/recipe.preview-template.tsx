@@ -82,7 +82,7 @@ export const RecipePreviewTemplate = function RecipePreviewTemplate({
 
   return (
     <>
-      <Screen preset="scroll">
+      <Screen preset="scroll" unsafe>
         <TouchableOpacity style={PUBLISH} onPress={onPublish}>
           <Text text="Publier" />
         </TouchableOpacity>
