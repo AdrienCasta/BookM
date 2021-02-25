@@ -9,6 +9,7 @@ import {
   View,
   ImageStyle,
   Keyboard,
+  TouchableOpacity,
 } from "react-native"
 import { Box, Button, Screen, Text } from "../../components"
 import { color } from "../../theme"
@@ -156,7 +157,9 @@ export const ConfirmSignupScreen = observer(function ConfirmSignupScreen() {
             style={HEADER_BOLD_TEXT}
           />
         </View>
-        <Text preset="link" text="cliquez ici si vous ne l’avez pas reçu" style={LINK} />
+        <TouchableOpacity onPress={user.resendConfirmationCode}>
+          <Text preset="link" text="cliquez ici si vous ne l’avez pas reçu" style={LINK} />
+        </TouchableOpacity>
         <Box fd="row" jc="between">
           {Code}
         </Box>

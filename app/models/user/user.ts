@@ -102,6 +102,13 @@ export const UserModel = types
         throw Error(e)
       }
     }),
+    resendConfirmationCode: flow(function* () {
+      try {
+        return yield Auth.resendSignUp(self.username)
+      } catch (e) {
+        throw Error(e)
+      }
+    }),
     signOut: flow(function* () {
       try {
         yield Auth.signOut()
