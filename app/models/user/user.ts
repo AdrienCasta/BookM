@@ -7,6 +7,7 @@ import { flow, getParent, Instance, SnapshotOut, types } from "mobx-state-tree"
 import { RootStoreModel } from "../root-store/root-store"
 
 export interface UserFormData extends Asserts<typeof UserSchema> {}
+export interface SignupFormData extends Asserts<typeof SignupUserSchema> {}
 
 export const UserSchema = yup.object({
   picture: yup.string().nullable().default(null),
@@ -22,6 +23,27 @@ export const UserSchema = yup.object({
     )
     .notRequired()
     .default([]),
+})
+
+export const SignupUserSchema = yup.object({
+  firstname: yup.string().required("champ obligatoire").default(""),
+  lastname: yup.string().required("champ obligatoire").default(""),
+  username: yup
+    .string()
+    .email("L'e-mail doit être valide")
+    .required("champ obligatoire")
+    .default(""),
+  password: yup
+    .string()
+    .min(8, "Le mot de passe doit contenir au moins 8 charactères")
+    .required("champ obligatoire")
+    .default(""),
+  passwordConfirmation: yup
+    .string()
+    .min(8, "Le mot de passe doit contenir au moins 8 charactères")
+    .required("champ obligatoire")
+    .oneOf([yup.ref("password"), null], "Les mots de passes doivent être identique")
+    .default(""),
 })
 
 /**
