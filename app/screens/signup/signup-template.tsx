@@ -1,12 +1,12 @@
 import React from "react"
-import { Image, TextStyle, View, ViewStyle } from "react-native"
+import { TextStyle, View, ViewStyle } from "react-native"
 import { Screen, Text, Box, TextField, Button } from "../../components"
 import { color, spacing } from "../../theme"
 import { SignupFormData, SignupUserSchema } from "../../models/user/user"
 import { Controller, useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import shadowViewStyle from "../../utils/shadow"
-const Logo = require("../../../assets/logo-xs.png")
+import Logo from "../../../assets/bookm.svg"
 
 const ROOT: ViewStyle = {
   flexGrow: 1,
@@ -62,7 +62,7 @@ export const SignupTemplate = ({ onSubmit }: Props) => {
     <Screen style={ROOT} preset="scroll" keyboardOffset={40}>
       <Box ai="center">
         <Box fd="row" jc="between" style={HEADER}>
-          <Image source={Logo} />
+          <Logo width={29} height={40} />
           <View style={CATCH_PHRASE}>
             <Text preset="catchPhrase" text="Cuisinons de, " />
             <Text preset="catchPhrase" text="belles histoires, " />

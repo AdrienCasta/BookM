@@ -3,7 +3,7 @@ import { ViewStyle } from "react-native"
 import { Asserts, object, string } from "yup"
 import { Box, Button, Screen, Text, TextField } from "../../components"
 
-import Logo from "../../../assets/logo.svg"
+import Logo from "../../../assets/bookm.svg"
 import shadowViewStyle from "../../utils/shadow"
 import { TouchableOpacity } from "react-native-gesture-handler"
 import { Controller, useForm } from "react-hook-form"
@@ -14,7 +14,8 @@ const ROOT: ViewStyle = {
 }
 
 const LOGO: ViewStyle = {
-  marginBottom: 80,
+  marginBottom: 28,
+  marginTop: 83,
 }
 const FORM: ViewStyle = {
   width: 233,
