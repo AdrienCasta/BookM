@@ -5,6 +5,7 @@ import { translate } from "../../i18n"
 import { Shadow } from "react-native-neomorph-shadows"
 import { mergeAll, flatten } from "ramda"
 import { Text } from "../text/text"
+import { Box } from ".."
 
 // the base styling for the TextInput
 const INPUT: TextStyle = {
@@ -33,6 +34,10 @@ const SHADOW: Partial<ViewStyle> = {
 
 const FIELD_LABEL: TextStyle = {
   marginBottom: 13,
+}
+const FIELD_HELPER: TextStyle = {
+  color: color.palette.lighterGrey,
+  fontSize: 7,
 }
 const FIELD_ERROR: TextStyle = {
   fontSize: 9,
@@ -82,6 +87,7 @@ export interface TextFieldProps extends TextInputProps {
    * The label text if no labelTx is provided.
    */
   label?: string
+  helper?: string
 
   /**
    * Optional container style overrides useful for margins & padding.
@@ -115,6 +121,7 @@ export function TextField(props: TextFieldProps) {
     forwardedRef,
     error = "",
     label,
+    helper,
     ...rest
   } = props
 
@@ -132,7 +139,10 @@ export function TextField(props: TextFieldProps) {
 
   return (
     <View>
-      {label && <Text style={FIELD_LABEL} preset="fieldLabel" text={label} />}
+      <Box fd="row" ai="baseline">
+        {label && <Text style={FIELD_LABEL} preset="fieldLabel" text={label} />}
+        {helper && <Text style={FIELD_HELPER} text={helper} />}
+      </Box>
       <Shadow inner useArt style={shadowStyle as any}>
         <TextInput
           placeholder={actualPlaceholder}

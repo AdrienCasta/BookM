@@ -10,15 +10,11 @@ const SheetWrapper = () => {
   const ingredients = [
     {
       label: "kiwi",
-      image: {
-        uri: "https://www.alimentarium.org/fr/system/files/thumbnails/image/alimentarium_kiwis.jpg",
-      },
+      image: "https://www.alimentarium.org/fr/system/files/thumbnails/image/alimentarium_kiwis.jpg",
     },
     {
       label: "kiwidedededededed",
-      image: {
-        uri: "https://www.alimentarium.org/fr/system/files/thumbnails/image/alimentarium_kiwis.jpg",
-      },
+      image: "https://www.alimentarium.org/fr/system/files/thumbnails/image/alimentarium_kiwis.jpg",
     },
   ]
 

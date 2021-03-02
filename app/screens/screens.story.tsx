@@ -10,6 +10,7 @@ import { SignInScreenTemplate } from "./sign-in/sign-in-screen-template"
 import { MyRecipesTemplate } from "./my-recipes/my-recipes-template"
 // import { ProfileEditTemplate } from "./profile-edit/profile-edit-template"
 import { SignupTemplate } from "./signup/signup-template"
+import { RecipeCreationTemplate } from "./recipe-creation/recipe-creation-template"
 
 const noop = console.log
 const recipe: IRecipeFieldValues = {
@@ -23,13 +24,11 @@ const recipe: IRecipeFieldValues = {
   ingredients: [
     {
       label: "Banane",
-      image: { uri: "https://www.rts.ch/2017/11/29/10/11/9126687.image?&w=800&h=450" },
+      image: "https://www.rts.ch/2017/11/29/10/11/9126687.image?&w=800&h=450",
     },
     {
       label: "kiwi",
-      image: {
-        uri: "https://www.alimentarium.org/fr/system/files/thumbnails/image/alimentarium_kiwis.jpg",
-      },
+      image: "https://www.alimentarium.org/fr/system/files/thumbnails/image/alimentarium_kiwis.jpg",
     },
   ],
   image: {
@@ -98,4 +97,7 @@ storiesOf("Screens", module)
   })
   .add("SignupScreen", () => {
     return <SignupTemplate onSubmit={console.tron.log} />
+  })
+  .add("RecipeCreationScreen", () => {
+    return <RecipeCreationTemplate onNavigation={noop} onSubmit={console.tron.log} />
   })

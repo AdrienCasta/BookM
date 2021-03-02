@@ -9,9 +9,12 @@ import * as queries from "../../graphql/queries"
 export interface IRecipeFieldValues extends Asserts<typeof RecipeSchema> {}
 
 export const RecipeSchema = yup.object({
-  title: yup.string().required().default(""),
-  image: yup.object({ uri: yup.string().required() }).required().default({ uri: "" }),
-  description: yup.string().required().default(""),
+  title: yup.string().required("Le titre est requis").default(""),
+  image: yup
+    .object({ uri: yup.string().required() })
+    .required("Une photo est requise")
+    .default({ uri: "" }),
+  description: yup.string().required("La description est requise").default(""),
   numberOfPersons: yup.number().positive().integer().required().default(0),
   time: yup
     .date()
@@ -29,11 +32,11 @@ export const RecipeSchema = yup.object({
   ingredients: yup
     .array(
       yup.object({
-        image: yup.object({ uri: yup.string().required() }).required(),
+        image: yup.string(),
         label: yup.string().required(),
       }),
     )
-    .transform((value) => value.filter(({ label, image }) => label && image))
+    .transform((value) => value.filter(({ label }) => label))
     .min(2)
     .required(),
   cookingTime: yup
@@ -60,9 +63,7 @@ export const RecipeModel = types.model("RecipeModel", {
   image: types.model({ uri: types.string }),
   numberOfPersons: types.number,
   time: types.Date,
-  ingredients: types.array(
-    types.model({ label: types.string, image: types.model({ uri: types.string }) }),
-  ),
+  ingredients: types.array(types.model({ label: types.string, image: types.string })),
   cookingTime: types.union(types.Date, types.null),
   numberOfCalories: types.union(types.number, types.null),
   steps: types.array(
@@ -139,7 +140,7 @@ export const RecipeStore = types
               const fetches = await Promise.all(
                 [
                   self.recipe.image.uri,
-                  ...self.recipe.ingredients.map(({ image }) => image.uri),
+                  ...self.recipe.ingredients.map(({ image }) => image),
                 ].map((data) => fetch(data)),
               )
               for (const data of fetches) {
@@ -160,7 +161,7 @@ export const RecipeStore = types
                     cookingTime: cookingTime.toISOString(),
                     image: getImageUriFileName(image.uri),
                     ingredients: ingredients.map(({ image, label }) => ({
-                      image: getImageUriFileName(image.uri),
+                      image: getImageUriFileName(image),
                       label,
                     })),
                   },

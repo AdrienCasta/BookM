@@ -38,6 +38,7 @@ storiesOf("TextField", module)
               value={state.value}
               label="Name"
               placeholder="omg your name"
+              helper="allo"
             />
           )}
         </State>
