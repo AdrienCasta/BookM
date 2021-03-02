@@ -42,6 +42,13 @@ const PUBLISH: ViewStyle = {
   top: 50,
 }
 
+const ROOT: ViewStyle = {
+  flex: 1,
+}
+const CONTAINER: ViewStyle = {
+  flex: 1,
+}
+
 interface RecipePreviewTemplateProps {
   recipe: IRecipeFieldValues
   author: { firstname: string; image: { uri: string } }
@@ -82,29 +89,33 @@ export const RecipePreviewTemplate = function RecipePreviewTemplate({
 
   return (
     <>
-      <Screen preset="scroll" unsafe>
-        <TouchableOpacity style={PUBLISH} onPress={onPublish}>
-          <Text text="Publier" />
-        </TouchableOpacity>
-        <RecipePicture uri={recipe.image.uri} />
-        <View style={BODY}>
-          <Text text={recipe.title} style={TITLE} />
-          <Text text={`par ${author.firstname}`} style={AUTHOR} />
-          <Box fd="row">
-            <Text text={recipe.description} style={DESCRIPTION} />
-            <Avatar uri={author.image.uri} />
-          </Box>
-          <Box fd="row" jc="between">
-            <TouchableOpacity onPress={handlePress}>
-              <RecipeQuantifiableCard {...quantifiableInfos} />
+      <Screen preset="scroll" unsafe style={ROOT}>
+        <Box jc="between" style={CONTAINER}>
+          <View>
+            <TouchableOpacity style={PUBLISH} onPress={onPublish}>
+              <Text text="Publier" />
             </TouchableOpacity>
-            <TouchableOpacity onPress={handleStockPress}>
-              <RecipeStockCard />
-            </TouchableOpacity>
-            <RecipeFavCard />
-          </Box>
-        </View>
-        <Button text="Cuisinez !" preset="ghostLarge" onPress={onCookPress} />
+            <RecipePicture uri={recipe.image.uri} />
+            <View style={BODY}>
+              <Text text={recipe.title} style={TITLE} />
+              <Text text={`par ${author.firstname}`} style={AUTHOR} />
+              <Box fd="row">
+                <Text text={recipe.description} style={DESCRIPTION} />
+                <Avatar uri={author.image.uri} />
+              </Box>
+              <Box fd="row" jc="between">
+                <TouchableOpacity onPress={handlePress}>
+                  <RecipeQuantifiableCard {...quantifiableInfos} />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handleStockPress}>
+                  <RecipeStockCard />
+                </TouchableOpacity>
+                <RecipeFavCard />
+              </Box>
+            </View>
+          </View>
+          <Button text="Cuisinez !" preset="ghostLarge" onPress={onCookPress} />
+        </Box>
       </Screen>
       <RecipeQuantifiableBottomSheet sheetRef={ref} {...quantifiableInfos} />
       <RecipeStockBottomSheet ingredients={recipe.ingredients} sheetRef={stockRef} />
