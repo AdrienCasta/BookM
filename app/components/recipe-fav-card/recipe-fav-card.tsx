@@ -1,7 +1,7 @@
 import * as React from "react"
 import { View, ViewStyle } from "react-native"
 import { Box } from "../box/box"
-import LogoFire from "../../../assets/fire.svg"
+import LogoBookM from "../../../assets/bookm.svg"
 import IconCheck from "../../../assets/check.svg"
 import IconCheckSmall from "../../../assets/check-xs.svg"
 import { color } from "../../theme"
@@ -22,6 +22,9 @@ const CONTAINER_COMPACT: ViewStyle = {
 const SPACE: ViewStyle = {
   height: 10,
 }
+const LOGO_BOOKM: ViewStyle & { color: string } = {
+  color: color.secondary,
+}
 
 export interface RecipeFavCardProps {
   variant?: "compact" | "long"
@@ -31,7 +34,7 @@ export const RecipeFavCard = ({ variant = "long" }: RecipeFavCardProps) => {
   const isCompact = variant === "compact"
   return (
     <Box style={combine(CONTAINER, isCompact && CONTAINER_COMPACT)} jc="center" ai="center">
-      <LogoFire width={22} height={31} color={color.secondary} />
+      <LogoBookM width={22} height={31} style={LOGO_BOOKM} />
       {!isCompact && <View style={SPACE} />}
       {isCompact ? (
         <IconCheckSmall width={12} color={color.secondary} />
