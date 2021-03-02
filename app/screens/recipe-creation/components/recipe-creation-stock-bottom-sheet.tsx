@@ -82,8 +82,19 @@ const LABEL_CONTAINER: ViewStyle = {
 
 const CROSS_ICON_CONTAINER: ViewStyle = {
   padding: 6,
-  backgroundColor: color.palette.lightGrey,
+  backgroundColor: color.palette.offWhite,
   borderRadius: 5,
+}
+const CROSS_ICON: ViewStyle & { color: string } = {
+  color: color.error,
+}
+
+const TAG: ViewStyle = {
+  ...shadowViewStyle(),
+  paddingVertical: 5,
+  paddingHorizontal: 10,
+  backgroundColor: color.palette.offWhite,
+  borderRadius: 30,
 }
 
 interface IRecipeCreationStockBottomSheetProps {
@@ -124,9 +135,9 @@ export const RecipeCreationStockBottomSheet: FC<IRecipeCreationStockBottomSheetP
   }, [currentImagePicking])
 
   const handleSubmitEditing = () => {
-    if (preview && label) {
+    if (label) {
       ingredients.append({
-        image: preview,
+        image: preview?.uri || "",
         label,
       })
       setPreview(undefined)
@@ -159,13 +170,18 @@ export const RecipeCreationStockBottomSheet: FC<IRecipeCreationStockBottomSheetP
             <TouchableOpacity onPress={handlePress}>
               <RecipeCreationStockPicture preview={preview} />
             </TouchableOpacity>
-            <TextField
-              placeholder="Entrez votre ingrédient"
-              value={label}
-              onChangeText={setLabel}
-              returnKeyType="done"
-              onSubmitEditing={handleSubmitEditing}
-            />
+            <View>
+              <TextField
+                placeholder="Entrez votre ingrédient"
+                value={label}
+                onChangeText={setLabel}
+              />
+              <TouchableOpacity onPress={handleSubmitEditing}>
+                <Box style={TAG} aself="start">
+                  <Text text="+ Ajouter" />
+                </Box>
+              </TouchableOpacity>
+            </View>
           </Box>
           <ScrollView style={INGREDIENT_LIST}>
             {ingredients.fields.map((field, index) => (
@@ -175,11 +191,12 @@ export const RecipeCreationStockBottomSheet: FC<IRecipeCreationStockBottomSheetP
                   defaultValue={field.image}
                   name={`ingredients[${index}].image`}
                   render={() => {
+                    console.tron.log(field)
                     if (!field.image) {
                       return null
                     }
 
-                    return <Image source={{ uri: field?.image.uri }} style={IMAGE_INGREDIENT} />
+                    return <Image source={{ uri: field?.image }} style={IMAGE_INGREDIENT} />
                   }}
                 />
                 <Controller
@@ -192,12 +209,12 @@ export const RecipeCreationStockBottomSheet: FC<IRecipeCreationStockBottomSheetP
                     }
                     return (
                       <Box fd="row" ai="center" jc="between" style={LABEL_CONTAINER}>
-                        <Text text={field.value?.label} />
+                        <Text text={field.label} />
                         <TouchableOpacity
                           onPress={handleRemoveIngredient(index)}
                           style={CROSS_ICON_CONTAINER}
                         >
-                          <CrossIcon width={12} height={12} />
+                          <CrossIcon width={12} height={12} style={CROSS_ICON} />
                         </TouchableOpacity>
                       </Box>
                     )

@@ -97,7 +97,7 @@ export const RecipeStockBottomSheet: FC<IRecipeStockBottomSheetProps> = ({
           <ScrollView style={INGREDIENT_LIST}>
             {ingredients.map((ingredient) => (
               <Box fd="row" ai="center" style={INGREDIENT} key={ingredient.label}>
-                <Image source={{ uri: ingredient?.image.uri }} style={IMAGE_INGREDIENT} />
+                <Image source={{ uri: ingredient?.image }} style={IMAGE_INGREDIENT} />
 
                 <Text text={ingredient.label} />
               </Box>
