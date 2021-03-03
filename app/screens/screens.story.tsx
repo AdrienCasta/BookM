@@ -63,7 +63,13 @@ storiesOf("Screens", module)
   ))
   .add("RecipePreviewScreens", () => {
     return (
-      <RecipePreviewTemplate recipe={recipe} author={author} onCookPress={noop} onPublish={noop} />
+      <RecipePreviewTemplate
+        recipe={recipe}
+        author={author}
+        onCookPress={noop}
+        onPublish={noop}
+        onGoBack={noop}
+      />
     )
   })
   .add("RecipePreviewStepScreen", () => {

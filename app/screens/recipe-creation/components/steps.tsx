@@ -59,19 +59,12 @@ const FIELD_HELPER: TextStyle = {
 const combine = (...v: Record<string, any>[]) => v.reduce((a, c) => ({ ...a, ...(c || {}) }), {})
 
 const StepControl = ({ control, value, errors, index }) => {
-  console.log(errors)
   const [trickVisibility, setTrickVisibility] = useState(false)
   const toggle = () => {
     setTrickVisibility((value) => !value)
   }
   return (
     <>
-      <Text
-        style={FIELD_LABEL}
-        preset="fieldLabel"
-        text="Décris nous chaque nouvelle étape de ta fiche ?"
-      />
-      <Text style={FIELD_HELPER} text="(2 minimum)" />
       <View style={FORM_FIELD}>
         <Box fd="row" jc="between" ai="center" style={LABEL_HEADER}>
           <Text text={`Etape ${index + 1}`} style={LABEL} />
@@ -139,6 +132,12 @@ const StepControl = ({ control, value, errors, index }) => {
 export const StepsControl = function StepsControl({ control, errors, steps, append }) {
   return (
     <View>
+      <Text
+        style={FIELD_LABEL}
+        preset="fieldLabel"
+        text="Décris nous chaque nouvelle étape de ta fiche ?"
+      />
+      <Text style={FIELD_HELPER} text="(2 minimum)" />
       {steps.map((field, index) => (
         <StepControl control={control} value={field} index={index} errors={errors} key={index} />
       ))}

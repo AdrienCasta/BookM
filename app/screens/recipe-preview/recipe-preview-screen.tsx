@@ -21,12 +21,16 @@ export const RecipePreviewScreen = function RecipePreviewScreen() {
   const handleRecipeCreation = () => {
     recipeStore.createRecipe()
   }
+  const handleGoBack = () => {
+    navigation.goBack()
+  }
 
   return (
     <RecipePreviewTemplate
       recipe={recipeStore.recipe}
       onCookPress={handleNavigation}
       onPublish={handleRecipeCreation}
+      onGoBack={handleGoBack}
       author={author}
     />
   )

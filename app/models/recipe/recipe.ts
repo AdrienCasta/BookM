@@ -111,6 +111,9 @@ export const RecipeStore = types
             response.data.listRecipes.items.map(async (recipe) => {
               const ingredientsWithS3Image = await Promise.all(
                 recipe.ingredients.map(async (ingredient) => {
+                  if (!ingredient.image) {
+                    return ingredient
+                  }
                   const s3IngredientImage = await Storage.get(ingredient.image)
                   ingredient.image = s3IngredientImage
                   return ingredient
@@ -140,7 +143,9 @@ export const RecipeStore = types
               const fetches = await Promise.all(
                 [
                   self.recipe.image.uri,
-                  ...self.recipe.ingredients.map(({ image }) => image),
+                  ...self.recipe.ingredients
+                    .filter(({ image }) => !!image)
+                    .map(({ image }) => image),
                 ].map((data) => fetch(data)),
               )
               for (const data of fetches) {

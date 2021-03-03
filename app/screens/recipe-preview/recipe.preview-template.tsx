@@ -9,7 +9,8 @@ import { RecipeQuantifiableCard } from "../../components/recipe-quantifiable-car
 import { RecipeStockBottomSheet } from "../../components/recipe-stock-bottom-sheet/recipe-stock-bottom-sheet"
 import { RecipeStockCard } from "../../components/recipe-stock-card/recipe-stock-card"
 import { IRecipeFieldValues } from "../../models/recipe/recipe"
-import { typography } from "../../theme"
+import { color, typography } from "../../theme"
+import ChevronIcon from "../../../assets/chevron.svg"
 
 const TITLE: TextStyle = {
   fontSize: 20,
@@ -36,10 +37,16 @@ const BODY: TextStyle = {
 }
 
 const PUBLISH: ViewStyle = {
-  position: "absolute",
-  zIndex: 1,
-  right: 20,
-  top: 50,
+  paddingHorizontal: 11,
+  paddingVertical: 6,
+  backgroundColor: "rgba(42, 201, 64, 0.39)",
+  borderRadius: 20,
+}
+
+const PUBLISH_TEXT: TextStyle = {
+  color: color.secondary,
+  fontFamily: typography.secondary,
+  fontWeight: "700",
 }
 
 const ROOT: ViewStyle = {
@@ -48,12 +55,31 @@ const ROOT: ViewStyle = {
 const CONTAINER: ViewStyle = {
   flex: 1,
 }
+const CHEVRON_WRAPPER: ViewStyle = {
+  paddingVertical: 5,
+  paddingHorizontal: 9,
+  borderRadius: 20,
+  backgroundColor: "rgba(0, 0, 0, 0.18)",
+  transform: [{ rotateY: "180deg" }],
+}
+const CHEVRON: ViewStyle & { color: string } = {
+  color: color.secondary,
+}
+
+const HEADER: ViewStyle = {
+  position: "absolute",
+  width: "100%",
+  zIndex: 1,
+  paddingHorizontal: 20,
+  top: 50,
+}
 
 interface RecipePreviewTemplateProps {
   recipe: IRecipeFieldValues
   author: { firstname: string; image: { uri: string } }
   onCookPress: () => void
   onPublish: () => void
+  onGoBack: () => void
 }
 
 const fomatDuration = (duration: Date) => {
@@ -67,6 +93,7 @@ export const RecipePreviewTemplate = function RecipePreviewTemplate({
   author,
   onCookPress,
   onPublish,
+  onGoBack,
 }: RecipePreviewTemplateProps) {
   const ref = useRef(null)
   const stockRef = useRef(null)
@@ -92,9 +119,14 @@ export const RecipePreviewTemplate = function RecipePreviewTemplate({
       <Screen preset="scroll" unsafe style={ROOT}>
         <Box jc="between" style={CONTAINER}>
           <View>
-            <TouchableOpacity style={PUBLISH} onPress={onPublish}>
-              <Text text="Publier" />
-            </TouchableOpacity>
+            <Box style={HEADER} fd="row" jc="between" ai="center">
+              <TouchableOpacity style={CHEVRON_WRAPPER} onPress={onGoBack}>
+                <ChevronIcon width={9} height={14} style={CHEVRON} />
+              </TouchableOpacity>
+              <TouchableOpacity style={PUBLISH} onPress={onPublish}>
+                <Text text="Publier" style={PUBLISH_TEXT} />
+              </TouchableOpacity>
+            </Box>
             <RecipePicture uri={recipe.image.uri} />
             <View style={BODY}>
               <Text text={recipe.title} style={TITLE} />
