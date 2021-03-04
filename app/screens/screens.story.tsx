@@ -11,9 +11,11 @@ import { MyRecipesTemplate } from "./my-recipes/my-recipes-template"
 // import { ProfileEditTemplate } from "./profile-edit/profile-edit-template"
 import { SignupTemplate } from "./signup/signup-template"
 import { RecipeCreationTemplate } from "./recipe-creation/recipe-creation-template"
+import { ConfirmSignupTemplate } from "./confirm-signup/confirm-signup-template"
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const noop = () => {}
+const promise = () => new Promise((resolve) => resolve(true))
 const navigation = {
   setOptions: noop,
 }
@@ -110,4 +112,7 @@ storiesOf("Screens", module)
   })
   .add("RecipeCreationScreen", () => {
     return <RecipeCreationTemplate navigation={navigation} onSubmit={console.tron.log} />
+  })
+  .add("ConfirmSignUpScreen", () => {
+    return <ConfirmSignupTemplate onSubmit={promise} onResend={noop} />
   })
