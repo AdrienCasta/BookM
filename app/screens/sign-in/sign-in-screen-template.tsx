@@ -8,14 +8,16 @@ import shadowViewStyle from "../../utils/shadow"
 import { TouchableOpacity } from "react-native-gesture-handler"
 import { Controller, useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
+import { color } from "../../theme"
 
 const ROOT: ViewStyle = {
   alignItems: "center",
 }
 
-const LOGO: ViewStyle = {
+const LOGO: ViewStyle & { color: string } = {
   marginBottom: 28,
   marginTop: 83,
+  color: color.primary,
 }
 const FORM: ViewStyle = {
   width: 233,

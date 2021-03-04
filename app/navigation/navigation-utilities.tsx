@@ -1,6 +1,45 @@
 import React, { useState, useEffect, useRef } from "react"
-import { BackHandler } from "react-native"
+import { BackHandler, TouchableOpacity, ViewStyle } from "react-native"
 import { PartialState, NavigationState, NavigationContainerRef } from "@react-navigation/native"
+import { color } from "../theme"
+import ChevronIcon from "../../assets/chevron.svg"
+import CrossIcon from "../../assets/cross.svg"
+
+export const HEADER_TITLE = {
+  fontSize: 20,
+}
+export const HEADER_ICON: ViewStyle & { color: string } = {
+  color: color.primary,
+}
+export const HEADER_OPTIONS = {
+  headerRightContainerStyle: {
+    paddingRight: 20,
+  },
+  headerLeftContainerStyle: {
+    paddingLeft: 20,
+  },
+  headerStyle: {
+    shadowColor: "transparent",
+  },
+}
+
+export const HeaderLeft = ({ onPress, variant = "cross" }) => {
+  const CHEVRON = {
+    transform: [{ rotateY: "180deg" }],
+    color: color.primary,
+  }
+  let icon
+  switch (variant) {
+    case "chevron":
+      icon = <ChevronIcon width={9} height={14} style={CHEVRON} />
+      break
+
+    default:
+      icon = <CrossIcon width={12} height={12} style={HEADER_ICON} />
+      break
+  }
+  return <TouchableOpacity onPress={onPress}>{icon}</TouchableOpacity>
+}
 
 export const RootNavigation = {
   navigate(name: string) {

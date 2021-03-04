@@ -27,6 +27,7 @@ import { Box, Text } from "../components"
 import { color, typography } from "../theme"
 import { useNavigation } from "@react-navigation/native"
 import { useStores } from "../models"
+import { HEADER_ICON, HEADER_OPTIONS, HEADER_TITLE } from "./navigation-utilities"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -91,24 +92,6 @@ const TAB_PROFILE: ImageStyle = {
   width: 34,
   height: 34,
   borderRadius: 10,
-}
-
-const HEADER_TITLE = {
-  fontSize: 20,
-}
-const HEADER_ICON: ViewStyle & { color: string } = {
-  color: color.primary,
-}
-const HEADER_OPTIONS = {
-  headerRightContainerStyle: {
-    paddingRight: 20,
-  },
-  headerLeftContainerStyle: {
-    paddingLeft: 20,
-  },
-  headerStyle: {
-    shadowColor: "transparent",
-  },
 }
 
 function MyTabBar({ state, descriptors, navigation }) {
@@ -277,12 +260,7 @@ export function MyBookMNavigator() {
     navigation.goBack()
   }
   return (
-    <MyBookMStack.Navigator
-      initialRouteName="MyBookMScreen"
-      // screenOptions={{
-      //   headerShown: false,
-      // }}
-    >
+    <MyBookMStack.Navigator initialRouteName="MyBookMScreen">
       <MyBookMStack.Screen name="MyBookMScreen" component={MyBookMScreen} />
       <MyBookMStack.Screen
         name="RecipeCreationScreen"
