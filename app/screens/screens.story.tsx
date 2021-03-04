@@ -12,7 +12,11 @@ import { MyRecipesTemplate } from "./my-recipes/my-recipes-template"
 import { SignupTemplate } from "./signup/signup-template"
 import { RecipeCreationTemplate } from "./recipe-creation/recipe-creation-template"
 
-const noop = console.log
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+const noop = () => {}
+const navigation = {
+  setOptions: noop,
+}
 const recipe: IRecipeFieldValues = {
   title: "Salade de kiwi",
   description:
@@ -105,5 +109,5 @@ storiesOf("Screens", module)
     return <SignupTemplate onSubmit={console.tron.log} />
   })
   .add("RecipeCreationScreen", () => {
-    return <RecipeCreationTemplate onNavigation={noop} onSubmit={console.tron.log} />
+    return <RecipeCreationTemplate navigation={navigation} onSubmit={console.tron.log} />
   })

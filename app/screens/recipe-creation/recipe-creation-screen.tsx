@@ -13,10 +13,5 @@ export const RecipeCreationScreen = observer(function RecipeCreationScreen() {
     recipeStore.addRecipe(recipe)
     navigation.navigate("RecipePreviewScreen")
   }
-  return (
-    <RecipeCreationTemplate
-      onSubmit={onSubmit}
-      onNavigation={() => navigation.navigate("MyBookMScreen")}
-    />
-  )
+  return <RecipeCreationTemplate navigation={navigation} onSubmit={onSubmit} />
 })

@@ -93,6 +93,24 @@ const TAB_PROFILE: ImageStyle = {
   borderRadius: 10,
 }
 
+const HEADER_TITLE = {
+  fontSize: 20,
+}
+const HEADER_ICON: ViewStyle & { color: string } = {
+  color: color.primary,
+}
+const HEADER_OPTIONS = {
+  headerRightContainerStyle: {
+    paddingRight: 20,
+  },
+  headerLeftContainerStyle: {
+    paddingLeft: 20,
+  },
+  headerStyle: {
+    shadowColor: "transparent",
+  },
+}
+
 function MyTabBar({ state, descriptors, navigation }) {
   const { user } = useStores()
   const focusedOptions = descriptors[state.routes[state.index].key].options
@@ -254,18 +272,47 @@ export function ProfileStackNavigator() {
   )
 }
 export function MyBookMNavigator() {
+  const navigation = useNavigation()
+  const goBack = () => {
+    navigation.goBack()
+  }
   return (
     <MyBookMStack.Navigator
       initialRouteName="MyBookMScreen"
-      screenOptions={{
-        headerShown: false,
-      }}
+      // screenOptions={{
+      //   headerShown: false,
+      // }}
     >
       <MyBookMStack.Screen name="MyBookMScreen" component={MyBookMScreen} />
-      <MyBookMStack.Screen name="RecipeCreationScreen" component={RecipeCreationScreen} />
-      <MyBookMStack.Screen name="RecipeListScreen" component={RecipeListScreen} />
-      <MyBookMStack.Screen name="RecipePreviewScreen" component={RecipePreviewScreen} />
-      <MyBookMStack.Screen name="RecipePreviewStepScreen" component={RecipePreviewStepScreen} />
+      <MyBookMStack.Screen
+        name="RecipeCreationScreen"
+        component={RecipeCreationScreen}
+        options={{
+          ...HEADER_OPTIONS,
+          // eslint-disable-next-line react/display-name
+          headerTitle: (props) => <Text text="Nouvelle fiche" style={HEADER_TITLE} />,
+          headerLeft: () => (
+            <TouchableOpacity onPress={goBack}>
+              <CrossIcon width={12} height={12} style={HEADER_ICON} />
+            </TouchableOpacity>
+          ),
+        }}
+      />
+      <MyBookMStack.Screen
+        name="RecipeListScreen"
+        component={RecipeListScreen}
+        options={{ headerShown: false }}
+      />
+      <MyBookMStack.Screen
+        name="RecipePreviewScreen"
+        component={RecipePreviewScreen}
+        options={{ headerShown: false }}
+      />
+      <MyBookMStack.Screen
+        name="RecipePreviewStepScreen"
+        component={RecipePreviewStepScreen}
+        options={{ headerShown: false }}
+      />
     </MyBookMStack.Navigator>
   )
 }

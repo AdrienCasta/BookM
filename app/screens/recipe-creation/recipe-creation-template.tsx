@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from "react"
-import { TextStyle, ViewStyle, TouchableOpacity, View } from "react-native"
+/* eslint-disable react/display-name */
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react"
+import { ViewStyle, TouchableOpacity, View } from "react-native"
 import { Controller, useFieldArray, useForm } from "react-hook-form"
 import {
   ImageLibraryOptions,
@@ -9,12 +10,10 @@ import {
 } from "react-native-image-picker"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { Box, Screen, Text, TextField } from "../../components"
-import { color } from "../../theme"
 import { RecipeCreationInfoBottomSheet } from "./components/recipe-creation-info-bottom-sheet"
 import { reanimatedBottomSheet } from "./recipe-creation.share"
 import { RecipeCreationStockBottomSheet } from "./components/recipe-creation-stock-bottom-sheet"
 import RecipeCreationImagePickerBottomSheet from "./components/recipe-creation-image-picker-bottom-sheet"
-import CrossIcon from "../../../assets/cross.svg"
 import { StepsControl } from "./components/steps"
 import { IRecipeFieldValues, RecipeSchema } from "../../models/recipe/recipe"
 import { RecipeQuantifiableCard } from "../../components/recipe-quantifiable-card/recipe-quantifiable-card"
@@ -22,17 +21,6 @@ import { RecipeStockCard } from "../../components/recipe-stock-card/recipe-stock
 import { RecipePicture } from "../../components/recipe-picture/recipe-picture"
 
 const ROOT: ViewStyle = {}
-const HEADER: ViewStyle = {
-  width: "100%",
-  height: 40,
-  paddingHorizontal: 20,
-}
-const CROSS_ICON: TextStyle = {
-  color: color.primary,
-}
-const HEADER_TITLE: TextStyle = {
-  fontSize: 20,
-}
 const BODY: ViewStyle = {
   paddingHorizontal: 50,
 }
@@ -57,10 +45,10 @@ const fomatDuration = (duration: Date) => {
 
 interface Props {
   onSubmit: (data: IRecipeFieldValues) => void
-  onNavigation: () => void
+  navigation: any
 }
 
-export const RecipeCreationTemplate = ({ onSubmit, onNavigation }: Props) => {
+export const RecipeCreationTemplate = ({ onSubmit, navigation }: Props) => {
   const [ingredientPreview, setIngredientPreview] = useState<ImagePickerResponse>(null)
   const { control, setValue, watch, handleSubmit, errors } = useForm<IRecipeFieldValues>({
     mode: "onChange",
@@ -82,8 +70,15 @@ export const RecipeCreationTemplate = ({ onSubmit, onNavigation }: Props) => {
     name: "ingredients",
   })
 
-  console.tron.log(errors)
-  console.tron.log(watch("ingredients"))
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <TouchableOpacity onPress={handleSubmit(onSubmit)}>
+          <Text text="Suivant" />
+        </TouchableOpacity>
+      ),
+    })
+  }, [navigation])
 
   const recipeInfoSheetRef = useRef(null)
   const recipeStockSheetRef = useRef(null)
@@ -122,16 +117,7 @@ export const RecipeCreationTemplate = ({ onSubmit, onNavigation }: Props) => {
 
   return (
     <>
-      <Screen style={ROOT} preset="scroll">
-        <Box fd="row" ai="center" jc="between" style={HEADER}>
-          <TouchableOpacity onPress={onNavigation}>
-            <CrossIcon width={12} height={12} style={CROSS_ICON} />
-          </TouchableOpacity>
-          <Text text="Nouvelle fiche" style={HEADER_TITLE} />
-          <TouchableOpacity onPress={handleSubmit(onSubmit)}>
-            <Text text="Suivant" />
-          </TouchableOpacity>
-        </Box>
+      <Screen style={ROOT} preset="scroll" unsafe>
         <TouchableOpacity onPress={handleImagePickerAppearance}>
           <RecipePicture control={control} error={!!errors.image} />
         </TouchableOpacity>
