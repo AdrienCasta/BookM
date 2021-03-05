@@ -175,7 +175,7 @@ export const RecipeStore = types
             },
             { error: "Une erreur est survenue", success: "Votre recette à bien été publiée" },
           )
-          clearRecipe()
+          // clearRecipe()
           return reponse
         } catch (e) {
           throw Error(e)

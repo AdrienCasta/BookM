@@ -20,7 +20,7 @@ export function AuthNavigator() {
   }
   return (
     <Stack.Navigator
-      initialRouteName="ConfirmSignupScreen"
+      initialRouteName="SignInScreen"
       screenOptions={{
         headerShown: false,
       }}
