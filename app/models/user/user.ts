@@ -73,7 +73,9 @@ export const UserModel = types
   .actions((self) => ({
     signIn: flow(function* (username: string, password: string) {
       try {
-        const { attributes } = yield self.handleRequest(() => Auth.signIn(username, password))
+        const { attributes } = yield self.handleRequest(() => Auth.signIn(username, password), {
+          error: "Il semblerait y avoir une erreur dans le mot de passe ou l’identifiant renseigné",
+        })
         self.picture = (yield Storage.get(attributes.picture, { level: "protected" })) as string
         self.firstname = attributes.given_name
         self.lastname = attributes.family_name
@@ -88,7 +90,6 @@ export const UserModel = types
     signUp: flow(function* (data) {
       try {
         const { user } = yield self.handleRequest(() => Auth.signUp(data))
-        console.tron.log(user)
         self.username = user.username
       } catch (e) {
         console.error(e)

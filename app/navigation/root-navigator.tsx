@@ -17,6 +17,7 @@ import { AppToast } from "../components/app-toast/app-toast"
 import shadowViewStyle from "../utils/shadow"
 import { observer } from "mobx-react-lite"
 import { color } from "../theme"
+import { IRequestModel } from "../models/request/request"
 
 const BOTTOMSHEET_HEADER: ViewStyle = {
   ...shadowViewStyle(0, -3),
@@ -57,16 +58,47 @@ const retreiveCurrentStack = async () => {
 }
 
 const RootStack = observer(function () {
-  const [stack, setStack] = useState<keyof RootParamList | null>(null)
+  /**
+   * Toast handler
+   */
   const sheetRef = React.useRef(null)
   const { request } = useStores()
+  const [toastVisibility, setToastVisibility] = useState(false)
+  const [toastStatus, setToastStatus] = useState<"error" | "success">("error")
 
   useEffect(() => {
     if (sheetRef.current) {
-      const snapPoint = ["FAILURE", "SUCCESS"].includes(request.status) ? 0 : 1
+      const snapPoint = toastVisibility ? 0 : 1
       sheetRef.current.snapTo(snapPoint)
     }
+  }, [toastVisibility])
+
+  useEffect(() => {
+    if (["FAILURE", "SUCCESS", "CONFIRMED"].includes(request.status) === false) {
+      return
+    }
+    setToastVisibility(request.status !== "CONFIRMED")
   }, [request.status])
+
+  useEffect(() => {
+    if (request.status === "IDLE") {
+      return
+    }
+    const requestStatusToastStatus = new Map<IRequestModel["status"], typeof toastStatus>([
+      ["FAILURE", "error"],
+      ["SUCCESS", "success"],
+    ])
+    setToastStatus(requestStatusToastStatus.get(request.status))
+  }, [request.status])
+
+  const handleToastContinue = () => {
+    request.setConfirmedStatus()
+  }
+
+  /**
+   * Stack handler
+   */
+  const [stack, setStack] = useState<keyof RootParamList | null>(null)
 
   const handleAuthHubEvent = ({ payload: { event } }) => {
     if (event === "signIn") {
@@ -135,14 +167,15 @@ const RootStack = observer(function () {
       </Stack.Navigator>
       <BottomSheet
         ref={sheetRef}
-        snapPoints={[288, 0]}
+        snapPoints={[460, 0]}
         initialSnap={1}
         renderHeader={() => <View style={BOTTOMSHEET_HEADER}></View>}
         renderContent={() => (
           <View style={BOTTOMSHEET_CONTENT}>
             <AppToast
+              onContinue={handleToastContinue}
               text={request.message}
-              variant={request.status === "FAILURE" ? "error" : "success"}
+              variant={toastStatus}
             />
           </View>
         )}

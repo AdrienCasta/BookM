@@ -1,17 +1,23 @@
 import { flow, Instance, SnapshotOut, types } from "mobx-state-tree"
 
-/**
- * Model description here for TypeScript hints.
- */
+export interface IRequestModel {
+  status: "IDLE" | "PENDING" | "SUCCESS" | "FAILURE" | "CONFIRMED"
+  message: string
+}
 export const RequestModel = types
   .model("Request")
   .props({
-    status: types.enumeration("Status", ["IDLE", "PENDING", "SUCCESS", "FAILURE"]),
+    status: types.enumeration("Status", ["IDLE", "PENDING", "SUCCESS", "FAILURE", "CONFIRMED"]),
     message: types.optional(types.string, ""),
   })
   .actions((self) => ({
     setIdleStatus() {
       self.status = "IDLE"
+    },
+  }))
+  .actions((self) => ({
+    setConfirmedStatus() {
+      self.status = "CONFIRMED"
     },
   }))
   .actions((self) => ({

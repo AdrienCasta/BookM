@@ -2,8 +2,7 @@ import * as React from "react"
 import { Image, TextStyle, ViewStyle } from "react-native"
 import { observer } from "mobx-react-lite"
 import { color, typography } from "../../theme"
-import { Text } from "../"
-import { Box } from "../box/box"
+import { Text, Button, Box } from "../"
 const ToastError = require("../../../assets/toast-error.png")
 const ToastSuccess = require("../../../assets/toast-success.png")
 
@@ -35,17 +34,22 @@ const TEXT: TextStyle = {
   fontSize: 12,
   maxWidth: 280,
 }
+const BUTTON: ViewStyle = {
+  width: "100%",
+  marginTop: 50,
+}
 
 export interface AppToastProps {
   text: string
   variant: "error" | "success"
+  onContinue: () => void
 }
 
 /**
  * Describe your component here
  */
 export const AppToast = observer(function AppToast(props: AppToastProps) {
-  const { text, variant = "error" } = props
+  const { text, onContinue, variant = "error" } = props
 
   return (
     <Box ai="center" style={CONTAINER}>
@@ -54,6 +58,7 @@ export const AppToast = observer(function AppToast(props: AppToastProps) {
         {variant === "error" ? "Les ingrédients sont pas bons..." : "Faites chauffer les plaques !"}
       </Text>
       <Text style={TEXT}>{text}</Text>
+      <Button onPress={onContinue} preset="large" text="continuer" style={BUTTON} />
     </Box>
   )
 })
