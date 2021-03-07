@@ -16,11 +16,6 @@ export const RequestModel = types
     },
   }))
   .actions((self) => ({
-    setConfirmedStatus() {
-      self.status = "CONFIRMED"
-    },
-  }))
-  .actions((self) => ({
     startRequest: flow(function* (
       request,
       options = { error: "Une erreur est survenue", success: "" },
@@ -37,10 +32,12 @@ export const RequestModel = types
         self.message = error
         self.status = "FAILURE"
         throw Error(e)
-      } finally {
-        setTimeout(() => self.setIdleStatus(), 3000)
       }
     }),
+    setConfirmedStatus() {
+      self.status = "CONFIRMED"
+      setTimeout(() => self.setIdleStatus(), 300)
+    },
   })) // eslint-disable-line @typescript-eslint/no-unused-vars
 
 /**

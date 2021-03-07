@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native"
 import { ViewStyle } from "react-native"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
+import { observer } from "mobx-react-lite"
 
 import { useStores } from "../../models"
 import { RecipePreviewTemplate } from "./recipe.preview-template"
@@ -25,9 +26,17 @@ export const RecipeSubmitLoader = () => {
   )
 }
 
-export const RecipePreviewScreen = function RecipePreviewScreen() {
-  const { user, recipeStore } = useStores()
+export const RecipePreviewScreen = observer(function RecipePreviewScreen() {
+  const { user, recipeStore, request } = useStores()
+  const navigation = useNavigation()
   const [submitting, setSubmitStatus] = useState(false)
+
+  useEffect(() => {
+    if (request.status === "CONFIRMED") {
+      navigation.navigate("MyBookMScreen")
+    }
+  }, [request.status])
+
   const author = {
     firstname: user.firstname || "Adrien",
     image: {
@@ -35,7 +44,6 @@ export const RecipePreviewScreen = function RecipePreviewScreen() {
         "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8aHVtYW58ZW58MHx8MHw%3D&ixlib=rb-1.2.1&w=1000&q=80",
     },
   }
-  const navigation = useNavigation()
 
   const handleNavigation = () => {
     navigation.navigate("RecipePreviewStepScreen")
@@ -62,4 +70,4 @@ export const RecipePreviewScreen = function RecipePreviewScreen() {
       author={author}
     />
   )
-}
+})

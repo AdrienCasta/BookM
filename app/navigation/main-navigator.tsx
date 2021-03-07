@@ -260,7 +260,7 @@ export function MyBookMNavigator() {
     navigation.goBack()
   }
   return (
-    <MyBookMStack.Navigator initialRouteName="MyBookMScreen">
+    <MyBookMStack.Navigator initialRouteName="MyBookMScreen" screenOptions={{ headerShown: false }}>
       <MyBookMStack.Screen name="MyBookMScreen" component={MyBookMScreen} />
       <MyBookMStack.Screen
         name="RecipeCreationScreen"

@@ -12,6 +12,7 @@ export const HEADER_ICON: ViewStyle & { color: string } = {
   color: color.primary,
 }
 export const HEADER_OPTIONS = {
+  headerShown: true,
   headerRightContainerStyle: {
     paddingRight: 20,
   },
