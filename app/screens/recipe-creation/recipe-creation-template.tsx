@@ -108,11 +108,14 @@ export const RecipeCreationTemplate = ({ onSubmit, navigation }: Props) => {
   const handleLaunchingImageLibrary = () => {
     launchImageLibrary(imageOptions, (image) => setValue("image", image))
   }
+  const handleLaunchingCamera = () => {
+    launchCamera(imageOptions, (image) => setValue("image", image))
+  }
   const appendStockImageIngredient = () => {
     launchImageLibrary(imageOptions, (image) => setIngredientPreview(image))
   }
-  const handleLaunchingCamera = () => {
-    launchCamera(imageOptions, (image) => setValue("image", image))
+  const appendStockImageIngredientFromCamera = () => {
+    launchCamera(imageOptions, (image) => setIngredientPreview(image))
   }
 
   return (
@@ -202,7 +205,7 @@ export const RecipeCreationTemplate = ({ onSubmit, navigation }: Props) => {
       <RecipeCreationImagePickerBottomSheet
         sheetRef={imageStockPickerSheetRef}
         onSelectPhoto={appendStockImageIngredient}
-        onTakePhoto={handleLaunchingCamera}
+        onTakePhoto={appendStockImageIngredientFromCamera}
       />
     </>
   )
