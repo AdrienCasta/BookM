@@ -65,16 +65,22 @@ const RECIPE_INFO_SHEET_ITEM_ROWS: ViewStyle = {
   width: 300,
 }
 const BOTTOMSHEET_HEADER: ViewStyle = {
-  ...shadowViewStyle(0, -7),
+  ...shadowViewStyle(0, -5),
   backgroundColor: color.background,
   paddingVertical: PADDING,
   height: HEADER_HEIGHT,
   borderTopLeftRadius: BORDER_TOP_RADIUS,
   borderTopRightRadius: BORDER_TOP_RADIUS,
 }
-const BOTTOMSHEET_HEADER_T: ViewStyle = {
+const BOTTOMSHEET_HANDLEBAR: ViewStyle = {
+  width: 38,
+  height: 6,
   backgroundColor: color.palette.orange,
-  opacity: 0.4,
+  borderRadius: 6,
+  transform: [{ translateY: 7 - PADDING }],
+}
+const BOTTOMSHEET_HEADER_T: ViewStyle = {
+  backgroundColor: color.palette.orangeAlpha,
   transform: [{ translateY: HEADER_HEIGHT - PADDING }],
   height: HEADER_HEIGHT,
   borderTopLeftRadius: BORDER_TOP_RADIUS,
@@ -207,7 +213,11 @@ export const RecipeCreationInfoBottomSheet: FC<IRecipeCreationInfoBottomSheetPro
       onCloseStart={Keyboard.dismiss}
       renderHeader={() => (
         <>
-          <View style={BOTTOMSHEET_HEADER_T}></View>
+          <View style={BOTTOMSHEET_HEADER_T}>
+            <Box fd="row" jc="center">
+              <View style={BOTTOMSHEET_HANDLEBAR}></View>
+            </Box>
+          </View>
           <View style={BOTTOMSHEET_HEADER}>
             <Text text="Paramètres" style={RECIPE_INFO_SHEET_TITLE} />
             <Text
