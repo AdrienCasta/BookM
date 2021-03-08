@@ -22,12 +22,11 @@ import {
   ProfileScreen,
 } from "../screens"
 import LogoWhiteIcon from "../../assets/logo-white.svg"
-import CrossIcon from "../../assets/cross.svg"
 import { Box, Text } from "../components"
 import { color, typography } from "../theme"
 import { useNavigation } from "@react-navigation/native"
 import { useStores } from "../models"
-import { HEADER_ICON, HEADER_OPTIONS, HEADER_TITLE } from "./navigation-utilities"
+import { HeaderLeft, HEADER_OPTIONS, HEADER_TITLE } from "./navigation-utilities"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -41,8 +40,12 @@ import { HEADER_ICON, HEADER_OPTIONS, HEADER_TITLE } from "./navigation-utilitie
  *   https://reactnavigation.org/docs/params/
  *   https://reactnavigation.org/docs/typescript#type-checking-the-navigator
  */
-export type PrimaryParamList = {
+export type MainStackParamList = {
   MainTabNavigator: undefined
+}
+export type PrimaryParamList = {
+  Home: undefined
+  ProfileEditScreen: undefined
 }
 export type TabParamList = {
   HomeScreen: undefined
@@ -57,11 +60,11 @@ export type MyBookMStackParamList = {
   RecipePreviewStepScreen: undefined
 }
 export type ProfileStackParamList = {
-  ProfileEditScreen: undefined
   ProfileScreen: undefined
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
+const MainStack = createStackNavigator<MainStackParamList>()
 const Stack = createStackNavigator<PrimaryParamList>()
 const MyBookMStack = createStackNavigator<MyBookMStackParamList>()
 const ProfileStack = createStackNavigator<ProfileStackParamList>()
@@ -169,6 +172,38 @@ function MyTabBar({ state, descriptors, navigation }) {
 }
 
 export function MainTabNavigator() {
+  const navigation = useNavigation()
+  const handleProfileScreenNavigation = () => {
+    navigation.navigate("ProfileScreen")
+  }
+  const handleProfileScreenNavigationWithSubmit = () => {
+    navigation.navigate("ProfileScreen", {
+      save: true,
+    })
+  }
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Home" component={HomeTabs} />
+      <Stack.Screen
+        name="ProfileEditScreen"
+        component={ProfileEditScreen}
+        options={{
+          ...HEADER_OPTIONS,
+          headerTitle: (props) => <Text text="Modifier profil" style={{ fontSize: 20 }} />,
+          headerRight: () => {
+            return (
+              <TouchableOpacity onPress={handleProfileScreenNavigationWithSubmit}>
+                <Text text="Terminer" />
+              </TouchableOpacity>
+            )
+          },
+          headerLeft: () => <HeaderLeft onPress={handleProfileScreenNavigation} />,
+        }}
+      />
+    </Stack.Navigator>
+  )
+}
+export function HomeTabs() {
   return (
     <Tab.Navigator initialRouteName="HomeScreen" tabBar={(props) => <MyTabBar {...props} />}>
       <Tab.Screen
@@ -191,14 +226,7 @@ export function ProfileStackNavigator() {
   const handlePress = () => {
     navigation.navigate("ProfileEditScreen")
   }
-  const handleProfileScreenNavigation = () => {
-    navigation.navigate("ProfileScreen")
-  }
-  const handleProfileScreenNavigationWithSubmit = () => {
-    navigation.navigate("ProfileScreen", {
-      save: true,
-    })
-  }
+
   return (
     <ProfileStack.Navigator initialRouteName="ProfileScreen">
       <ProfileStack.Screen
@@ -221,44 +249,12 @@ export function ProfileStackNavigator() {
           },
         }}
       />
-      <ProfileStack.Screen
-        name="ProfileEditScreen"
-        component={ProfileEditScreen}
-        options={{
-          headerRightContainerStyle: {
-            paddingRight: 20,
-          },
-          headerLeftContainerStyle: {
-            paddingLeft: 20,
-          },
-          headerStyle: {
-            shadowColor: "transparent",
-          },
-          headerTitle: (props) => <Text text="Modifier profil" style={{ fontSize: 20 }} />,
-          headerRight: () => {
-            return (
-              <TouchableOpacity onPress={handleProfileScreenNavigationWithSubmit}>
-                <Text text="Terminer" />
-              </TouchableOpacity>
-            )
-          },
-          headerLeft: () => {
-            return (
-              <TouchableOpacity onPress={handleProfileScreenNavigation}>
-                <CrossIcon width={12} height={12} style={{ color: color.primary } as TextStyle} />
-              </TouchableOpacity>
-            )
-          },
-        }}
-      />
     </ProfileStack.Navigator>
   )
 }
 export function MyBookMNavigator() {
   const navigation = useNavigation()
-  const goBack = () => {
-    navigation.goBack()
-  }
+
   return (
     <MyBookMStack.Navigator initialRouteName="MyBookMScreen" screenOptions={{ headerShown: false }}>
       <MyBookMStack.Screen name="MyBookMScreen" component={MyBookMScreen} />
@@ -269,11 +265,7 @@ export function MyBookMNavigator() {
           ...HEADER_OPTIONS,
           // eslint-disable-next-line react/display-name
           headerTitle: (props) => <Text text="Nouvelle fiche" style={HEADER_TITLE} />,
-          headerLeft: () => (
-            <TouchableOpacity onPress={goBack}>
-              <CrossIcon width={12} height={12} style={HEADER_ICON} />
-            </TouchableOpacity>
-          ),
+          headerLeft: () => <HeaderLeft onPress={navigation.goBack} />,
         }}
       />
       <MyBookMStack.Screen
@@ -296,13 +288,13 @@ export function MyBookMNavigator() {
 }
 export function MainNavigator() {
   return (
-    <Stack.Navigator
+    <MainStack.Navigator
       screenOptions={{
         headerShown: false,
       }}
     >
-      <Stack.Screen name="MainTabNavigator" component={MainTabNavigator} />
-    </Stack.Navigator>
+      <MainStack.Screen name="MainTabNavigator" component={MainTabNavigator} />
+    </MainStack.Navigator>
   )
 }
 

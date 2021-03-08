@@ -29,6 +29,10 @@ export const HeaderLeft = ({ onPress, variant = "cross" }) => {
     transform: [{ rotateY: "180deg" }],
     color: color.primary,
   }
+  const TOUCHABLE = {
+    padding: 20,
+    paddingLeft: 0,
+  }
   let icon
   switch (variant) {
     case "chevron":
@@ -39,7 +43,11 @@ export const HeaderLeft = ({ onPress, variant = "cross" }) => {
       icon = <CrossIcon width={12} height={12} style={HEADER_ICON} />
       break
   }
-  return <TouchableOpacity onPress={onPress}>{icon}</TouchableOpacity>
+  return (
+    <TouchableOpacity onPress={onPress} style={TOUCHABLE}>
+      {icon}
+    </TouchableOpacity>
+  )
 }
 
 export const RootNavigation = {
