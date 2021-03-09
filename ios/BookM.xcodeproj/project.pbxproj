@@ -21,8 +21,8 @@
 		5253D6D14EF757D226CBB9CD /* libPods-BookM-BookMTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C396B5A056F0D732199F0B7F /* libPods-BookM-BookMTests.a */; };
 		7D9AA64D9020FA0706AA0C06 /* libPods-BookM-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F5AB691A360C43D9B98655 /* libPods-BookM-tvOS.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		E83168F65ED8E12385E7A654 /* libPods-BookM-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDD331FA4FEF606A96146D1 /* libPods-BookM-tvOSTests.a */; };
 		899A0892FF5D4061A5144DED /* Avenir.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5747394221DA46E9A08B4A38 /* Avenir.otf */; };
+		E83168F65ED8E12385E7A654 /* libPods-BookM-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDD331FA4FEF606A96146D1 /* libPods-BookM-tvOSTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +58,7 @@
 		2E259EBECBBBBA4ECB9F3551 /* Pods-BookM-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookM-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-BookM-tvOSTests/Pods-BookM-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		3C575570427329F703A55177 /* Pods-BookM-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookM-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-BookM-tvOSTests/Pods-BookM-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		48F8BA7A57B04CFD9ABD2508 /* AvenirLTStd.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AvenirLTStd.otf; path = ../assets/fonts/AvenirLTStd.otf; sourceTree = "<group>"; };
+		5747394221DA46E9A08B4A38 /* Avenir.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Avenir.otf; path = ../assets/fonts/Avenir.otf; sourceTree = "<group>"; };
 		5EDD331FA4FEF606A96146D1 /* libPods-BookM-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BookM-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C7712FFBFFB67489CBCCC1E /* Pods-BookM-BookMTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookM-BookMTests.release.xcconfig"; path = "Target Support Files/Pods-BookM-BookMTests/Pods-BookM-BookMTests.release.xcconfig"; sourceTree = "<group>"; };
 		7E65BA462C424A8DAD8CB715 /* Comfortaa-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-Regular.ttf"; path = "../assets/fonts/Comfortaa-Regular.ttf"; sourceTree = "<group>"; };
@@ -71,7 +72,6 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		FB5D93C5184049624F77DEDE /* Pods-BookM-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookM-tvOS.release.xcconfig"; path = "Target Support Files/Pods-BookM-tvOS/Pods-BookM-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		5747394221DA46E9A08B4A38 /* Avenir.otf */ = {isa = PBXFileReference; name = "Avenir.otf"; path = "../assets/fonts/Avenir.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -673,12 +673,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y84SK3L5SL;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = BookM/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.3;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -698,11 +698,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y84SK3L5SL;
 				INFOPLIST_FILE = BookM/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.3;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
