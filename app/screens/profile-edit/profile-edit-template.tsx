@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import { yupResolver } from "@hookform/resolvers/yup"
 import React, { useRef, useEffect } from "react"
 import { ImageLibraryOptions, launchCamera, launchImageLibrary } from "react-native-image-picker"
@@ -82,14 +83,14 @@ export const ProfileEditTemplate = ({ profile, onSubmit }: Props) => {
     name: "tags",
   })
 
-  React.useEffect(() => {
-    const unsubscribe = navigation.addListener("beforeRemove", ({ data }) => {
-      if ((data.action.payload as { params: { save?: true } }).params?.save) {
-        handleSubmit(onSubmit)()
-      }
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <TouchableOpacity onPress={handleSubmit(onSubmit)}>
+          <Text text="Terminer" />
+        </TouchableOpacity>
+      ),
     })
-
-    return unsubscribe
   }, [navigation])
 
   const imagePickerSheetRef = useRef(null)

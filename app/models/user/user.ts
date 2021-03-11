@@ -140,8 +140,6 @@ export const UserModel = types
         const response = yield self.handleRequest(async () => {
           if (picture !== self.picture) {
             if (self.picture) {
-              console.tron.log(getImageUriFileName(self.picture))
-
               await Storage.remove(getImageUriFileName(self.picture), { level: "protected" })
             }
             const fetchedPicture = await fetch(picture)
@@ -165,6 +163,7 @@ export const UserModel = types
         self.firstname = given_name
         self.picture = picture
         self.lastname = family_name
+        self.description = description
         self.tags = tags.map(({ value }) => value).join(",")
 
         return response
