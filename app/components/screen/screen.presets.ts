@@ -8,6 +8,7 @@ import { color } from "../../theme"
 export const offsets = {
   none: 0,
   40: 40,
+  100: 100,
 }
 
 /**

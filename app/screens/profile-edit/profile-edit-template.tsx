@@ -118,7 +118,7 @@ export const ProfileEditTemplate = ({ profile, onSubmit }: Props) => {
 
   return (
     <>
-      <Screen preset="scroll" unsafe>
+      <Screen preset="scroll" keyboardOffset={100}>
         {/* <Box fd="row" ai="center" jc="between" style={HEADER}>
           <TouchableOpacity onPress={onEditCancel}>
             <CrossIcon width={12} height={12} style={CROSS_ICON} />
