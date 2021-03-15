@@ -1,10 +1,10 @@
 import * as React from "react"
-import { Image, TextStyle, ViewStyle } from "react-native"
+import { TextStyle, ViewStyle } from "react-native"
 import { observer } from "mobx-react-lite"
 import { color, typography } from "../../theme"
 import { Text, Button, Box } from "../"
-const ToastError = require("../../../assets/toast-error.png")
-const ToastSuccess = require("../../../assets/toast-success.png")
+import ToastError from "../../../assets/toast-error.svg"
+import ToastSuccess from "../../../assets/toast-success.svg"
 
 const CONTAINER: ViewStyle = {
   backgroundColor: color.palette.white,
@@ -50,10 +50,11 @@ export interface AppToastProps {
  */
 export const AppToast = observer(function AppToast(props: AppToastProps) {
   const { text, onContinue, variant = "error" } = props
+  const Toast = variant === "error" ? ToastError : ToastSuccess
 
   return (
     <Box ai="center" style={CONTAINER}>
-      <Image source={variant === "error" ? ToastError : ToastSuccess} />
+      <Toast width={120} height={110} />
       <Text style={TITLE}>
         {variant === "error" ? "Les ingrédients sont pas bons..." : "Faites chauffer les plaques !"}
       </Text>
