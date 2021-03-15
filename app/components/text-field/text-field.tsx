@@ -44,6 +44,7 @@ const FIELD_ERROR: TextStyle = {
   marginLeft: 12,
   marginTop: 6,
   color: color.error,
+  maxWidth: 180,
 }
 
 // currently we have no presets, but that changes quickly when you build your app.
