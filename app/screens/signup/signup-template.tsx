@@ -45,6 +45,9 @@ const FORM_ROW: ViewStyle = {
 const BUTTON: ViewStyle = {
   width: "100%",
 }
+const LOGO: ViewStyle & { color: string } = {
+  color: color.primary,
+}
 
 const defaultValues = SignupUserSchema.cast(SignupUserSchema)
 
@@ -62,7 +65,7 @@ export const SignupTemplate = ({ onSubmit }: Props) => {
     <Screen style={ROOT} preset="scroll" keyboardOffset={40}>
       <Box ai="center">
         <Box fd="row" jc="between" style={HEADER}>
-          <Logo width={29} height={40} />
+          <Logo width={29} height={40} style={LOGO} />
           <View style={CATCH_PHRASE}>
             <Text preset="catchPhrase" text="Cuisinons de, " />
             <Text preset="catchPhrase" text="belles histoires, " />
