@@ -191,7 +191,6 @@ export const RecipeCreationStockBottomSheet: FC<IRecipeCreationStockBottomSheetP
                   defaultValue={field.image}
                   name={`ingredients[${index}].image`}
                   render={() => {
-                    console.tron.log(field)
                     if (!field.image) {
                       return null
                     }
