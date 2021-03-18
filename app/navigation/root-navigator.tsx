@@ -167,8 +167,8 @@ const RootStack = observer(function () {
       </Stack.Navigator>
       <BottomSheet
         ref={sheetRef}
-        snapPoints={[460, 0]}
-        initialSnap={1}
+        snapPoints={[400, 0]}
+        initialSnap={0}
         renderHeader={() => <View style={BOTTOMSHEET_HEADER}></View>}
         renderContent={() => (
           <View style={BOTTOMSHEET_CONTENT}>
