@@ -112,11 +112,11 @@ const ProfilScreenTemplate = ({ profile, recipeList }: Props) => {
       <View style={BEST_RECIPES}>
         <Text text="Statistiques" style={RECIPES_TITLE} />
         <Box fd="row">
-          <Text style={combine(INFO_DATA_ITEM, INFO_DATA_ITEM_BOLD)} text={61} />
+          <Text style={combine(INFO_DATA_ITEM, INFO_DATA_ITEM_BOLD)} text={"0"} />
           <Text style={INFO_DATA_ITEM} text="cuisines partagés " />
         </Box>
         <Box fd="row" style={INFO_STAT_SPACE}>
-          <Text style={combine(INFO_DATA_ITEM, INFO_DATA_ITEM_BOLD)} text={151} />
+          <Text style={combine(INFO_DATA_ITEM, INFO_DATA_ITEM_BOLD)} text={recipeList.length} />
           <Text style={INFO_DATA_ITEM} text="recettes BookM" />
         </Box>
       </View>
