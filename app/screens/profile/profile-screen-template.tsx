@@ -2,7 +2,8 @@ import React from "react"
 import { TextStyle, View, ViewStyle } from "react-native"
 import { Box, Screen, Text, Picture, RecipeThumbnailList } from "../../components"
 import { UserSnapshot } from "../../models/user/user"
-import { typography } from "../../theme"
+import { color, typography } from "../../theme"
+import shadowViewStyle from "../../utils/shadow"
 import { combine } from "../../utils/style"
 
 interface Props {
@@ -55,11 +56,19 @@ const INFO_STAT_SPACE: ViewStyle = {
   marginTop: 20,
 }
 
+const TAG: ViewStyle = {
+  ...shadowViewStyle(),
+  paddingVertical: 5,
+  paddingHorizontal: 10,
+  marginRight: 10,
+  backgroundColor: color.palette.lighterGrey,
+  borderRadius: 30,
+}
+
 const ProfilScreenTemplate = ({ profile, recipeList }: Props) => {
   const handleRecipeItemPress = () => {
     // todo
   }
-
   return (
     <Screen style={ROOT} preset="scroll" unsafe>
       <Box style={INFO} fd="row">
@@ -109,6 +118,16 @@ const ProfilScreenTemplate = ({ profile, recipeList }: Props) => {
         <Box fd="row" style={INFO_STAT_SPACE}>
           <Text style={combine(INFO_DATA_ITEM, INFO_DATA_ITEM_BOLD)} text={151} />
           <Text style={INFO_DATA_ITEM} text="recettes BookM" />
+        </Box>
+      </View>
+      <View style={BEST_RECIPES}>
+        <Text text="Mots clés culinaires" style={RECIPES_TITLE} />
+        <Box fd="row">
+          {profile.tags.split(",").map((value) => (
+            <Box style={TAG} fd="row" key={value}>
+              <Text text={value} />
+            </Box>
+          ))}
         </Box>
       </View>
     </Screen>

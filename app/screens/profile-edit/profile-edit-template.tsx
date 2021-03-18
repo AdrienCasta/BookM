@@ -33,7 +33,7 @@ const TAG: ViewStyle = {
   ...shadowViewStyle(),
   paddingVertical: 5,
   paddingHorizontal: 10,
-  backgroundColor: color.palette.lightGrey,
+  backgroundColor: color.palette.lighterGrey,
   borderRadius: 30,
 }
 const SPACE: ViewStyle = {
