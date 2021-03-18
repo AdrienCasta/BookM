@@ -74,14 +74,11 @@ const RootStack = observer(function () {
   }, [toastVisibility])
 
   useEffect(() => {
-    if (["FAILURE", "SUCCESS", "CONFIRMED"].includes(request.status) === false) {
-      return
-    }
-    setToastVisibility(request.status !== "CONFIRMED")
+    setToastVisibility(["FAILURE", "SUCCESS"].includes(request.status))
   }, [request.status])
 
   useEffect(() => {
-    if (request.status === "IDLE") {
+    if (request.status === "IDLE" || request.status === "CONFIRMED") {
       return
     }
     const requestStatusToastStatus = new Map<IRequestModel["status"], typeof toastStatus>([

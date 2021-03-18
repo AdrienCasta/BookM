@@ -68,7 +68,7 @@ export const SignupTemplate = ({ onSubmit }: Props) => {
           <Logo width={29} height={40} style={LOGO} />
           <View style={CATCH_PHRASE}>
             <Text preset="catchPhrase" text="Cuisinons de, " />
-            <Text preset="catchPhrase" text="belles histoires, " />
+            <Text preset="catchPhrase" text="belles histoires " />
           </View>
         </Box>
       </Box>
