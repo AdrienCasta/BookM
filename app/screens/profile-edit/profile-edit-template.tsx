@@ -100,7 +100,7 @@ export const ProfileEditTemplate = ({ profile, onSubmit }: Props) => {
   }
   useEffect(() => {
     imagePickerSheet.animate(imagePickerSheetRef).slideDown()
-  }, [watch("image")])
+  }, [watch("picture")])
 
   const handleImageLibraryLaunching = () => {
     launchImageLibrary(imageOptions, (image) => setValue("picture", image.uri))
@@ -114,6 +114,11 @@ export const ProfileEditTemplate = ({ profile, onSubmit }: Props) => {
   }
   const handleTagRemoving = (index) => () => {
     remove(index)
+  }
+
+  const test = (fn) => (...args) => {
+    imagePickerSheet.animate(imagePickerSheetRef).slideDown()
+    fn(...args)
   }
 
   return (
@@ -143,7 +148,8 @@ export const ProfileEditTemplate = ({ profile, onSubmit }: Props) => {
                   value={value}
                   label="prenom"
                   placeholder="écrivez-ici"
-                  onChangeText={onChange}
+                  onChangeText={test(onChange)}
+                  onFocus={imagePickerSheet.animate(imagePickerSheetRef).slideDown}
                   error={errors?.firstname?.message}
                 />
               )
@@ -159,6 +165,7 @@ export const ProfileEditTemplate = ({ profile, onSubmit }: Props) => {
                   value={value}
                   label="nom"
                   placeholder="écrivez-ici"
+                  onFocus={imagePickerSheet.animate(imagePickerSheetRef).slideDown}
                   onChangeText={onChange}
                   error={errors?.lastname?.message}
                 />
@@ -178,6 +185,7 @@ export const ProfileEditTemplate = ({ profile, onSubmit }: Props) => {
                   multiline
                   preset="multiline"
                   label="Biographie"
+                  onFocus={imagePickerSheet.animate(imagePickerSheetRef).slideDown}
                   onChangeText={onChange}
                   error={errors?.description?.message}
                 />
