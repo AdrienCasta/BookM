@@ -85,7 +85,7 @@ export const RecipeCreationTemplate = ({ onSubmit, navigation }: Props) => {
   const imagePickerSheetRef = useRef(null)
   const imageStockPickerSheetRef = useRef(null)
   const recipeInfoSheet = reanimatedBottomSheet(["100%", 460, 0], 2)
-  const recipeStockSheet = reanimatedBottomSheet(["100%", 0], 1)
+  const recipeStockSheet = reanimatedBottomSheet(["80%", 0], 1)
   const imagePickerSheet = reanimatedBottomSheet([300, 0], 1)
 
   useEffect(() => {

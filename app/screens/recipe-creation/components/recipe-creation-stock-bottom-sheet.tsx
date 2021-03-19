@@ -32,7 +32,7 @@ const RECIPE_INFO_SHEET_TITLE: TextStyle = {
   paddingBottom: 12,
 }
 const RECIPE_STOCK_SHEET_SUBTITLE: TextStyle = {
-  maxWidth: 270,
+  maxWidth: 280,
   fontSize: 13,
   lineHeight: 18,
   fontWeight: "300",
@@ -53,11 +53,20 @@ const BOTTOMSHEET_HEADER_T: ViewStyle = {
   borderTopLeftRadius: BORDER_TOP_RADIUS,
   borderTopRightRadius: BORDER_TOP_RADIUS,
 }
+const BOTTOMSHEET_HANDLEBAR: ViewStyle = {
+  width: 38,
+  height: 6,
+  backgroundColor: color.palette.green,
+  borderRadius: 6,
+  transform: [{ translateY: 7 - PADDING }],
+}
 
 const BOTTOMSHEET_CONTENT: ViewStyle = {
   height: "100%",
   backgroundColor: color.background,
   paddingTop: 30,
+}
+const BOTTOMSHEET_CONTENT_HEADER: ViewStyle = {
   paddingHorizontal: 20,
 }
 
@@ -71,6 +80,7 @@ const IMAGE_INGREDIENT: ImageStyle = {
 const INGREDIENT_LIST: ImageStyle = {
   marginTop: 90,
   marginBottom: 20,
+  paddingHorizontal: 20,
 }
 const INGREDIENT: ImageStyle = {
   marginBottom: 13,
@@ -152,12 +162,16 @@ export const RecipeCreationStockBottomSheet: FC<IRecipeCreationStockBottomSheetP
       initialSnap={initialSnap}
       renderHeader={() => (
         <>
-          <View style={BOTTOMSHEET_HEADER_T}></View>
+          <View style={BOTTOMSHEET_HEADER_T}>
+            <Box fd="row" jc="center">
+              <View style={BOTTOMSHEET_HANDLEBAR}></View>
+            </Box>
+          </View>
           <View style={BOTTOMSHEET_HEADER}>
             <Text text="Stock d’ingrédients " style={RECIPE_INFO_SHEET_TITLE} />
             <Box ai="center">
               <Text
-                text="Merci de préciser la quantité lors de l’ajout. Vous pouvez également ajouter une photo de votre ingrédient pour illuster votre préférence."
+                text="Merci de préciser la quantité lors de l’ajout. Vous pouvez également ajouter une photo de votre ingrédient pour illustrer votre préférence."
                 style={RECIPE_STOCK_SHEET_SUBTITLE}
               />
             </Box>
@@ -166,7 +180,7 @@ export const RecipeCreationStockBottomSheet: FC<IRecipeCreationStockBottomSheetP
       )}
       renderContent={() => (
         <View style={BOTTOMSHEET_CONTENT}>
-          <Box fd="row" ai="center" jc="between">
+          <Box fd="row" ai="center" jc="between" style={BOTTOMSHEET_CONTENT_HEADER}>
             <TouchableOpacity onPress={handlePress}>
               <RecipeCreationStockPicture preview={preview} />
             </TouchableOpacity>

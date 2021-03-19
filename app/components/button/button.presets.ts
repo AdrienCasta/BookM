@@ -30,7 +30,7 @@ export const viewPresets = {
    * A smaller piece of secondard information.
    */
   primary: { ...BASE_VIEW } as ViewStyle,
-  large: { ...BASE_VIEW, paddingVertical: 26, maxWidth: "100%" } as ViewStyle,
+  large: { ...BASE_VIEW, paddingVertical: 20, maxWidth: "100%" } as ViewStyle,
   ghostLarge: {
     ...BASE_VIEW,
     paddingVertical: 26,
