@@ -3,6 +3,7 @@ import {
   TextStyle,
   ViewStyle,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   View,
   Image,
   ImageStyle,
@@ -179,70 +180,74 @@ export const RecipeCreationStockBottomSheet: FC<IRecipeCreationStockBottomSheetP
         </>
       )}
       renderContent={() => (
-        <View style={BOTTOMSHEET_CONTENT}>
-          <Box fd="row" ai="center" jc="between" style={BOTTOMSHEET_CONTENT_HEADER}>
-            <TouchableOpacity onPress={handlePress}>
-              <RecipeCreationStockPicture preview={preview} />
-            </TouchableOpacity>
-            <View>
-              <TextField
-                placeholder="Entrez votre ingrédient"
-                value={label}
-                onChangeText={setLabel}
-              />
-              <TouchableOpacity onPress={handleSubmitEditing}>
-                <Box style={TAG} aself="start">
-                  <Text text="+ Ajouter" />
-                </Box>
+        <TouchableWithoutFeedback
+          onPress={imageStockPickerSheet.animate(imageStockPickerSheetRef).slideDown}
+        >
+          <View style={BOTTOMSHEET_CONTENT}>
+            <Box fd="row" ai="center" jc="between" style={BOTTOMSHEET_CONTENT_HEADER}>
+              <TouchableOpacity onPress={handlePress}>
+                <RecipeCreationStockPicture preview={preview} />
               </TouchableOpacity>
-            </View>
-          </Box>
-          <ScrollView style={INGREDIENT_LIST}>
-            {ingredients.fields.map((field, index) => (
-              <Box fd="row" ai="center" style={INGREDIENT} key={field.id}>
-                <Controller
-                  control={control}
-                  defaultValue={field.image}
-                  name={`ingredients[${index}].image`}
-                  render={() => {
-                    if (!field.image) {
-                      return null
-                    }
+              <View>
+                <TextField
+                  placeholder="Entrez votre ingrédient"
+                  value={label}
+                  onChangeText={setLabel}
+                />
+                <TouchableOpacity onPress={handleSubmitEditing}>
+                  <Box style={TAG} aself="start">
+                    <Text text="+ Ajouter" />
+                  </Box>
+                </TouchableOpacity>
+              </View>
+            </Box>
+            <ScrollView style={INGREDIENT_LIST}>
+              {ingredients.fields.map((field, index) => (
+                <Box fd="row" ai="center" style={INGREDIENT} key={field.id}>
+                  <Controller
+                    control={control}
+                    defaultValue={field.image}
+                    name={`ingredients[${index}].image`}
+                    render={() => {
+                      if (!field.image) {
+                        return null
+                      }
 
-                    return <Image source={{ uri: field?.image }} style={IMAGE_INGREDIENT} />
-                  }}
-                />
-                <Controller
-                  control={control}
-                  defaultValue={field.label}
-                  name={`ingredients[${index}].label`}
-                  render={() => {
-                    if (!field.label) {
-                      return null
-                    }
-                    return (
-                      <Box fd="row" ai="center" jc="between" style={LABEL_CONTAINER}>
-                        <Text text={field.label} />
-                        <TouchableOpacity
-                          onPress={handleRemoveIngredient(index)}
-                          style={CROSS_ICON_CONTAINER}
-                        >
-                          <CrossIcon width={12} height={12} style={CROSS_ICON} />
-                        </TouchableOpacity>
-                      </Box>
-                    )
-                  }}
-                />
-              </Box>
-            ))}
-          </ScrollView>
-          <Button
-            preset="large"
-            text="Valider"
-            onPress={onSubmit}
-            disabled={ingredients.fields.length === 0}
-          />
-        </View>
+                      return <Image source={{ uri: field?.image }} style={IMAGE_INGREDIENT} />
+                    }}
+                  />
+                  <Controller
+                    control={control}
+                    defaultValue={field.label}
+                    name={`ingredients[${index}].label`}
+                    render={() => {
+                      if (!field.label) {
+                        return null
+                      }
+                      return (
+                        <Box fd="row" ai="center" jc="between" style={LABEL_CONTAINER}>
+                          <Text text={field.label} />
+                          <TouchableOpacity
+                            onPress={handleRemoveIngredient(index)}
+                            style={CROSS_ICON_CONTAINER}
+                          >
+                            <CrossIcon width={12} height={12} style={CROSS_ICON} />
+                          </TouchableOpacity>
+                        </Box>
+                      )
+                    }}
+                  />
+                </Box>
+              ))}
+            </ScrollView>
+            <Button
+              preset="large"
+              text="Valider"
+              onPress={onSubmit}
+              disabled={ingredients.fields.length === 0}
+            />
+          </View>
+        </TouchableWithoutFeedback>
       )}
     />
   )
