@@ -21,7 +21,7 @@ type Recipe @model @auth(rules: [{ allow: owner }]) {
   id: ID!
   title: String!
   image: String!
-  description: String!
+  description: String
   time: AWSDateTime!
   numberOfPersons: Int!
   numberOfCalories: Int

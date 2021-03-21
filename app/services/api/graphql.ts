@@ -6,7 +6,7 @@ export type CreateRecipeInput = {
   id?: string | null
   title: string
   image: string
-  description: string
+  description?: string | null
   time: string
   numberOfPersons: number
   numberOfCalories?: number | null
@@ -147,7 +147,7 @@ export type CreateRecipeMutation = {
     id: string
     title: string
     image: string
-    description: string
+    description: string | null
     time: string
     numberOfPersons: number
     numberOfCalories: number | null
@@ -179,7 +179,7 @@ export type UpdateRecipeMutation = {
     id: string
     title: string
     image: string
-    description: string
+    description: string | null
     time: string
     numberOfPersons: number
     numberOfCalories: number | null
@@ -211,7 +211,7 @@ export type DeleteRecipeMutation = {
     id: string
     title: string
     image: string
-    description: string
+    description: string | null
     time: string
     numberOfPersons: number
     numberOfCalories: number | null
@@ -242,7 +242,7 @@ export type GetRecipeQuery = {
     id: string
     title: string
     image: string
-    description: string
+    description: string | null
     time: string
     numberOfPersons: number
     numberOfCalories: number | null
@@ -277,7 +277,7 @@ export type ListRecipesQuery = {
       id: string
       title: string
       image: string
-      description: string
+      description: string | null
       time: string
       numberOfPersons: number
       numberOfCalories: number | null
@@ -310,7 +310,7 @@ export type OnCreateRecipeSubscription = {
     id: string
     title: string
     image: string
-    description: string
+    description: string | null
     time: string
     numberOfPersons: number
     numberOfCalories: number | null
@@ -341,7 +341,7 @@ export type OnUpdateRecipeSubscription = {
     id: string
     title: string
     image: string
-    description: string
+    description: string | null
     time: string
     numberOfPersons: number
     numberOfCalories: number | null
@@ -372,7 +372,7 @@ export type OnDeleteRecipeSubscription = {
     id: string
     title: string
     image: string
-    description: string
+    description: string | null
     time: string
     numberOfPersons: number
     numberOfCalories: number | null

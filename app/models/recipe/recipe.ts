@@ -14,7 +14,7 @@ export const RecipeSchema = yup.object({
     .object({ uri: yup.string().required() })
     .required("Une photo est requise")
     .default({ uri: "" }),
-  description: yup.string().required("La description est requise").default(""),
+  description: yup.string().default(""),
   numberOfPersons: yup.number().positive().integer().required().default(0),
   time: yup
     .date()
