@@ -3,7 +3,14 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import React, { useRef, useEffect } from "react"
 import { ImageLibraryOptions, launchCamera, launchImageLibrary } from "react-native-image-picker"
 import { Controller, useFieldArray, useForm } from "react-hook-form"
-import { Alert, ViewStyle, TouchableOpacity, View, TextStyle } from "react-native"
+import {
+  Alert,
+  ViewStyle,
+  TouchableOpacity,
+  View,
+  TextStyle,
+  TouchableWithoutFeedback,
+} from "react-native"
 import CrossIcon from "../../../assets/cross.svg"
 import {
   Screen,
@@ -116,116 +123,107 @@ export const ProfileEditTemplate = ({ profile, onSubmit }: Props) => {
     remove(index)
   }
 
-  const test = (fn) => (...args) => {
-    imagePickerSheet.animate(imagePickerSheetRef).slideDown()
-    fn(...args)
-  }
-
   return (
     <>
-      <Screen preset="scroll" keyboardOffset={100}>
-        {/* <Box fd="row" ai="center" jc="between" style={HEADER}>
-          <TouchableOpacity onPress={onEditCancel}>
-            <CrossIcon width={12} height={12} style={CROSS_ICON} />
-          </TouchableOpacity>
-          <Text text="Nouvelle fiche" style={HEADER_TITLE} />
-          <TouchableOpacity onPress={handleSubmit(onSubmit)}>
-            <Text text="terminer" />
-          </TouchableOpacity>
-        </Box> */}
-        <View style={CONTAINER}>
-          <Box ai="center" style={PICTURE}>
-            <TouchableOpacity onPress={handleImagePickerAppearance}>
-              <PicturePlaceholder control={control} name="picture" />
-            </TouchableOpacity>
-          </Box>
-          <Controller
-            control={control}
-            name="firstname"
-            render={({ value, onChange }) => {
-              return (
-                <TextField
-                  value={value}
-                  label="prenom"
-                  placeholder="écrivez-ici"
-                  onChangeText={test(onChange)}
-                  onFocus={imagePickerSheet.animate(imagePickerSheetRef).slideDown}
-                  error={errors?.firstname?.message}
-                />
-              )
-            }}
-          />
-          <View style={SPACE} />
-          <Controller
-            control={control}
-            name="lastname"
-            render={({ value, onChange }) => {
-              return (
-                <TextField
-                  value={value}
-                  label="nom"
-                  placeholder="écrivez-ici"
-                  onFocus={imagePickerSheet.animate(imagePickerSheetRef).slideDown}
-                  onChangeText={onChange}
-                  error={errors?.lastname?.message}
-                />
-              )
-            }}
-          />
-          <View style={SPACE} />
-          <Controller
-            control={control}
-            name="description"
-            render={({ value, onChange }) => {
-              return (
-                <TextField
-                  value={value}
-                  scrollEnabled={false}
-                  placeholder="Votre description"
-                  multiline
-                  preset="multiline"
-                  label="Biographie"
-                  onFocus={imagePickerSheet.animate(imagePickerSheetRef).slideDown}
-                  onChangeText={onChange}
-                  error={errors?.description?.message}
-                />
-              )
-            }}
-          />
-          <View style={SPACE} />
-          <Text preset="fieldLabel" text="Mots-clés culinaires" />
-          <View style={SPACE} />
-          <Box fd="row">
-            {tagFields.length > 0 &&
-              tagFields.map((field, index) => (
-                <View key={field.id} style={TAG_WRAPPER}>
-                  <TouchableOpacity onPress={handleTagRemoving(index)}>
-                    <Controller
-                      control={control}
-                      name={`tags[${index}].value`}
-                      defaultValue={field.value}
-                      render={() => {
-                        return (
-                          <Box style={TAG} fd="row">
-                            <Text text={field.value} />
-                            <View style={REMOVE_ICON_WRAPPER}>
-                              <CrossIcon width={8} height={8} style={REMOVE_ICON} />
-                            </View>
-                          </Box>
-                        )
-                      }}
-                    />
-                  </TouchableOpacity>
-                </View>
-              ))}
-            <TouchableOpacity onPress={handleTagAppending}>
-              <Box style={TAG} aself="start">
-                <Text text="Ajouter" />
-              </Box>
-            </TouchableOpacity>
-          </Box>
-        </View>
-      </Screen>
+      <TouchableWithoutFeedback
+        onPress={
+          imagePickerSheetRef.current
+            ? imagePickerSheet.animate(imagePickerSheetRef).slideDown
+            : undefined
+        }
+      >
+        <Screen preset="scroll" keyboardOffset={100}>
+          <View style={CONTAINER}>
+            <Box ai="center" style={PICTURE}>
+              <TouchableOpacity onPress={handleImagePickerAppearance}>
+                <PicturePlaceholder control={control} name="picture" />
+              </TouchableOpacity>
+            </Box>
+            <Controller
+              control={control}
+              name="firstname"
+              render={({ value, onChange }) => {
+                return (
+                  <TextField
+                    value={value}
+                    label="prenom"
+                    placeholder="écrivez-ici"
+                    onChangeText={onChange}
+                    error={errors?.firstname?.message}
+                  />
+                )
+              }}
+            />
+            <View style={SPACE} />
+            <Controller
+              control={control}
+              name="lastname"
+              render={({ value, onChange }) => {
+                return (
+                  <TextField
+                    value={value}
+                    label="nom"
+                    placeholder="écrivez-ici"
+                    onChangeText={onChange}
+                    error={errors?.lastname?.message}
+                  />
+                )
+              }}
+            />
+            <View style={SPACE} />
+            <Controller
+              control={control}
+              name="description"
+              render={({ value, onChange }) => {
+                return (
+                  <TextField
+                    value={value}
+                    scrollEnabled={false}
+                    placeholder="Votre description"
+                    multiline
+                    preset="multiline"
+                    label="Biographie"
+                    onChangeText={onChange}
+                    error={errors?.description?.message}
+                  />
+                )
+              }}
+            />
+            <View style={SPACE} />
+            <Text preset="fieldLabel" text="Mots-clés culinaires" />
+            <View style={SPACE} />
+            <Box fd="row">
+              {tagFields.length > 0 &&
+                tagFields.map((field, index) => (
+                  <View key={field.id} style={TAG_WRAPPER}>
+                    <TouchableOpacity onPress={handleTagRemoving(index)}>
+                      <Controller
+                        control={control}
+                        name={`tags[${index}].value`}
+                        defaultValue={field.value}
+                        render={() => {
+                          return (
+                            <Box style={TAG} fd="row">
+                              <Text text={field.value} />
+                              <View style={REMOVE_ICON_WRAPPER}>
+                                <CrossIcon width={8} height={8} style={REMOVE_ICON} />
+                              </View>
+                            </Box>
+                          )
+                        }}
+                      />
+                    </TouchableOpacity>
+                  </View>
+                ))}
+              <TouchableOpacity onPress={handleTagAppending}>
+                <Box style={TAG} aself="start">
+                  <Text text="Ajouter" />
+                </Box>
+              </TouchableOpacity>
+            </Box>
+          </View>
+        </Screen>
+      </TouchableWithoutFeedback>
       <BottomSheetPicturePicker
         sheetRef={imagePickerSheetRef}
         onSelect={handleImageLibraryLaunching}
