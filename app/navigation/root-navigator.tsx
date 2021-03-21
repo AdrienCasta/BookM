@@ -165,7 +165,7 @@ const RootStack = observer(function () {
       <BottomSheet
         ref={sheetRef}
         snapPoints={[400, 0]}
-        initialSnap={0}
+        initialSnap={1}
         renderHeader={() => <View style={BOTTOMSHEET_HEADER}></View>}
         renderContent={() => (
           <View style={BOTTOMSHEET_CONTENT}>
