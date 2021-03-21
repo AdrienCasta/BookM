@@ -23,7 +23,12 @@ export const RecipeSchema = yup.object({
     .required()
     .default(new Date(0)),
   steps: yup
-    .array(yup.object({ description: yup.string().required(), trick: yup.string() }))
+    .array(
+      yup.object({
+        description: yup.string().required("La description est requise"),
+        trick: yup.string(),
+      }),
+    )
     .min(2)
     .default([
       { description: "", trick: "" },

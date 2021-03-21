@@ -88,10 +88,10 @@ const StepControl = ({ control, value, errors, index }) => {
             render={({ value, onChange }) =>
               !trickVisibility && (
                 <TextField
-                  // error={!!errors["step1.description"]}
                   preset="multilineShort"
                   scrollEnabled={false}
                   value={value}
+                  error={errors?.steps && errors.steps[index]?.description?.message}
                   multiline
                   onChangeText={onChange}
                   placeholder="Votre étape"
