@@ -29,31 +29,22 @@ const GO: TextStyle = {
   fontWeight: "700",
   textAlign: "center",
 }
-const TITLE: TextStyle = {
-  fontFamily: typography.secondary,
-  marginBottom: 27,
-  fontSize: 15,
-  fontWeight: "700",
-  textAlign: "center",
-}
 const AUTHOR: TextStyle = {
+  marginBottom: 27,
   fontFamily: typography.secondary,
   fontSize: 13,
   textAlign: "center",
-  marginBottom: 20,
 }
 
 interface RecipePreviewStepTemplateProps extends Pick<IRecipeFieldValues, "steps"> {
-  title: string
   author: { firstname: string; image: { uri: string } }
   activeStepIndex?: number
 }
 
 export const RecipePreviewStepTemplate = (props: RecipePreviewStepTemplateProps) => {
-  const { steps, author, activeStepIndex, title } = props
+  const { steps, author, activeStepIndex } = props
   return (
     <Screen style={ROOT} preset="scroll">
-      <Text style={TITLE}>{title}</Text>
       <Text style={AUTHOR}>par {author.firstname}</Text>
       <Box fd="row" jc="center">
         <RecipeFavCard variant="compact" />

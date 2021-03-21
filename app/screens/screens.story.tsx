@@ -79,7 +79,7 @@ storiesOf("Screens", module)
     )
   })
   .add("RecipePreviewStepScreen", () => {
-    return <RecipePreviewStepTemplate steps={recipe.steps} title={recipe.title} author={author} />
+    return <RecipePreviewStepTemplate steps={recipe.steps} author={author} />
   })
   .add("ProfilScreen", () => {
     const recipeList = [1, 2, 3, 4, 5].map((v) => ({ image: recipe.image.uri, id: v + "" }))

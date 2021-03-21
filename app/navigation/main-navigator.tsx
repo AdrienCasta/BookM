@@ -281,7 +281,15 @@ export function MyBookMNavigator() {
       <MyBookMStack.Screen
         name="RecipePreviewStepScreen"
         component={RecipePreviewStepScreen}
-        options={{ headerShown: false }}
+        options={{
+          ...HEADER_OPTIONS,
+          headerLeft: () => (
+            <HeaderLeft
+              variant="chevron"
+              onPress={() => navigation.navigate("RecipePreviewScreen")}
+            />
+          ),
+        }}
       />
     </MyBookMStack.Navigator>
   )

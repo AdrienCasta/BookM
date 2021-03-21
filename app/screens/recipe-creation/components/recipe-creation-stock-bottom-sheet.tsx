@@ -181,7 +181,11 @@ export const RecipeCreationStockBottomSheet: FC<IRecipeCreationStockBottomSheetP
       )}
       renderContent={() => (
         <TouchableWithoutFeedback
-          onPress={imageStockPickerSheet.animate(imageStockPickerSheetRef).slideDown}
+          onPress={
+            imageStockPickerSheetRef.current
+              ? imageStockPickerSheet.animate(imageStockPickerSheetRef).slideDown
+              : undefined
+          }
         >
           <View style={BOTTOMSHEET_CONTENT}>
             <Box fd="row" ai="center" jc="between" style={BOTTOMSHEET_CONTENT_HEADER}>
